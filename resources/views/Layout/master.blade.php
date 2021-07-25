@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
+
+    <!-- Toastr -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+  integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU=" crossorigin="anonymous"/>
     <!-- Title -->
     <title>ClusterWink</title>
 
@@ -22,7 +26,6 @@
 				display: none;
 			}
 		</style>
-
 <body>
     <!-- Preloader -->
     <!-- <div id="preloader">
@@ -35,54 +38,21 @@
     ======================================= -->
     <div class="ecaps-page-wrapper">
         <!-- Sidemenu Area -->
-        <div class="ecaps-sidemenu-area">
-            <!-- Desktop Logo -->
-            <div class="ecaps-logo">
-                <a href="#"><img class="desktop-logo" src="{{ asset('assets/img/core-img/logo.png') }}" alt="Desktop Logo"> <img class="small-logo" src="{{ asset('assets/img/core-img/small-logo.png') }}" alt="Mobile Logo"></a>
-            </div>
+      @include('Includes.sidebar')
 
-            @include('Includes.sidebar')
-        </div>
-        @yield('content')
-        <!-- Page Content -->
-        <div class="ecaps-page-content">
-            <!-- Top Header Area -->
-            @include('Includes.header')
-            <!-- Main Content Area -->
-            <div class="main-content">
-                @yield('content')
 
-                <!-- Footer Area -->
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <!-- Footer Area -->
-                            <footer class="footer-area d-flex align-items-center flex-wrap">
-                                <!-- Copywrite Text -->
-                                <div class="copywrite-text">
-                                    <p>All Right Reserved <a href="#">Clusterwink</a> <?php echo date('Y');?></p>
-                                </div>
-                                <!-- Footer Nav -->
-                                <ul class="footer-nav d-flex align-items-center">
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Privacy</a></li>
-                                    <li><a href="#">Purchase</a></li>
-                                </ul>
-                            </footer>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+	  @yield('content')
+		
     </div>
 
-    <!-- ======================================
-    ********* Page Wrapper Area End ***********
-    ======================================= -->
+ 
+
+    <script defer src="https://pro.fontawesome.com/releases/v5.10.0/js/all.js"
+     integrity="sha384-G/ZR3ntz68JZrH4pfPJyRbjW+c0+ojii5f+GYiYwldYU69A+Ejat6yIfLSxljXxD" 
+     crossorigin="anonymous"></script>
 
     <script src="{{ asset('library/axios.min.js') }}"></script>
     <script src="{{ asset('library/vue.js') }}"></script>
-    <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
     <script src="https://unpkg.com/vue-toastr/dist/vue-toastr.umd.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
@@ -102,7 +72,7 @@
     <!-- These plugins only need for the run this page -->
     <script src="{{ asset('assets/js/default-assets/ammap.min.js') }}"></script>
     <script src="{{ asset('assets/js/default-assets/radar.js') }}"></script>
-    <script src="js/default-assets/widget-page-chart-active.js') }}"></script>
+    <script src="{{ asset('assets/js/default-assets/widget-page-chart-active.js') }}"></script>
     <script src="{{ asset('assets/js/default-assets/apexchart.min.js') }}"></script>
     <script src="{{ asset('assets/js/default-assets/dashboard-active.js') }}"></script>
     @yield('scripts')

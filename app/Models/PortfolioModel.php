@@ -9,5 +9,5 @@ class PortfolioModel extends Model
 {
     use HasFactory;
 
-    protected $table = "portolio";
+    protected $table = "portfolio";
 }

@@ -19,6 +19,8 @@ Route::post('/login', [Controller\Auth\LoginController::class, 'login'])->name('
 Route::get('/logout', [Controller\Auth\LoginController::class, 'logout'])->name('auth.logout');
 // Route::get('/account-create', [Controller\UserController::class, 'accountView'])->name('auth.register');
 Route::get('/',  [Controller\DashboardController::class, 'dashboard'])->name('user.dashboard');
+Route::get('/portfolio',  [Controller\PortfolioController::class, 'dashboard'])->name('user.portfolio');
+Route::post('/create-portfolio',  [Controller\PortfolioController::class, 'createPortfolio'])->name('user.portfolio.create');
 Route::get('/admin',  [Controller\Admin\AdminController::class, 'dashboard'])->name('admin.dashboard');
 
 Route::get('/reset-password/{token}', [Controller\Auth\ResetPasswordController::class, 'resetPassword'])->name('auth.reset-password');

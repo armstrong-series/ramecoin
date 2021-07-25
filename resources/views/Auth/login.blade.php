@@ -80,7 +80,7 @@
 							</form>
 						</div>
 						<div class="fxt-footer">
-							<p>Don't have an account?<a href="{{ route('auth.register') }}" class="switcher-text2 inline-text">Signup</a></p>
+							<p>Don't have an account?<a href="#" class="switcher-text2 inline-text">Signup</a></p>
 						</div>
 					</div>
 				</div>
