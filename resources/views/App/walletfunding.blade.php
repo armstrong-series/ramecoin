@@ -6,19 +6,18 @@
 
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid" >
         <div class="row">
-            <div class="col-12 box-margin" id="fund-wallet">
+            <div class="col-12 box-margin" id="funding">
                 <div class="card">
                     <div class="card-body">
                         <!-- <h4 class="card-title">Add Fund</h4> -->
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                           Invest
-                        </button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fundingWallet">Fund Wallet</button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="fundingWallet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            @csrf
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -30,17 +29,27 @@
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label class="col-4"> Amount </label>  
-                                            <input type="text" class="form-control" placeholder="Enter Amount">
+                                            <input type="text" v-model="investment.amount" class="form-control" placeholder="Enter Amount">
                                         </div>
 
 
                                         <div class="form-group">
                                             <!-- <label class="col-4"> Choose Payment</label>   -->
-                                            <select name="" id="" class="form-control">
+                                            <select name="" id="" class="form-control" v-model="investment.payment">
                                                 <option value="" selected>Choose Payment</option>
                                                 <option value="btc">BTC</option>
                                                 <option value="usdt">USDT</option>    
                                             </select>
+                                                  
+                                        </div>
+
+                                        <div class="form-group">            
+                                            <div class="input-group">
+                                                <input type="text" disabled class="form-control" placeholder="Recipient's username" aria-label="Recipient's username">
+                                                <div class="input-group-append">
+                                                    <button @click="copyAddress()" class="btn btn-secondary" type="button"><i class="fa-solid fa-copy"></i></button>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-4"> Proof of Payment <small class="text-danger">*  Screenshot(Jpg, Jpeg, Png)</small></label>  
@@ -49,7 +58,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Proceed</button>
+                                        <button type="button" @click="fundWallet()" class="btn btn-primary">Proceed</button>
                                     </div>
                                 </div>
                             </div>
@@ -65,5 +74,5 @@
 @endsection
 
 @section('script')
-    
+    <script src="{{ asset('js/funding.js') }}"></script>
 @endsection
