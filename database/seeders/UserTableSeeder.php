@@ -14,16 +14,16 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $user = new User;
-        $user->name = 'Armstrong';
-        $user->email = 'admin@clusterwink.io';
+        $user->name = 'Brown';
+        $user->email = 'admin@christopherbrown.io';
         $user->password = bcrypt('123456');
         $user->role = 'admin';
         $user->uuid = (string) \Str::uuid();
         $user->save();
 
         $user = new User;
-        $user->name = 'Audrey';
-        $user->email = 'user@clusterwink.io';
+        $user->name = 'Halmiton';
+        $user->email = 'user@christopherbrown.io';
         $user->password = bcrypt('123456');
         $user->role = 'member';
         $user->uuid = (string) \Str::uuid();

@@ -1,104 +1,99 @@
+
 <!doctype html>
-<html class="no-js" lang="">
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Clusterwink </title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Favicon -->
-	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('auth/img/favicon.png') }}">
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="{{ asset('auth/css/bootstrap.min.css') }}">
-	<!-- Fontawesome CSS -->
-	<link rel="stylesheet" href="{{ asset('auth/css/fontawesome-all.min.css') }}">
-	<!-- Flaticon CSS -->
-	<link rel="stylesheet" href="{{ asset('auth/font/flaticon.css') }}">
-	<!-- Google Web Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet">
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="{{ asset('auth/style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+
+    <title>Renewal</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('template/img/core-img/favicon.png') }}">
+
+    <!-- Master Stylesheet CSS -->
+    <link rel="stylesheet" href="{{ asset('template/style.css') }}">
+
 </head>
 
-<body>
-	<!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-	<section class="fxt-template-animation fxt-template-layout13">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-6 col-12 order-md-2 fxt-bg-wrap">
-					<div class="fxt-bg-img" data-bg-image="img/figure/bg13-l.jpg">
-						<div class="fxt-header">
-							<div class="fxt-transformY-50 fxt-transition-delay-1">
-								<!-- <a href="login-13.html" class="fxt-logo"><img src="{{ asset('auth/img/logo-13.png') }}" alt="Logo"></a> -->
-							</div>
-							<div class="fxt-transformY-50 fxt-transition-delay-2">
-								<h1>ClusterWink</h1>
-							</div>
-							<div class="fxt-transformY-50 fxt-transition-delay-3">
-								<p>Grursus mal suada faci lisis Lorem ipsum dolarorit more ametion consectetur elit. Vesti at bulum nec odio aea the dumm ipsumm ipsum that dolocons rsus mal suada and fadolorit to the dummy consectetur elit the Lorem Ipsum genera.</p>
-							</div>
-						</div>
-						<!-- <ul class="fxt-socials">
-							<li class="fxt-facebook fxt-transformY-50 fxt-transition-delay-4"><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-							<li class="fxt-twitter fxt-transformY-50 fxt-transition-delay-5"><a href="#" title="twitter"><i class="fab fa-twitter"></i></a></li>
-							<li class="fxt-google fxt-transformY-50 fxt-transition-delay-6"><a href="#" title="google"><i class="fab fa-google-plus-g"></i></a></li>
-							<li class="fxt-linkedin fxt-transformY-50 fxt-transition-delay-7"><a href="#" title="linkedin"><i class="fab fa-linkedin-in"></i></a></li>
-							<li class="fxt-youtube fxt-transformY-50 fxt-transition-delay-8"><a href="#" title="youtube"><i class="fab fa-youtube"></i></a></li>
-						</ul> -->
-					</div>
-				</div>
-				<div class="col-md-6 col-12 order-md-1 fxt-bg-color">
-					<div class="fxt-content">
-						<h2>Login</h2>
-						<div class="fxt-form">
-							@include('Includes.messages')
-							<form method="POST" action="{{ route('auth.login.account') }}">
-								@csrf
-								<div class="form-group">
-									<label for="email" class="input-label">Email Address</label>
-									<input type="email" id="email" class="form-control" name="email" placeholder="Enter Valid Email" required="required">
-								</div>
-								<div class="form-group">
-									<label for="password" class="input-label">Password</label>
-									<input id="password" type="password" class="form-control" name="password" placeholder="Enter Password" required="required">
-									<i toggle="#password" class="fa fa-fw fa-eye toggle-password field-icon"></i>
-								</div>
-								<div class="form-group">
-									<div class="fxt-checkbox-area">
-										<div class="checkbox">
-											<input id="checkbox1" type="checkbox">
-											<label for="checkbox1">Keep me logged in</label>
-										</div>
-										<a href="" class="switcher-text">Forgot Password</a>
-									</div>
-								</div>
-								<div class="form-group">
-									<button type="submit" class="fxt-btn-fill">Log in</button>
-								</div>
-							</form>
-						</div>
-						<div class="fxt-footer">
-							<p>Don't have an account?<a href="#" class="switcher-text2 inline-text">Signup</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- jquery-->
-	<script src="{{ asset('auth/js/jquery-3.5.0.min.js') }}"></script>
-	<!-- Popper js -->
-	<script src="{{ asset('auth/js/popper.min.js') }}"></script>
-	<!-- Bootstrap js -->
-	<script src="{{ asset('auth/js/bootstrap.min.js') }}"></script>
-	<!-- Imagesloaded js -->
-	<script src="{{ asset('auth/js/imagesloaded.pkgd.min.js') }}"></script>
-	<!-- Validator js -->
-	<script src="{{ asset('auth/js/validator.min.js') }}"></script>
-	<!-- Custom Js -->
-	<script src="{{ asset('auth/js/main.js') }}"></script>
+<body class="login-area">
+
+   
+
+    <!-- ======================================
+    ******* Page Wrapper Area Start **********
+    ======================================= -->
+    <div class="main-content- h-100vh">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center justify-content-center">
+                <div class="hero">
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                </div>
+                <div class="col-sm-10 col-md-8 col-lg-5">
+                    <!-- Middle Box -->
+                    <div class="middle-box">
+                        <div class="card">
+                            <div class="card-body p-4">
+
+                                <!-- Logo -->
+                                <h4 class="font-24 mb-30">Login to yoour Account</h4>
+								@include('Includes.messages')
+                                <form method="post" action="{{ route('auth.login.account') }}">
+									@csrf
+                                    <div class="form-group">
+                                        <input class="form-control login" name="email" type="email" id="emailaddress" required="" placeholder="Enter your email">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <a href="forget-password.html" class="text-dark float-right"></a>
+                                        <input class="form-control login" name="password" type="password" required="" id="password" placeholder="Enter your password">
+                                    </div>
+
+                                    <div class="form-group d-flex justify-content-between align-items-center mb-3">
+                                        <div class="checkbox d-inline mb-0">
+                                            <input type="checkbox" name="checkbox-1" id="checkbox-8">
+                                            <label for="checkbox-8" class="cr mb-0 font-13">Remember me</label>
+                                        </div>
+                                        <span><a class="font-12 text-success" href="#">Forgot your password?</a></span>
+                                    </div>
+
+                                    <div class="form-group mb-0">
+                                        <button class="btn btn-primary btn-block" type="submit"> Log In </button>
+                                    </div>
+
+                                    <div class="text-center mt-15"><span class="mr-2 font-12">Don't have an account?</span><a class="font-12" href="{{ route('auth.register') }}">Sign up</a></div>
+
+                                </form>
+
+                                <!-- end card -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- ======================================
+    ********* Page Wrapper Area End ***********
+    ======================================= -->
+
+    <!-- Plugins Js -->
+    <script src="{{ asset('template/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('template/js/popper.min.js') }}"></script>
+    <script src="{{ asset('template/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('template/js/bundle.js') }}"></script>
+    <!-- Active JS -->
+    <script src="{{ asset('template/js/default-assets/active.js') }}"></script>
 
 </body>
-
+</html>

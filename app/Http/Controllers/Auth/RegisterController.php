@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Exception, Auth, Log;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -29,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -62,12 +64,41 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+   
+
+
+    public function account(){
+
+        return view('Auth.register');
+
+    }
+    public function createUser(Request $request){
+        try {
+
+            $validator = $this->validator($request->all());
+            if ($validator->fails()) {
+                $message = $validator->errors()->all();
+                foreach ($message as $messages) {
+                    return response()->json(['message' => $messages], 400);
+                }
+    
+            }
+
+            $user = new User;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->user_type = 'member';
+            $user->password = Hash::make($request->password);
+            $user->uuid = (string) \Str::uuid();
+            $user->save();
+            $message = "Account Created Successfully";
+            return response()->redirectToRoute('user.dashboard');
+            // return response()->json(['message' => $message,'user' => $user], 200);
+
+        } catch (Exception $error) {
+            Log::info("UserController::class, 'createAccount'" . $error->getMessage());
+            $message = 'Unable to get information. Please try checking your network';
+            return $error;
+        }
     }
 }

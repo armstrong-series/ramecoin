@@ -1,77 +1,163 @@
 @extends('Layout.master')
 @section('title')
-<title>Nairax | Logistics</title>
+<title>Ramecoin</title>
 @endsection
 
 @section('content')
         <!-- Page Content -->
-        <div class="ecaps-page-content">
-            <!-- Top Header Area -->
-           @include('Includes.header')
-            <!-- Main Content Area -->
-            <div class="main-content">
-                <div class="container-fluid">
-                     <div class="col-12 box-margin">
-                         <div class="card">
-                            <div class="bg-size-cover bg-img py-5" style="background-image: url( '{{ asset("templates/img/bg-img/7.jpg") }}');">
-                                 <div class="row">
-                                         <div class="col-lg-6 col-md-8">
-                                                <div class="pl-4">
-                                                    <h5 class="font-17">Shop cheap<span class="badge badge-success ml-3">Sale up to 40%</span></h5>
-                                                    <h3 class="mb-4">Backpacks for your next adventure</h3>
-                                                    <h5 class="mb-0 text-danger">Hurry up! Limited time offer.</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-                    <div class="row justify-content-center">
-                        <div class="col-md-6 col-xl-4">
-                            <div class="card box-margin">
-                                <div class="card-body">
-                                    <div class="float-right"><i class="fa fa-id-badge text-primary font-30"></i></div><span class="badge badge-primary">Sessions</span>
-                                    <h4 class="my-3">226k</h4>
-                                    <p class="mb-0"><span class="text-success"><i class="fa fa-level-up mr-1" aria-hidden="true"></i>7.5%</span>New Sessions Today</p>
-                                </div>
-                                <!--end card-body-->
-                            </div>
-                            <!--end card-->
-                        </div>
-                        <!--end col-->
-                        <div class="col-md-6 col-xl-4">
-                            <div class="card box-margin">
-                                <div class="card-body">
-                                    <div class="float-right"><i class="fa fa-bar-chart-o font-30"></i></div><span class="badge badge-secondary">Avg.Sessions</span>
-                                    <h4 class="my-3">00:28</h4>
-                                    <p class="mb-0"><span class="text-danger"><i class="fa fa-level-down mr-1" aria-hidden="true"></i>1.4%</span> Weekly Avg.Sessions</p>
-                                </div>
-                                <!--end card-body-->
-                            </div>
-                            <!--end card-->
-                        </div>
-                        <!--end col-->
-                        <div class="col-xl-4">
-                            <div class="card box-margin">
-                                <div class="card-body">
-                                    <div class="float-right"><i class="fa fa-codiepie text-warning font-30"></i></div><span class="badge badge-warning">Bounce Rate</span>
-                                    <h4 class="my-3">$2500</h4>
-                                    <p class="mb-0"><span class="text-danger"><i class="fa fa-level-down mr-1" aria-hidden="true"></i>45%</span> Bounce Rate Weekly</p>
-                                </div>
-                                <!--end card-body-->
-                            </div>
-                            <!--end card-->
-                        </div>
+    <div class="container-fluid">
+        <!-- Widgets Data -->
 
+        <div class="row">
+            <div class="col-12 box-margin" id="dashboard">
+                <div class="card">
+                    <div class="card-body">
+                       <h4 class="text-muted">Welcome {{ $user->name }}</h4>
                     </div>
                 </div>
-
-                <!-- Footer Area -->
-                @include('Includes.footer')
             </div>
+            <div class="md-overlay"></div>
         </div>
+
+
+        <div class="row">
+            <div class="col-sm-6 col-xl-3 mb-30">
+                <div class="card widget-slider-area p-20">
+                    <div class="widget-slides owl-carousel">
+                        <!-- Single Slider -->
+                        <div class="widget-slider-content">
+                            <div class="d-flex justify-content-between align-items-center mb-15">
+
+                                <span class="badge badge-pill badge-primary">79% Done</span>
+                            </div>
+                            <h6 class="mb-0">$79,639.69</h6>
+                            <p class="mb-0">Account Balance</p>
+                        </div>
+
+                        <!-- Single Slider -->
+                        <div class="widget-slider-content">
+                            <div class="d-flex justify-content-between align-items-center mb-15">
+                                <h6 class="mb-0">Sales</h6>
+                                <span class="badge badge-pill badge-primary">68% Done</span>
+                            </div>
+                            <h6 class="mb-0">$13,0278.78 <span>(+6.71)</span></h6>
+                            <p class="mb-0">Total Profit</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-xl-3 mb-30">
+                <div class="card widget-slider-area p-20">
+                    <div class="widget-slides owl-carousel">
+                        <!-- Single Slider -->
+                        <div class="widget-slider-content">
+                            <div class="d-flex justify-content-between align-items-center mb-15">
+                                <h6 class="mb-0">Cost</h6>
+                                <span class="badge badge-pill badge-primary">79% Done</span>
+                            </div>
+                            <h6 class="mb-0">$79,639.69</h6>
+                            <p class="mb-0">Total Investment</p>
+                        </div>
+
+                        <!-- Single Slider -->
+                        <div class="widget-slider-content">
+                            <div class="d-flex justify-content-between align-items-center mb-15">
+                                <h6 class="mb-0">Cost</h6>
+                                <span class="badge badge-pill badge-primary">68% Done</span>
+                            </div>
+                            <h6 class="mb-0">$13,0278.78</h6>
+                            <p class="mb-0">Total Deposit</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-xl-3 mb-30">
+                <div class="card widget-slider-area p-20">
+                    <div class="widget-slides owl-carousel">
+                        <!-- Single Slider -->
+                        <div class="widget-slider-content">
+                            <div class="d-flex justify-content-between align-items-center mb-15">
+                                <h6 class="mb-0">Cost</h6>
+                                <span class="badge badge-pill badge-primary">79% Done</span>
+                            </div>
+                            <h6 class="mb-0">$79,639.69</h6>
+                            <p class="mb-0">Total Investment</p>
+                        </div>
+
+                        <!-- Single Slider -->
+                        <div class="widget-slider-content">
+                            <div class="d-flex justify-content-between align-items-center mb-15">
+                                <h6 class="mb-0">Cost</h6>
+                                <span class="badge badge-pill badge-primary">68% Done</span>
+                            </div>
+                            <h6 class="mb-0">$13,0278.78</h6>
+                            <p class="mb-0">Total Deposit</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-xl-3 mb-30">
+                <div class="card widget-slider-area p-20">
+                    <div class="widget-slides owl-carousel">
+                        <!-- Single Slider -->
+                        <div class="widget-slider-content">
+                            <div class="d-flex justify-content-between align-items-center mb-15">
+                                <h6 class="mb-0">Cost</h6>
+                                <span class="badge badge-pill badge-primary">79% Done</span>
+                            </div>
+                            <h6 class="mb-0">$79,639.69</h6>
+                            <p class="mb-0">Total Investment</p>
+                        </div>
+
+                        <!-- Single Slider -->
+                        <div class="widget-slider-content">
+                            <div class="d-flex justify-content-between align-items-center mb-15">
+                                <h6 class="mb-0">Cost</h6>
+                                <span class="badge badge-pill badge-primary">68% Done</span>
+                            </div>
+                            <h6 class="mb-0">$13,0278.78</h6>
+                            <p class="mb-0">Total Deposit</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+     @include('Includes.btc-trading-chart')
+    </div>
 @endsection
 
 @section('script')
+<script src="https://s3.tradingview.com/tv.js"></script>
+<script>
 
+
+  new TradingView.widget(
+  {
+  "width": "100%",
+  "height": "550",
+  "symbol": "COINBASE:BTCUSD",
+  "interval": "1",
+  "timezone": "Etc/UTC",
+  "theme": 'dark',
+  "style": "9",
+  "locale": "en",
+  "toolbar_bg": "#f1f3f6",
+  "enable_publishing": false,
+  "hide_side_toolbar": false,
+  "allow_symbol_change": true,
+  "calendar": false,
+  "studies": [
+    "BB@tv-basicstudies"
+  ],
+  "container_id": "tradingview_f933e"
+}
+  );
+
+</script>
 @endsection

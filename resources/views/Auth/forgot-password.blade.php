@@ -1,91 +1,95 @@
+
 <!doctype html>
-<html class="no-js" lang="">
-
-
-<!-- Mirrored from affixtheme.com/html/xmee/demo/forgot-password-13.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 24 Jul 2021 12:35:16 GMT -->
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Xmee | Login and Register Form Html Templates</title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Favicon -->
-	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<!-- Fontawesome CSS -->
-	<link rel="stylesheet" href="css/fontawesome-all.min.css">
-	<!-- Flaticon CSS -->
-	<link rel="stylesheet" href="font/flaticon.css">
-	<!-- Google Web Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet">
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+
+    <title>Renewal</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('template/img/core-img/favicon.png') }}">
+
+    <!-- Master Stylesheet CSS -->
+    <link rel="stylesheet" href="style.css">
+
 </head>
 
-<body>
-	<!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-	<section class="fxt-template-animation fxt-template-layout13">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-6 col-12 order-md-2 fxt-bg-wrap">
-					<div class="fxt-bg-img" data-bg-image="img/figure/bg13-l.jpg">
-						<div class="fxt-header">
-							<div class="fxt-transformY-50 fxt-transition-delay-1">
-								<a href="login-13.html" class="fxt-logo"><img src="img/logo-13.png" alt="Logo"></a>
-							</div>
-							<div class="fxt-transformY-50 fxt-transition-delay-2">
-								<h1>Welcome To Our xmee</h1>
-							</div>
-							<div class="fxt-transformY-50 fxt-transition-delay-3">
-								<p>Grursus mal suada faci lisis Lorem ipsum dolarorit more ametion consectetur elit. Vesti at bulum nec odio aea the dumm ipsumm ipsum that dolocons rsus mal suada and fadolorit to the dummy consectetur elit the Lorem Ipsum genera.</p>
-							</div>
-						</div>
-						<ul class="fxt-socials">
-							<li class="fxt-facebook fxt-transformY-50 fxt-transition-delay-4"><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-							<li class="fxt-twitter fxt-transformY-50 fxt-transition-delay-5"><a href="#" title="twitter"><i class="fab fa-twitter"></i></a></li>
-							<li class="fxt-google fxt-transformY-50 fxt-transition-delay-6"><a href="#" title="google"><i class="fab fa-google-plus-g"></i></a></li>
-							<li class="fxt-linkedin fxt-transformY-50 fxt-transition-delay-7"><a href="#" title="linkedin"><i class="fab fa-linkedin-in"></i></a></li>
-							<li class="fxt-youtube fxt-transformY-50 fxt-transition-delay-8"><a href="#" title="youtube"><i class="fab fa-youtube"></i></a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-6 col-12 order-md-1 fxt-bg-color">
-					<div class="fxt-content">
-						<h2>Forgot Password</h2>
-						<div class="fxt-form">
-							<form method="POST">
-								<div class="form-group">
-									<label for="email" class="input-label">Email Address</label>
-									<input type="email" id="email" class="form-control" name="email" placeholder="demo@gmail.com" required="required">
-								</div>
-								<div class="form-group">
-									<button type="submit" class="fxt-btn-fill">Send Me Email</button>
-								</div>
-							</form>
-						</div>
-						<div class="text-center">
-							<p>Don't have an account?<a href="#" class="switcher-text2 inline-text">Signup</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- jquery-->
-<!-- jquery-->
-    <script src="{{ asset('auth/js/jquery-3.5.0.min.js') }}"></script>
-	<!-- Popper js -->
-	<script src="{{ asset('auth/js/popper.min.js') }}"></script>
-	<!-- Bootstrap js -->
-	<script src="{{ asset('auth/js/bootstrap.min.js') }}"></script>
-	<!-- Imagesloaded js -->
-	<script src="{{ asset('auth/js/imagesloaded.pkgd.min.js') }}"></script>
-	<!-- Validator js -->
-	<script src="{{ asset('auth/js/validator.min.js') }}"></script>
-	<!-- Custom Js -->
-	<script src="{{ asset('auth/js/main.js') }}"></script>
+<body class="login-area">
 
-</body> 
+    <!-- Preloader -->
+    <div id="preloader-area">
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <!-- Preloader -->
+
+    <!-- ======================================
+    ******* Page Wrapper Area Start **********
+    ======================================= -->
+    <div class="main-content- h-100vh">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center justify-content-center">
+                <div class="hero">
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                    <div class="cube"></div>
+                </div>
+                <div class="col-sm-10 col-md-8 col-lg-5">
+                    <!-- Middle Box -->
+                    <div class="middle-box">
+                        <div class="card">
+                            <div class="card-body p-4">
+
+                                <!-- Logo -->
+                                <h4 class="font-24 mb-30">Signup </h4>
+
+                                <form action="#">
+                                    
+                                    
+                                    <div class="form-group">
+                                        <input class="form-control login" type="email" id="emailaddress" required="" placeholder="Enter your email">
+                                    </div>
+
+                                  
+
+                                    <div class="form-group mb-0">
+                                        <button class="btn btn-primary btn-block" type="button">Proceed</button>
+                                    </div>
+
+                                    <div class="text-center mt-15"><span class="mr-2 font-12">Remember ?</span><a class="font-12" href="{{ route(login'') }}">Login</a></div>
+
+                                </form>
+
+                                <!-- end card -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================
+    ********* Page Wrapper Area End ***********
+    ======================================= -->
+
+    <!-- Plugins Js -->
+    <script src="{{ asset('template/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('template/js/popper.min.js') }}"></script>
+    <script src="{{ asset('template/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('template/js/bundle.js') }}"></script>
+
+    <!-- Active JS -->
+    <script src="{{ asset('template/js/default-assets/active.js') }}"></script>
+
+</body>
+</html>

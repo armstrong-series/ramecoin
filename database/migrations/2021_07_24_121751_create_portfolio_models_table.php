@@ -16,7 +16,9 @@ class CreatePortfolioModelsTable extends Migration
         Schema::create('portfolio', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->string('name')->nullable();
             $table->string('slides')->nullable();
+            $table->text('content')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
         });

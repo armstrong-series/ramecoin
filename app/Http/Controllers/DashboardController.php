@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\PageModel;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
-use FFI\Exception;
+use Exception;
 
 class DashboardController extends Controller
 {
@@ -18,11 +17,12 @@ class DashboardController extends Controller
 
     public function dashboard(){
         try {
-            $dashboard = PageModel::where('user_id', Auth::id())->get();
 
+            $user = User::where(['id' => Auth::id()])->first();
             $data = [
                 'page' => 'dashboard',
-                'sub' => ''
+                'sub' => '',
+                'user' => $user
             ];
             return view('App.dashboard', $data);
         } catch (Exception $error) {

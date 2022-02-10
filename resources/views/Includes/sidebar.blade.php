@@ -1,36 +1,147 @@
-<div class="ecaps-sidemenu-area">
-            <!-- Desktop Logo -->
-    <div class="ecaps-logo">
-        <a href="#"><img class="desktop-logo" src="{{ asset('assets/img/core-img/logo.png') }}" alt="Desktop Logo">
-            <img class="small-logo" src="{{ asset('assets/img/core-img/small-logo.png') }}" alt="Mobile Logo">
-        </a>
-    </div>
-    <!-- Side Nav -->
-    <div class="ecaps-sidenav" id="ecapsSideNav">
-        <!-- Side Menu Area -->
-        <div class="side-menu-area">
-            <!-- Sidebar Menu -->
-            <nav>
-                <ul class="sidebar-menu" data-widget="tree">
-                    <li class="{{ $page == 'dashboard' ? 'active' : '' }}"><a href="{{ route('user.dashboard') }}"><i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;<span>Dashboard</span></a></li>
-                    <li class="treeview">
-                        <a href="javascript:void(0)"><i class="fas fa-file"></i>&nbsp;&nbsp;<span>Pages</span> <i class="fa fa-angle-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li  class="{{ $page == 'portfolio' ? 'active' : '' }}"><a href="{{ route('user.portfolio')}}">Portfolio</a></li>
-                            <li><a href="#"><i class="fas fa-users"></i>&nbsp;&nbsp;Team</a></li>
-                        </ul>
-                    </li>
-                    @if(Auth::user()->role === "admin" || Auth::user()->role  === "support")
-                        <li class="active"><a href="#"><i class="fas fa-users"></i>&nbsp;&nbsp;<span>User Management</span></a></li>
-                    @endif
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item  {{ $page == 'dashboard' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('user.dashboard') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-box link-icon">
+                    <path
+                        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                    </path>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
 
-                    <li class="active"><a href="#"><i class="fas fa-cog"></i>&nbsp;&nbsp;<span>Settings</span></a></li>
+
+        <li class="nav-item  {{ $page == 'admin' ? 'active' : '' }}">
+         @if(Auth::user()->user_type == "admin" || Auth::user()->user_type  == "support")
+            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-box link-icon">
+                    <path
+                        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                    </path>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+                <span class="menu-title">Administrator</span>
+            </a>
+            @endif
+        </li>
+
+
+               
+        <li class="nav-item" class="{{ $page == 'user-management' ? 'active' : '' }}"> 
+        @if(Auth::user()->user_type == "admin" || Auth::user()->user_type  == "support")
+            <a class="nav-link"  href="{{ route('admin.user-management')}}" 
+                aria-controls="app">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-command link-icon">
+                    <path
+                        d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z">
+                    </path>
+                </svg>
+                <span class="menu-title">User Management</span>   
+            </a>
+            @endif
+            
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" class="{{ $page == 'wallet-fund' ? 'active' : '' }}"  href="{{ route('wallet.fund')}}" 
+                aria-controls="app">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-command link-icon">
+                    <path
+                        d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z">
+                    </path>
+                </svg>
+                <span class="menu-title">Fund Wallet</span>
+                
+            </a>
+            
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"  href="#" aria-expanded="false"
+                aria-controls="email">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-mail link-icon">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                    </path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span class="menu-title">Withdraw Funds</span>
+                
+            </a>
+        </li>
+        <li class="nav-item {{ $page == 'transactions' ? 'active' : '' }}">
+            <a class="nav-link"  href="{{ route('user.transactions') }}"
+                aria-controls="elements">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-feather link-icon">
+                    <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
+                    <line x1="16" y1="8" x2="2" y2="22"></line>
+                    <line x1="17.5" y1="15" x2="9" y2="15"></line>
+                </svg>
+                <span class="menu-title">Transaction History</span>
+                
+            </a>    
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-users link-icon">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span class="menu-title">Crypto Exchange</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#invest" aria-expanded="false"
+                aria-controls="general">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-clipboard link-icon">
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2">
+                    </path>
+                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                </svg>
+                <span class="menu-title">Invest</span>
+               
+            </a>
+            <div class="collapse" id="invest">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" href="#">Subscribe to a Plan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">My Investment</a></li>   
                 </ul>
-            </nav>
-        </div>
-    </div>
-</div>
-
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#" aria-expanded="false"
+                aria-controls="charts">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-pie-chart link-icon">
+                    <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                    <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                </svg>
+                    <span class="menu-title">Profit Record</span>
+                <i class="ti-angle-right"></i>
+            </a>
+            
+        </li>
+        
+    </ul>
+</nav>

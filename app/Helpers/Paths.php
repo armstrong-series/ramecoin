@@ -4,5 +4,6 @@ namespace App\Helpers;
 
 
 class Paths {
-    const PORTFOLIO_PATHS = 'public/portfolio/';
+    const PAYMENT_PATHS = 'public/payment/';
+   
 }
