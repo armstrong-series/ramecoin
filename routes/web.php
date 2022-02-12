@@ -28,7 +28,7 @@ Route::get('/admin',  [Controller\Admin\AdminController::class, 'users'])->name(
 Route::get('/user-management',  [Controller\Admin\AdminController::class, 'userManagement'])->name('admin.user-management');
 Route::post('/create-user',  [Controller\Admin\AdminController::class, 'createUser'])->name('admin.user-create');
 Route::post('/update-user',  [Controller\Admin\AdminController::class, 'updateUser'])->name('admin.user-update');
-Route::delete('/delete-user/{id}',  [Controller\Admin\AdminController::class, 'deleteUser'])->name('admin.user-delete');
+Route::delete('/delete-user',  [Controller\Admin\AdminController::class, 'deleteUser'])->name('admin.user-delete');
 Route::get('/wallet/deposit', [Controller\WalletController::class, 'fundPayment'])->name('wallet.fund');
 
 
@@ -48,10 +48,11 @@ Route::post('/delete-team/{id}', [Controller\TeamController::class, 'deleteMembe
 
 Route::get('/reset-password/{token}', [Controller\Auth\ResetPasswordController::class, 'resetPassword'])->name('auth.reset-password');
 Route::post('/reset-password', [Controller\Auth\ResetPasswordController::class,'updatePassword'])->name('auth.update-password');
+Route::get('/buy-plan', [Controller\InvestmentPlanController::class,'plans'])->name('investment.plan');
 
 
 // Settings
-Route::get('/settings', [Controller\Settings\SettingsController::class, 'dashboard'])->name('settings.dashboard');
+Route::get('/settings', [Controller\Settings\SettingsController::class, 'dashboard'])->name('user.settings.dashboard');
 Route::get('/transactions', [Controller\WalletController::class, 'transactions'])->name('user.transactions');
 Route::post('/deposit', [Controller\WalletController::class, 'makeDeposit'])->name('user.deposit');
 

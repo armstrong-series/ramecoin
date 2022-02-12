@@ -10,9 +10,11 @@
 
         <div class="row">
             <div class="col-12 box-margin" id="dashboard">
+                <button type="button" class="btn-primary btn-sm p-2">Add Wallet Address</button>
                 <div class="card">
                     <div class="card-body">
-                       <h4 class="text-muted">Welcome {{ $user->name }}</h4>
+                       <h5 class="">Welcome {{ $user->name }} !</h5>
+                       <p class="mb-0 text-muted">Ramecoin Investment</p>
                     </div>
                 </div>
             </div>
@@ -34,15 +36,7 @@
                             <p class="mb-0">Account Balance</p>
                         </div>
 
-                        <!-- Single Slider -->
-                        <div class="widget-slider-content">
-                            <div class="d-flex justify-content-between align-items-center mb-15">
-                                <h6 class="mb-0">Sales</h6>
-                                <span class="badge badge-pill badge-primary">68% Done</span>
-                            </div>
-                            <h6 class="mb-0">$13,0278.78 <span>(+6.71)</span></h6>
-                            <p class="mb-0">Total Profit</p>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -59,16 +53,6 @@
                             <h6 class="mb-0">$79,639.69</h6>
                             <p class="mb-0">Total Investment</p>
                         </div>
-
-                        <!-- Single Slider -->
-                        <div class="widget-slider-content">
-                            <div class="d-flex justify-content-between align-items-center mb-15">
-                                <h6 class="mb-0">Cost</h6>
-                                <span class="badge badge-pill badge-primary">68% Done</span>
-                            </div>
-                            <h6 class="mb-0">$13,0278.78</h6>
-                            <p class="mb-0">Total Deposit</p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -79,22 +63,14 @@
                         <!-- Single Slider -->
                         <div class="widget-slider-content">
                             <div class="d-flex justify-content-between align-items-center mb-15">
-                                <h6 class="mb-0">Cost</h6>
+                                <!-- <h6 class="mb-0">Users</h6> -->
                                 <span class="badge badge-pill badge-primary">79% Done</span>
                             </div>
-                            <h6 class="mb-0">$79,639.69</h6>
-                            <p class="mb-0">Total Investment</p>
+                            <h6 class="mb-0">{{ $usersCount }}</h6>
+                            <p class="mb-0">Users</p>
                         </div>
 
-                        <!-- Single Slider -->
-                        <div class="widget-slider-content">
-                            <div class="d-flex justify-content-between align-items-center mb-15">
-                                <h6 class="mb-0">Cost</h6>
-                                <span class="badge badge-pill badge-primary">68% Done</span>
-                            </div>
-                            <h6 class="mb-0">$13,0278.78</h6>
-                            <p class="mb-0">Total Deposit</p>
-                        </div>
+                     
                     </div>
                 </div>
             </div>
@@ -105,21 +81,11 @@
                         <!-- Single Slider -->
                         <div class="widget-slider-content">
                             <div class="d-flex justify-content-between align-items-center mb-15">
-                                <h6 class="mb-0">Cost</h6>
+                                <h6 class="mb-0">Total Deposits</h6>
                                 <span class="badge badge-pill badge-primary">79% Done</span>
                             </div>
                             <h6 class="mb-0">$79,639.69</h6>
                             <p class="mb-0">Total Investment</p>
-                        </div>
-
-                        <!-- Single Slider -->
-                        <div class="widget-slider-content">
-                            <div class="d-flex justify-content-between align-items-center mb-15">
-                                <h6 class="mb-0">Cost</h6>
-                                <span class="badge badge-pill badge-primary">68% Done</span>
-                            </div>
-                            <h6 class="mb-0">$13,0278.78</h6>
-                            <p class="mb-0">Total Deposit</p>
                         </div>
                     </div>
                 </div>

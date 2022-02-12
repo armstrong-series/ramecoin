@@ -1,14 +1,14 @@
 
 @extends('Layout.master')
 @section('title')
-<title>Renewal</title>
+<title>Ramecoin | Fundwallet</title>
 @endsection
 
 
 @section('content')
-    <div class="container-fluid" >
+    <div class="container-fluid" id="funding">
         <div class="row">
-            <div class="col-12 box-margin" id="funding">
+            <div class="col-12 box-margin">
                 <div class="card">
                     <div class="card-body">
                         <!-- <h4 class="card-title">Add Fund</h4> -->
@@ -19,7 +19,7 @@
                         <div class="modal fade" id="fundingWallet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             @csrf
                             <div class="modal-dialog" role="document">
-                                <div class="modal-content">
+                                <div class="modal-content p-3">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Fund Your wallet </h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -34,8 +34,7 @@
 
 
                                         <div class="form-group">
-                                            <!-- <label class="col-4"> Choose Payment</label>   -->
-                                            <select name="" id="" class="form-control" v-model="investment.payment">
+                                            <select name="" id="" class="form-control" v-model="investment.payment" @change="switchCoin($event)">
                                                 <option value="" selected>Choose Payment</option>
                                                 <option value="btc">BTC</option>
                                                 <option value="usdt">USDT</option>    
@@ -43,22 +42,34 @@
                                                   
                                         </div>
 
-                                        <div class="form-group">            
+                                        <div class="form-group" v-if="investment.payment == 'btc'">            
                                             <div class="input-group">
-                                                <input type="text" disabled class="form-control" placeholder="Recipient's username" aria-label="Recipient's username">
+                                                <input type="text" disabled class="form-control" placeholder="0x0f61F0BD616FbA2458fF3b6BaB11698222662bc8" aria-label="Recipient's username">
                                                 <div class="input-group-append">
-                                                    <button @click="copyAddress()" class="btn btn-secondary" type="button"><i class="fa-solid fa-copy"></i></button>
+                                                    <button @click="copyAddress()" title="copy address" class="btn btn-secondary" type="button"><i class="fa-solid fa-copy"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" v-if="investment.payment == 'usdt'">            
+                                            <div class="input-group">
+                                                <input type="text" disabled class="form-control" placeholder="0x0f61F0BD616FbA2458fF3b6BaB11698222662bc8" aria-label="btc">
+                                                <div class="input-group-append">
+                                                    <button @click="copyAddress()" title="copy address" class="btn btn-secondary" type="button"><i class="fa-solid fa-copy"></i></button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-4"> Proof of Payment <small class="text-danger">*  Screenshot(Jpg, Jpeg, Png)</small></label>  
+                                            <label class="col-4"> Proof of Payment <small class="text-danger">*Screenshot(Jpg, Jpeg, Png)</small></label>  
                                             <input type="file" class="form-control">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button type="button" @click="fundWallet()" class="btn btn-primary">Proceed</button>
+                                        <div v-if="isLoading" class="spinner-border text-success" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Required meta tags -->
 
-    <title>Renewal</title>
+    <title>Ramecoin</title>
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('template/img/core-img/favicon.png') }}">
@@ -43,7 +43,7 @@
                             <div class="card-body p-4">
 
                                 <!-- Logo -->
-                                <h4 class="font-24 mb-30">Login to yoour Account</h4>
+                                <h4 class="font-24 mb-30">Login to your Account</h4>
 								@include('Includes.messages')
                                 <form method="post" action="{{ route('auth.login.account') }}">
 									@csrf

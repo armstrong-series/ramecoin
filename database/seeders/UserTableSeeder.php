@@ -15,7 +15,7 @@ class UserTableSeeder extends Seeder
     {
         $user = new User;
         $user->name = 'Brown';
-        $user->email = 'admin@christopherbrown.io';
+        $user->email = 'admin@ramecoin.com';
         $user->password = bcrypt('123456');
         $user->role = 'admin';
         $user->uuid = (string) \Str::uuid();
@@ -23,7 +23,7 @@ class UserTableSeeder extends Seeder
 
         $user = new User;
         $user->name = 'Halmiton';
-        $user->email = 'user@christopherbrown.io';
+        $user->email = 'user@ramecoin.com';
         $user->password = bcrypt('123456');
         $user->role = 'member';
         $user->uuid = (string) \Str::uuid();

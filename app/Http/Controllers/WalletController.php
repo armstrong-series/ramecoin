@@ -21,9 +21,11 @@ class WalletController extends Controller
             
 
             $wallet = WalletModel::where('user_id', Auth::id())->get();
+       
             $data = [
                 'page' => 'wallet-fund',
-                'wallet' => $wallet
+                'wallet' => $wallet,
+                
             ];
             return view('App.walletfunding', $data);
 
@@ -52,7 +54,7 @@ class WalletController extends Controller
     public function makeDeposit(Request $request){
         try {
 
-
+                dd($request->all());
             if(!$request->amount || !$request->payment){
                 $message = "Add an amount with payment method!";
                 return response()->json(["message" => $message],200);

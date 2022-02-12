@@ -23,8 +23,8 @@ class SettingsController extends Controller
     public function dashboard(Request $request)
     {
         try {
-            // $settings = PageModel::where(['user_id', Auth::id()])->get();
 
+           
             $data = [
                 'page' => 'settings',
                 'sub' => '',

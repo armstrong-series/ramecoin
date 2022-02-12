@@ -19,10 +19,9 @@
 
                     <div class="col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
                         <div class="section-title">
-                            <span class="badge bg-soft-primary rounded">About</span>
                             <h4 class="title mb-3 mt-2">Our Story</h4>
 
-                            <p class="text-muted">Rinscoining is a solution for creating an investment management platform. It is suited for hedge or mutual fund managers and cryptocurrency traders who are looking at runing pool trading system. Onlinetrader simplifies the investment, monitoring and management process. With a secure and compelling mobile-first design, together with a default front-end design, it takes few minutes to setup your own investment management or pool trading platform.</p>
+                            <p class="text-muted">Ramecoin is a solution for creating an investment management platform. It is suited for hedge or mutual fund managers and cryptocurrency traders who are looking at runing pool trading system. Onlinetrader simplifies the investment, monitoring and management process. With a secure and compelling mobile-first design, together with a default front-end design, it takes few minutes to setup your own investment management or pool trading platform.</p>
 
                             <p class="text-muted mb-0">We started in 2020 with the radical idea that anyone, anywhere, should be able to easily and securely send and receive any cryptocurrency. Today, we offer a trusted and easy-to-use platform for accessing the broader cryptoeconomy.</p>
                         </div>
@@ -44,7 +43,7 @@
                             </ul>
 
                             <div class="mt-4">
-                                <a href="javascript:void(0)" class="btn btn-soft-primary"><i class="uil uil-wallet"></i> Go to wallet</a>
+                                <a href="{{ route('auth.signup') }}" class="btn btn-soft-primary"><i class="uil uil-wallet"></i> Join Us</a>
                             </div>
                         </div>
                     </div><!--end col-->
@@ -63,7 +62,7 @@
                             <p class="text-muted mb-0">We’re currently hiring. If our company mission means something to you, you’re invited to join the Bitcoin.com team.</p>
 
                             <div class="mt-4">
-                                <a href="javascript:void(0)" class="btn btn-soft-primary"><i class="uil uil-arrow-growth"></i> See Positions</a>
+                                <a href="javascript:void(0)" class="btn btn-soft-primary"><i class="uil uil-arrow-growth"></i> See Plans</a>
                             </div>
                         </div>
                     </div><!--end col-->

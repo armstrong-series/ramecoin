@@ -17,7 +17,7 @@
 
 
         <li class="nav-item  {{ $page == 'admin' ? 'active' : '' }}">
-         @if(Auth::user()->user_type == "admin" || Auth::user()->user_type  == "support")
+         @if(Auth::user()->role == "admin" || Auth::user()->role  == "support")
             <a class="nav-link" href="{{ route('admin.dashboard') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -36,7 +36,7 @@
 
                
         <li class="nav-item" class="{{ $page == 'user-management' ? 'active' : '' }}"> 
-        @if(Auth::user()->user_type == "admin" || Auth::user()->user_type  == "support")
+        @if(Auth::user()->role === "admin" || Auth::user()->role  === "support")
             <a class="nav-link"  href="{{ route('admin.user-management')}}" 
                 aria-controls="app">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
@@ -82,6 +82,8 @@
             </a>
         </li>
         <li class="nav-item {{ $page == 'transactions' ? 'active' : '' }}">
+ 
+        @if(Auth::user()->role === "member")
             <a class="nav-link"  href="{{ route('user.transactions') }}"
                 aria-controls="elements">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -93,7 +95,8 @@
                 </svg>
                 <span class="menu-title">Transaction History</span>
                 
-            </a>    
+            </a>   
+            @endif 
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">
@@ -108,8 +111,8 @@
                 <span class="menu-title">Crypto Exchange</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#invest" aria-expanded="false"
+        <li class="nav-item  {{ $page == 'plans' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('investment.plan') }}" aria-expanded="false"
                 aria-controls="general">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -128,20 +131,10 @@
                 </ul>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#" aria-expanded="false"
-                aria-controls="charts">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="feather feather-pie-chart link-icon">
-                    <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
-                    <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
-                </svg>
-                    <span class="menu-title">Profit Record</span>
-                <i class="ti-angle-right"></i>
-            </a>
-            
-        </li>
-        
+   
     </ul>
 </nav>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/solid.min.js" integrity="sha512-wabaor0DW08KSK5TQlRIyYOpDrAfJxl5J0FRzH0dNNhGJbeUpHaNj7up3Kr2Bwz/abLvVcJvDrJL+RLFcyGIkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

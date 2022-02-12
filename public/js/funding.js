@@ -7,6 +7,7 @@ if (window.Vue) {
         investment: {
             amount: '',
             payment: '',
+            coin: '',
             file:'',
         },
 
@@ -39,8 +40,9 @@ if (window.Vue) {
         methods: {
 
 
-            switchPayment(){
-                this.payment = !(this.payment);
+            switchCoin(event){
+              console.log('event...',event.target.value)
+              console.log('coin...',this.investment.coin)
 
             },
 
@@ -57,7 +59,6 @@ if (window.Vue) {
                 axios.post(this.url.deposit, formData)
                 .then((response) => {
                     $('#fundingWallet').modal('hide');
-                    
                     this.$toastr.Add({
                         msg: response.data.message,
                         clickClose: false,
@@ -69,9 +70,7 @@ if (window.Vue) {
                         style: { backgroundColor: "green" }
                     });
                     this.isLoading = false;
-
-
-
+                    // window.location.reload();
                 }).catch((error) => {
                     this.isLoading = false
                     this.$toastr.Add({
@@ -93,44 +92,28 @@ if (window.Vue) {
            
              copyAddress(){
                 navigator.clipboard.writeText(this.address).then(() => {
-                Command: toastr["success"]("Copied successfuly!")
-                toastr.options = {
-                    "closeButton": false,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
-                }).catch(e => {
-                console.error(e);
-                Command: toastr["error"]("Unable to copy Address")
-                toastr.options = {
-                    "closeButton": false,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": false,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
+                    this.$toastr.Add({
+                        msg: "Copy successful!",
+                        clickClose: false,
+                        timeout: 2000,
+                        position: "toast-top-right",
+                        type: "success",
+                        preventDuplicates: true,
+                        progressbar: false,
+                        style: { backgroundColor: "green" }
+                    });
+                }).catch((error) => {
+             
+                this.$toastr.Add({
+                    msg: error.response.data.message,
+                    clickClose: false,
+                    timeout: 2000,
+                    position: "toast-top-right",
+                    type: "error",
+                    preventDuplicates: true,
+                    progressbar: false,
+                    style: { backgroundColor: "red" }
+                });
               });   
             },
            

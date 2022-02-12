@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Required meta tags -->
 
-    <title>Renewal</title>
+    <title>Ramecoin</title>
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('template/img/core-img/favicon.png') }}">
@@ -51,7 +51,7 @@
                             <div class="card-body p-4">
 
                                 <!-- Logo -->
-                                <h4 class="font-24 mb-30">Signup </h4>
+                                <h4 class="font-24 mb-30">Create an Account</h4>
 
                                 <div>
                                     @csrf
