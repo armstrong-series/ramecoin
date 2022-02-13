@@ -19,7 +19,7 @@ if (window.Vue) {
             email: "",
             mobile: "",
             password: "",
-            password_confirmation: "",
+            confirm_password: "",
             role: "",
           },
 
@@ -27,7 +27,8 @@ if (window.Vue) {
            url: {
                create: "",
                update: "",
-               delete: ""
+               delete: "",
+               secret: ""
            },
 
            users: []
@@ -42,6 +43,7 @@ if (window.Vue) {
           this.url.create = $("#createUser").val();
           this.url.update = $("#updateUser").val();
           this.url.delete = $("#deleteUser").val();
+          this.url.secret = $("#changeSecret").val();
 
         },
 
@@ -127,6 +129,44 @@ if (window.Vue) {
   
               },
   
+
+            changeSecret(){
+
+                this.isLoading = true;
+                let formData = new FormData();
+                  for(let key in this.updateUser){
+                      let value = this.updateUser[key];
+                      formData.append(key, value);
+                  }
+                  formData.append('_token', $('input[name=_token]').val());
+                  axios.post(this.url.secret, formData).then((response) => {
+                          this.isloading = false;
+                          this.$toastr.Add({
+                            msg: response.data.message, 
+                            clickClose: false, 
+                            timeout: 2000,
+                            position: "toast-top-right", 
+                            type: "success", 
+                            preventDuplicates: true, 
+                            progressbar: false,
+                            style: {backgroundColor: "green"}
+                          });
+                          $('.change_secret').modal('hide');
+                      }).catch((error) => {
+                          console.log(error.response)
+                          this.isLoading = false;
+                          this.$toastr.Add({
+                            msg: error.response.data.message, 
+                            clickClose: false, 
+                            timeout: 2000,
+                            position: "toast-top-right", 
+                            type: "error", 
+                            preventDuplicates: true,
+                            progressbar: false, 
+                            style: { backgroundColor: "red"}
+                          });
+                      });
+            },
 
 
 

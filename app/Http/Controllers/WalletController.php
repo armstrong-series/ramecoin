@@ -38,44 +38,48 @@ class WalletController extends Controller
 
     public function transactions(Request $request){
         try {
-            
-            $transactions = WalletModel::where('user_id', Auth::id())->get();
-            $data = [
-                'page' => 'transactions',
-                'transactions' => $transactions
-            ];
-
-            return view('App.transactions', $data);
+            if (Auth::user()->role === 'member') {
+                $transactions = WalletModel::where('user_id', Auth::id())->get();
+                $data = [
+                    'page' => 'transactions',
+                    'transactions' => $transactions
+                ];
+                 return view('App.transactions', $data);
+                 
+             } else {
+                return redirect()->back();
+             }
         } catch (Exception $error) {
-            //throw $th;
+            Log::info('WalletController@transactions error message' . $error->getMessage());
+            $message = 'Unable to get Resource';
+            return $error;
         }
     }
 
     public function makeDeposit(Request $request){
         try {
 
-                dd($request->all());
             if(!$request->amount || !$request->payment){
                 $message = "Add an amount with payment method!";
-                return response()->json(["message" => $message],200);
+                return response()->json(["message" => $message],400);
             }
-            if ($request->hasFile('file')) {
+            if ($request->hasFile('proof')) {
                 $filePath = storage_path('app/' . Paths::PAYMENT_PATHS);
-                $extension = $request->file('file')->getClientOriginalExtension();
+                $extension = $request->file('proof')->getClientOriginalExtension();
                 if (in_array(strtolower($extension), ["jpg", "png", "jpeg"])) {
-                    $fileName = time() . '.' . $extension;
-                    $request->file('file')->move($filePath, $fileName);
+                    $fileName = time() .'payment-proof'. '.' . $extension;
+                    $request->file('proof')->move($filePath, $fileName);
                     $payment = new WalletModel();
                     $payment->user_id = Auth::id();
                     $payment->amount = $request->amount;
-                    $payment->type = "deposit";
+                    $payment->type = "credit";
                     $payment->status = "pending";
                     $payment->payment = $request->payment;
                     $payment->txn_id = \Str::uuid();
                     $payment->txn_date = Carbon::now();
-                    $payment->file = $request->$fileName;
+                    $payment->file = $fileName;
+                    // dd($payment);
                     $payment->save();
-
                     $message = "Request Completed!";
                     return response()->json(["message" => $message], 200);
 

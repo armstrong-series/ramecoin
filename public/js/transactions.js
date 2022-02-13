@@ -12,18 +12,14 @@ if (window.Vue) {
            },
            address: "",
            transactions: [],
-           usersTransactions: [],
+        //    usersTransactions: [],
 
 
         },
 
 
-       
-
-
         mounted() {
-            this.usersTransactions =  $('#transactions').val() ? JSON.parse($('#transactions').val()) : [];
-
+            this.transactions = JSON.parse($("#Userstransactions").val());
         },
 
         methods: {

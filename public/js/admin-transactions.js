@@ -17,9 +17,6 @@ if (window.Vue) {
            },
            address: "",
            transactions: [],
-           usersTransactions: [],
-
-
         },
 
 
@@ -27,7 +24,7 @@ if (window.Vue) {
 
 
         mounted() {
-            this.transactions =  $('#transactions').val() ? JSON.parse($('#transactions').val()) : [];
+            this.transactions =  JSON.parse($('#allTransactions').val());
             this.url.transaction_status = $("#status").val();
 
 

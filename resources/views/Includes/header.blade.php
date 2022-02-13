@@ -93,7 +93,7 @@
           
                             <a href="{{ route('user.settings.dashboard') }}" class="dropdown-item"><i class="zmdi zmdi-brightness-7 profile-icon"
                                     aria-hidden="true"></i>
-                                     Account Settings
+                                     Profile
                             </a>
                             <a href="{{ route('wallet.fund')}}" class="dropdown-item">
                                 <i class="fa-solid fa-wallet"></i>

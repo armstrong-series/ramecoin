@@ -51,11 +51,25 @@
 
 
                                                     <tbody>
-                                                        <tr>
-                                                            <td>$2000</td>
+                                                        <tr v-cloak  v-for="(transaction, index) in transactions">
+                                                            <td>$@{{ transaction.amount }}</td>
                                                             <td>Coin</td>
-                                                            <td>Pending</td>
-                                                            <td>61</td>
+                                                            <td>
+                                                                <div v-if="transaction.status ==='pending'">
+                                                                     <div class="badge badge-info">@{{ transaction.status }}</div>
+                                                                </div>
+                                                                <div v-if="transaction.status ==='success'">
+                                                                     <div class="badge badge-success">@{{ transaction.status }}</div>
+                                                                </div>
+                                                            </td>
+                                                            <td>@{{ transaction.created_date }}</td>
+                                                            <td>
+                                                                <div class="download-file-icon mr-3">
+                                                                    <a href="#"  title="download payment" class="badge badge-primary badge-pill">
+                                                                        <img src="{{ asset('template/img/filemanager-img/1.png') }}" alt="" width="15" height="20">
+                                                                    </a>
+                                                                </div>
+                                                            </td>
                                                             
                                                         </tr>
                                                     
@@ -109,12 +123,12 @@
         <div class="md-overlay"></div>
         </div>
 
-        <textarea name="" id="transactions" style="display:none;" cols="30" rows="10">{{ json_encode($transactions) }}</textarea>
+        <textarea name="" id="allTransactions" style="display:none;" cols="30" rows="10">{{ json_encode($transactions) }}</textarea>
         <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
         <!-- <textarea name="" id="" cols="30" rows="10"></textarea> -->
     </div>
 @endsection
 
 @section('script')
-    <script src="{{ asset('js/transactions.js') }}"></script>
+    <script src="{{ asset('js/admin-transactions.js') }}"></script>
 @endsection

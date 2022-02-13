@@ -7,8 +7,6 @@ if (window.Vue) {
         investment: {
             amount: '',
             payment: '',
-            coin: '',
-            file:'',
         },
 
         originalFile: '',
@@ -27,37 +25,37 @@ if (window.Vue) {
         },
 
 
-       
-
-
-
         mounted() {
             this.url.deposit = $("#deposit").val();
-  
 
         },
 
         methods: {
 
-
             switchCoin(event){
-              console.log('event...',event.target.value)
-              console.log('coin...',this.investment.coin)
-
             },
+
+            getImage(){
+                let input = document.getElementById("payment_proof") ;
+                this.originalFile = this.$refs.file.files[0];
+               },
 
 
             fundWallet(){
                 this.isLoading = true;
                 let formData = new FormData();
-                formData.append('_token', $('input[name=_token]').val());
-                formData.append('file', this.originalFile);
                 for (let key in this.investment) {
                     let value = this.investment[key]
                     formData.append(key, value);
-                }   
-                axios.post(this.url.deposit, formData)
-                .then((response) => {
+                }  
+                formData.append('proof', this.originalFile);
+                formData.append('_token', $('input[name=_token]').val());
+               
+                axios.post(this.url.deposit, formData,{
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    },
+                }).then((response) => {
                     $('#fundingWallet').modal('hide');
                     this.$toastr.Add({
                         msg: response.data.message,
@@ -67,10 +65,10 @@ if (window.Vue) {
                         type: "success",
                         preventDuplicates: true,
                         progressbar: false,
-                        style: { backgroundColor: "green" }
+                        style: { backgroundColor: "green" }  
                     });
                     this.isLoading = false;
-                    // window.location.reload();
+                    window.location = "/transactions";
                 }).catch((error) => {
                     this.isLoading = false
                     this.$toastr.Add({
@@ -88,35 +86,32 @@ if (window.Vue) {
                 })
 
             },
-           
-           
-             copyAddress(){
-                navigator.clipboard.writeText(this.address).then(() => {
-                    this.$toastr.Add({
-                        msg: "Copy successful!",
-                        clickClose: false,
-                        timeout: 2000,
-                        position: "toast-top-right",
-                        type: "success",
-                        preventDuplicates: true,
-                        progressbar: false,
-                        style: { backgroundColor: "green" }
-                    });
-                }).catch((error) => {
-             
+
+            copyAddress() {
                 this.$toastr.Add({
-                    msg: error.response.data.message,
+                    msg: "Copy successful!",
                     clickClose: false,
                     timeout: 2000,
                     position: "toast-top-right",
-                    type: "error",
+                    type: "success",
                     preventDuplicates: true,
                     progressbar: false,
-                    style: { backgroundColor: "red" }
+                    style: { backgroundColor: "green" }
                 });
-              });   
             },
            
+           copyBitcoinAddress(){
+                document.addEventListener("copy", this.copyBtc);
+                if (document.execCommand("copy")) {
+                    this.copyAddress();
+                }
+                document.removeEventListener("copy", this.copyBtc);
+           },
+           copyBtc(e) {
+            e.clipboardData.setData("text/plain", this.copyBitcoinAddress.btc);
+            e.preventDefault();
+        },
+             
           
 
                 

@@ -12,7 +12,9 @@
             <div class="col-12 box-margin" id="dashboard">
                 <div class="card">
                     <div class="card-body">
+                       
                         <h5 class="">Welcome {{ $user->name }} !</h5>
+                        
                        <p class="mb-0 text-muted">Ramecoin Investment</p>
                     </div>
                 </div>

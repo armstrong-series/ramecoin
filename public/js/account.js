@@ -13,7 +13,7 @@ if (window.Vue) {
             name: '',
             email: '',
             password: '',
-            password_confirmation: '',
+            confirm_password: ""
           
         },
 
@@ -31,66 +31,50 @@ if (window.Vue) {
         mounted() {
 
             this.url.authenticate = $("#authenticate").val();
-            this.url.accountCreate = $("#authenticate").val();
+            this.url.accountCreate = $("#createUser").val();
         },
 
         methods: {
            
-            authenticateUser(){
-                this.isLoading = true;
-                axios.post(this.mailchimp.install, {
-                    email: this.authencticate.email,
-                    password: this.authencticate.password,
-                    _token: $('input[name=_token]').val()
-                }).then((response) => {
-                    this.isLoading = false;
-                    this.$notify({
-                        title: 'Success',
-                        message: response.data.message,
-                        type: 'success'
-                    });
-       
-                }).catch((error) => {
-                    this.isLoading = false
-                    if (error.response) {
-                        this.$notify({
-                            title: 'Error',
-                            message: error.response.data.message
-                        });
-                    } else {
-                        this.$notify.error({
-                            title: 'Error',
-                            message: 'oops! Unable to complete request.'
-                        });
-                    }
-                })
-
-            },
-
-
+          
             accountCreation() {
                 this.isloading = false;
                 axios.post(this.url.accountCreate, {
                     name: this.account.name,
                     email: this.account.email,
                     password: this.account.password,
-                    password_confirmation: this.account.password_confirmation,
+                    confirm_password: this.account.confirm_password,
+                    _token: $('input[name=_token]').val()
                 }).then((response) => {
-                    this.isLoading = false;
-                    this.$notify({
-                        title: 'Success',
-                        message: response.data.message,
-                        type: 'success'
-                    }).catch((error) => {
-                        console.log(error.response)
+                    
+                    this.$toastr.Add({
+                        msg: response.data.message,
+                        clickClose: false,
+                        timeout: 2000,
+                        position: "toast-top-right",
+                        type: "success",
+                        preventDuplicates: true,
+                        progressbar: false,
+                        style: { backgroundColor: "green"}
+                     });
                         this.isLoading = false;
-                        this.$notify.error({
-                            title: 'Error',
-                            message: error.response.data.message
+                        window.location = "/login";
+                    }).catch((error) => {
+                        this.isLoading = false
+                        this.$toastr.Add({
+                            msg: error.response.data.message,
+                            clickClose: false,
+                            timeout: 2000,
+                            position: "toast-top-right",
+                            type: "error",
+                            preventDuplicates: true,
+                            progressbar: false,
+                            style: { backgroundColor: "red" }
                         });
     
-                    });
-                })
+    
+                    })
+              
             },
 
            

@@ -62,13 +62,16 @@ class AdminController extends Controller
     public function transactionHistory(Request $request){
         try {
             
-
-            $transactions = WalletModel::all();
-            $data = [
-                'page' => 'admin-transaction',
-                'transactions' =>  $transactions
-            ];
-            return view('Admin.transactions', $data);
+            if (Auth::user()->role === 'admin' || Auth::user()->role === 'support') {
+                $transactions = WalletModel::all();
+                $data = [
+                    'page' => 'admin-transaction',
+                    'transactions' =>  $transactions
+                ];
+                return view('Admin.transactions', $data);
+             } else {
+                return redirect()->back();
+             }
             } catch (Exception $error) {
                 Log::info("Admin\AdminController@transactionHistory error message:" . $error->getMessage());
                 $response = [
@@ -161,6 +164,7 @@ class AdminController extends Controller
     
             }
             $user = new User;
+            // $user->id = Auth::id();
             $user->name = $request->name;
             $user->mobile = $request->mobile;
             $user->role = $request->role;
@@ -192,18 +196,8 @@ class AdminController extends Controller
     {
         try {
 
-            $validator = Validator::make($request->all(), [
-                'password' => 'required|between:6,255',
-                'password_confirmation' => 'required|same:password',
 
-            ]);
-
-            if ($validator->fails()) {
-                $message = $validator->errors()->all();
-                foreach ($message as $messages) {
-                    return response()->json(['message' => $messages], 400);
-                }
-            }
+          
             $user = User::where('id', $request->id)->first();
             if(!$user){
                 return response()->json(['message' => "User not found!"],404); 
@@ -212,7 +206,6 @@ class AdminController extends Controller
             $user->email = $request->email ? $request->email : $user->email;
             $user->email = $request->mobile ? $request->mobile : $user->mobile;
             $user->role = $request->role ? $request->role : $user->role;
-            $user->password = Hash::make($request->password) ? Hash::make($request->password) : $user->password;
             $user->save();
             return response()->json(["message" => "Member credentials updated!"], 200);
            
@@ -225,17 +218,46 @@ class AdminController extends Controller
             return $response;
         }
     }
+    
 
-
-    public function deleteUser(Request $request)
-    {
+    public function changeSecret(Request $request){
         try {
-            $user = User::where('id', Auth::id())->first();
-            // dd($user);
+
+            $validator = Validator::make($request->all(), [
+                'password' => 'required|between:6,255',
+                'confirm_password' => 'required|same:password',
+
+            ]);
+            if ($validator->fails()) {
+                $message = $validator->errors()->all();
+                foreach ($message as $messages) {
+                    return response()->json(['message' => $messages], 400);
+                }
+            }
+            $user = User::where('id', $request->id)->first();
             if(!$user){
                 return response()->json(['message' => "User not found!"],404); 
             }
-            
+            $user->password = Hash::make($request->password) ? Hash::make($request->password) : $user->password;
+            $user->save();
+            return response()->json(["message" => "Password Updated!"], 200);
+        } catch (Exception $error) {
+            Log::info("Admin\AdminController@hangeSecret error message:" . $error->getMessage());
+            $response = [
+                'status' =>false,
+                "message" => $error
+            ];
+            return $response;
+        }
+    }
+
+
+    public function deleteUser(Request $request){
+        try {
+            $user = User::where('id', $request->id)->first();
+            if(!$user){
+                return response()->json(['message' => "User not found!"],404); 
+            }
             $user->delete();
             return response()->json(["message" => "Delete successful!"], 200);
            

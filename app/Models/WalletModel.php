@@ -9,4 +9,15 @@ class WalletModel extends Model
 {
     use HasFactory;
     protected $table = "wallet";
+
+
+    protected $appends = [
+        'created_date'
+    ];
+
+
+
+    public function getCreatedDateAttribute(){
+        return time_elapsed_string($this->created_at);
+    }
 }

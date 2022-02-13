@@ -10,7 +10,7 @@
 
         <div class="row">
             <div class="col-12 box-margin" id="dashboard">
-                <button type="button" class="btn-primary btn-sm p-2">Add Wallet Address</button>
+                <button type="button" class="btn-primary btn-sm p-2" data-toggle="modal" data-target="#addWallet">Add Wallet Address</button>
                 <div class="card">
                     <div class="card-body">
                        <h5 class="">Welcome {{ $user->name }} !</h5>
@@ -21,6 +21,36 @@
             <div class="md-overlay"></div>
         </div>
 
+
+        <!-- Modal -->
+        <div class="modal fade" id="addWallet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            @csrf
+            <div class="modal-dialog" role="document">
+                <div class="modal-content p-3">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update your Wallet</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-4">BTC</label>  
+                            <input type="text"  class="form-control" placeholder="Enter a BTC address">
+                        </div> 
+                        
+                        <div class="form-group">
+                            <label class="col-4">USDT</label>  
+                            <input type="text"  class="form-control" placeholder="Enter a USDT address">
+                        </div> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Proceed</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-sm-6 col-xl-3 mb-30">

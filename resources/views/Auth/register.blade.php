@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Required meta tags -->
 
-    <title>Ramecoin</title>
+    <title>Ramecoin | Account</title>
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('template/img/core-img/favicon.png') }}">
@@ -22,12 +22,12 @@
 <body class="login-area">
 
     <!-- Preloader -->
-    <div id="preloader-area">
+    <!-- <div id="preloader-area">
         <div class="lds-ripple">
             <div></div>
             <div></div>
         </div>
-    </div>
+    </div> -->
     <!-- Preloader -->
 
     <!-- ======================================
@@ -44,7 +44,7 @@
                     <div class="cube"></div>
                     <div class="cube"></div>
                 </div>
-                <div class="col-sm-10 col-md-8 col-lg-5">
+                <div class="col-sm-10 col-md-8 col-lg-5" id="auth">
                     <!-- Middle Box -->
                     <div class="middle-box">
                         <div class="card">
@@ -68,19 +68,24 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <input class="form-control login" v-model="account.password_confirmation" type="password" required="" id="password" placeholder="Confirm Password">
+                                        <input class="form-control login" v-model="account.confirm_password" type="password" required="" id="password" placeholder="Confirm Password">
                                     </div>
 
                                     
 
                                     <div class="form-group mb-0">
-                                        <button @click="authenticateUser()" class="btn btn-primary btn-block" type="button"> Log In </button>
+                                        <button @click="accountCreation()" class="btn btn-primary btn-block" type="button">Signup</button>
+                                        <div v-cloak v-if="isLoading" class="spinner-border text-success" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
                                     </div>
 
                                     <div class="text-center mt-15"><span class="mr-2 font-12">Have an account?</span><a class="font-12" href="{{ route('login') }}">Login</a></div>
 
                                </div>
 
+
+                               <textarea name="" id="createUser"  style="display:none;" cols="30" rows="10">{{ route('auth.signup') }}</textarea>
                                 <!-- end card -->
                             </div>
                         </div>
@@ -104,8 +109,7 @@
     <script src="{{ asset('template/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('template/js/bundle.js') }}"></script>    <!-- Active JS -->
     <script src="{{ asset('template/js/default-assets/active.js') }}"></script>
-
-    <script src="{{ asset('js/authenticate.js') }}"></script>
+    <script src="{{ asset('js/account.js') }}"></script>
 
 </body>
 </html>

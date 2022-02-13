@@ -49,14 +49,15 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    protected function validator(array $data) {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => 'required|string',
+            'email' => 'required|regex:/(.+)@(.+)\.(.+)/i|unique:users',
+            'password' => 'required|between:6,255',
+            'confirm_password' => 'required|same:password',
         ]);
-    }
+	}
+
 
     /**
      * Create a new user instance after a valid registration.
@@ -75,6 +76,8 @@ class RegisterController extends Controller
     public function createUser(Request $request){
         try {
 
+
+
             $validator = $this->validator($request->all());
             if ($validator->fails()) {
                 $message = $validator->errors()->all();
@@ -87,13 +90,13 @@ class RegisterController extends Controller
             $user = new User;
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->user_type = 'member';
+            $user->role = 'member';
             $user->password = Hash::make($request->password);
             $user->uuid = (string) \Str::uuid();
+            // dd($user);
             $user->save();
-            $message = "Account Created Successfully";
-            return response()->redirectToRoute('user.dashboard');
-            // return response()->json(['message' => $message,'user' => $user], 200);
+            $message = "Account Created!";
+            return response()->json(['message' => $message,'user' => $user], 200);
 
         } catch (Exception $error) {
             Log::info("UserController::class, 'createAccount'" . $error->getMessage());

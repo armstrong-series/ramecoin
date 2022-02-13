@@ -22,8 +22,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="feather feather-box link-icon">
-                    <path
-                        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
                     </path>
                     <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
                     <line x1="12" y1="22.08" x2="12" y2="12"></line>
@@ -34,9 +33,9 @@
         </li>
 
 
-               
-        <li class="nav-item" class="{{ $page == 'user-management' ? 'active' : '' }}"> 
-        @if(Auth::user()->role === "admin" || Auth::user()->role  === "support")
+        @if(Auth::user()->role === "admin" || Auth::user()->role  === "support")     
+        <li class="nav-item {{ $page == 'user-management' ? 'active' : '' }}"> 
+
             <a class="nav-link"  href="{{ route('admin.user-management')}}" 
                 aria-controls="app">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
@@ -47,10 +46,28 @@
                     </path>
                 </svg>
                 <span class="menu-title">User Management</span>   
-            </a>
-            @endif
-            
+            </a>      
         </li>
+
+        <li class="nav-item {{ $page == 'admin-transaction' ? 'active' : '' }}">
+            <a class="nav-link"  href="{{ route('admin.transactions') }}" aria-expanded="false"
+                aria-controls="email">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-mail link-icon">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                    </path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span class="menu-title">Manage Transactions</span>
+                
+            </a>
+        </li>
+
+        @endif
+
+
+        
         
         <li class="nav-item">
             <a class="nav-link" class="{{ $page == 'wallet-fund' ? 'active' : '' }}"  href="{{ route('wallet.fund')}}" 
@@ -83,7 +100,7 @@
         </li>
         <li class="nav-item {{ $page == 'transactions' ? 'active' : '' }}">
  
-        @if(Auth::user()->role === "member")
+          @if(Auth::user()->role === "member")
             <a class="nav-link"  href="{{ route('user.transactions') }}"
                 aria-controls="elements">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -96,7 +113,7 @@
                 <span class="menu-title">Transaction History</span>
                 
             </a>   
-            @endif 
+           @endif 
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">
