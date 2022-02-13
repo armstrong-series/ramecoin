@@ -51,14 +51,14 @@
                                             </div>
                                             <div class="input-group">
                                                 <div class="row">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                          <img src="https://www.bitcoinqrcodemaker.com/api/?style=bitcoin&amp;address=bc1qlqfgvl2sm5faw5jc66e9jgc08rcassypyg3m20" height="150" width="150" alt="Bitcoin QR Code">
                                                     </div>
-                                                    <div class="col-md-4 right">                                                   
-                                                        <ul>
-                                                            <li>Copy/Scan the Bitcoin address</li>
-                                                            <li>Wait for 30mins for confirmation</li>
-                                                        </ul>
+                                                    <div class="col-md-6 right">                                                   
+                                                        <p>Copy/Scan the Bitcoin address</p>
+                                                        <p>Pay to that address via Trustwallet</p>
+                                                        <p>Wait for 30mins for confirmation</p>
+                                                    
                                                      </div>
                                                 </div>
                                                 

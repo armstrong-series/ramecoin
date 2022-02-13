@@ -59,8 +59,6 @@
                         <!-- Single Slider -->
                         <div class="widget-slider-content">
                             <div class="d-flex justify-content-between align-items-center mb-15">
-
-                                <span class="badge badge-pill badge-primary">79% Done</span>
                             </div>
                             <h6 class="mb-0">$79,639.69</h6>
                             <p class="mb-0">Account Balance</p>
@@ -77,11 +75,9 @@
                         <!-- Single Slider -->
                         <div class="widget-slider-content">
                             <div class="d-flex justify-content-between align-items-center mb-15">
-                                <h6 class="mb-0">Cost</h6>
-                                <span class="badge badge-pill badge-primary">79% Done</span>
                             </div>
                             <h6 class="mb-0">$79,639.69</h6>
-                            <p class="mb-0">Total Investment</p>
+                            <p class="mb-0">Total Deposit</p>
                         </div>
                     </div>
                 </div>
@@ -94,7 +90,7 @@
                         <div class="widget-slider-content">
                             <div class="d-flex justify-content-between align-items-center mb-15">
                                 <!-- <h6 class="mb-0">Users</h6> -->
-                                <span class="badge badge-pill badge-primary">79% Done</span>
+                                <!-- <span class="badge badge-pill badge-primary">79% Done</span> -->
                             </div>
                             <h6 class="mb-0">{{ $usersCount }}</h6>
                             <p class="mb-0">Users</p>
@@ -111,11 +107,9 @@
                         <!-- Single Slider -->
                         <div class="widget-slider-content">
                             <div class="d-flex justify-content-between align-items-center mb-15">
-                                <h6 class="mb-0">Total Deposits</h6>
-                                <span class="badge badge-pill badge-primary">79% Done</span>
                             </div>
                             <h6 class="mb-0">$79,639.69</h6>
-                            <p class="mb-0">Total Investment</p>
+                            <p class="mb-0">Total Withdrawal(s)</p>
                         </div>
                     </div>
                 </div>
