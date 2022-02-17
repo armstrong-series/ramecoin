@@ -32,6 +32,7 @@ Route::post('/update-user',  [Controller\Admin\AdminController::class, 'updateUs
 Route::post('/update-secret',  [Controller\Admin\AdminController::class, 'changeSecret'])->name('admin.user-secret');
 Route::delete('/delete-user',  [Controller\Admin\AdminController::class, 'deleteUser'])->name('admin.user-delete');
 Route::get('/wallet/deposit', [Controller\WalletController::class, 'fundPayment'])->name('wallet.fund');
+Route::post('/status/update', [Controller\Admin\AdminController::class, 'updateTransactionStatus'])->name('transactions.update.status');
 
 
 // Pages

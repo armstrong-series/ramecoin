@@ -35,13 +35,13 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="col-4">BTC</label>  
-                            <input type="text"  class="form-control" placeholder="Enter a BTC address">
+                            <label class="col-4">Name</label>  
+                            <input type="text"  class="form-control" placeholder="E.g BTC">
                         </div> 
                         
                         <div class="form-group">
-                            <label class="col-4">USDT</label>  
-                            <input type="text"  class="form-control" placeholder="Enter a USDT address">
+                            <label class="col-4">Address</label>  
+                            <input type="text"  class="form-control" placeholder="Enter the Crypto Address">
                         </div> 
                     </div>
                     <div class="modal-footer">
@@ -76,7 +76,7 @@
                         <div class="widget-slider-content">
                             <div class="d-flex justify-content-between align-items-center mb-15">
                             </div>
-                            <h6 class="mb-0">$79,639.69</h6>
+                            <h6 class="mb-0">{{ $totalDeposits }}</h6>
                             <p class="mb-0">Total Deposit</p>
                         </div>
                     </div>

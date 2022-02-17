@@ -5,6 +5,7 @@ if (window.Vue) {
            isLoading: false,
           
            user:{
+            id: "",
              name: "",
              email: "",
              mobile: "",
@@ -41,7 +42,7 @@ if (window.Vue) {
         mounted() {
          this.users = JSON.parse($("#users").val());
           this.url.create = $("#createUser").val();
-          this.url.update = $("#updateUser").val();
+          this.url.update = $("#update").val();
           this.url.delete = $("#deleteUser").val();
           this.url.secret = $("#changeSecret").val();
 
@@ -59,7 +60,7 @@ if (window.Vue) {
                 formData.append('_token', $('input[name=_token]').val());
                 axios.post(this.url.create, formData)
                 .then((response) => {
-                        this.isloading = false;
+                  $('.addUser').modal('hide');
                         this.$toastr.Add({
                             msg: response.data.message, 
                             clickClose: false, 
@@ -70,7 +71,9 @@ if (window.Vue) {
                             progressbar: false,
                             style: {backgroundColor: "green"}
                           });
-                          $('.addUser').modal('hide');
+                          this.isloading = false;
+                          
+                          this.users.push(Object.assign({}, response.data.user, {}));
                     }).catch((error) => {
                         console.log(error.response)
                         this.isLoading = false;
@@ -89,7 +92,9 @@ if (window.Vue) {
 
             },
 
-            updateUser(){
+
+
+            update(){
                 this.isLoading = true;
                 let formData = new FormData();
                   for(let key in this.updateUser){
@@ -97,9 +102,10 @@ if (window.Vue) {
                       formData.append(key, value);
                   }
                   formData.append('_token', $('input[name=_token]').val());
+                  // formData.append('id', this.updateUser.id);
                   axios.post(this.url.update, formData)
                   .then((response) => {
-                          this.isloading = false;
+                        $('.editUser').modal('hide');
                           this.$toastr.Add({
                             msg: response.data.message, 
                             clickClose: false, 
@@ -110,7 +116,14 @@ if (window.Vue) {
                             progressbar: false,
                             style: {backgroundColor: "green"}
                           });
-                          $('.editUser').modal('hide');
+                          this.isloading = false;
+                       
+                          var editUser = response.data.user;
+                          this.users = this.users.map((user) => {
+                              if (user.id === editUser.id) {
+                                 user = Object.assign({}, editUser);
+                              }
+                              return user;
                       }).catch((error) => {
                           console.log(error.response)
                           this.isLoading = false;
@@ -127,12 +140,11 @@ if (window.Vue) {
                       });
   
   
-              },
+             });
+            },
   
-
             changeSecret(){
-
-                this.isLoading = true;
+                this.isLoading = true
                 let formData = new FormData();
                   for(let key in this.updateUser){
                       let value = this.updateUser[key];
@@ -177,8 +189,6 @@ if (window.Vue) {
                     title: "Are you sure?",
                     text: "Once deleted, this data can't be recovered!",
                     icon: "warning",
-                    // buttons: true,
-                    // dangerMode: true,
                     closeOnClickOutside: false,
                     buttons: {
                     cancel: {
@@ -243,14 +253,10 @@ if (window.Vue) {
                 email: user.email,
                 role: user.role
                 
-            };
-
-        },
-           
-
+            }
+          }
           
-
-
-        }
+         }
+      
     });
 }

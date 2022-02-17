@@ -59,8 +59,8 @@ class WalletController extends Controller
     public function makeDeposit(Request $request){
         try {
 
-            if(!$request->amount || !$request->payment){
-                $message = "Add an amount with payment method!";
+            if(!$request->amount || !$request->payment || !$request->file('proof')){
+                $message = "All Fields are required!";
                 return response()->json(["message" => $message],400);
             }
             if ($request->hasFile('proof')) {

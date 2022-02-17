@@ -24,8 +24,9 @@ if (window.Vue) {
 
 
         mounted() {
-            this.transactions =  JSON.parse($('#allTransactions').val());
-            this.url.transaction_status = $("#status").val();
+            console.log("transactions...", this.transactions)
+            this.transactions =  JSON.parse($('#getTransactions').val());
+            this.url.transaction_status = $("#statusUpdate").val();
 
 
         },
@@ -41,10 +42,11 @@ if (window.Vue) {
             updateStatus(){
                 this.isLoading = true;
                 axios.post(this.url.transaction_status,{
-                    status: transaction.status,
+                    id:this.transaction.id,
+                    status: this.transaction.status,
                     _token: $('input[name=_token]').val()
                 }).then((response) => {
-                    $('#status').modal('hide');
+                    $('#changeStatus').modal('hide');
                     this.$toastr.Add({
                         msg: response.data.message,
                         clickClose: false,
@@ -53,9 +55,10 @@ if (window.Vue) {
                         type: "success",
                         preventDuplicates: true,
                         progressbar: false,
-                        style: { backgroundColor: "green" }
+                        style: {backgroundColor: "green"}
                     });
                     this.isLoading = false;
+                    this.transactions.push(Object.assign({}, response.data.transaction, {}));
                 }).catch((error) => {
                     this.isLoading = false
                     this.$toastr.Add({

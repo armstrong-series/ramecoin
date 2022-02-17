@@ -44,14 +44,14 @@
                                                 <a href="javascript:void(0);" @click="clientChangeDialog(index)" data-toggle="modal" data-animation="bounce" data-target=".editUser" class="mr-2">
                                                     <i class="fa fa-edit text-info font-18"></i>
                                                 </a>
-                                                @if(Auth::user()->role == "admin")
+                                                
                                                 <a href="javascript:void(0);" data-toggle="modal" data-animation="bounce" data-target=".change_secret" class="mr-2">
                                                     <i class="fa-solid fa-lock font-18"></i>
                                                 </a>
                                                     <a href="javascript:void(0);" @click="deleteUser(index)">
                                                         <i class="fa fa-trash text-danger font-18"></i>
                                                     </a>
-                                                @endif
+                                                
                                                 
                                             </td>
                                         </tr>
@@ -105,7 +105,10 @@
                             <label class="col-md-4">Role Priviledges</label> 
                             <select v-model="user.role" class="custom-select" id="status-select">
                                 <option selected="">Choose Role</option>
-                                <option value="admin">Admin</option>
+                                @if(Auth::user()->role === "admin")
+                                 <option value="admin">Admin</option>
+                                 @endif
+                               
                                 <option value="member">Member</option>
                                 <option value="support">Support</option>    
                             </select>
@@ -196,7 +199,7 @@
                         </div>
                         
                           <div class="mt-5 text-right">
-                            <button type="button" @click="updateUser()" class="btn btn-sm btn-primary">Save</button> 
+                            <button type="button" @click="update()" class="btn btn-sm btn-primary">Save</button> 
                             <div v-if="isLoading" class="spinner-border text-success" role="status">
                                 <span class="sr-only">Loading...</span>
                             </div>
@@ -212,7 +215,7 @@
 
         <textarea name="" id="users" style="display:none;" cols="30" rows="10">{{ json_encode($users) }}</textarea>
         <textarea name="" id="createUser" style="display:none;" cols="30" rows="10">{{ route('admin.user-create') }}</textarea>
-        <textarea name="" id="updateUser" style="display:none;" cols="30" rows="10">{{ route('admin.user-update') }}</textarea>
+        <textarea name="" id="update" style="display:none;" cols="30" rows="10">{{ route('admin.user-update') }}</textarea>
         <textarea name="" id="deleteUser" style="display:none;" cols="30" rows="10">{{ route('admin.user-delete') }}</textarea>
         <textarea name="" id="#changeSecret" style="display:none;" cols="30" rows="10">{{ route('admin.user-secret') }}</textarea>
     </div>

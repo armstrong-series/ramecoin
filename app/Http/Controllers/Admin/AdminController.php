@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CoinModel;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
@@ -27,8 +28,10 @@ class AdminController extends Controller
         
             if (Auth::user()->role === 'admin' || Auth::user()->role === 'support') {
                 $user = User::where('id', Auth::id())->first();
-                $member = User::where('role', 'member')->get();
-                $usersCount = count($member);
+                $totalUsers = User::all();
+                $deposits = WalletModel::where('status', 'success')->get();
+                $totalDeposits = count($deposits);
+                $usersCount = count($totalUsers);
                 $admin = User::where('role', 'admin')->get();
                 $support = User::where('role', 'support')->get();
                 $currentUser = Auth::user();
@@ -37,6 +40,7 @@ class AdminController extends Controller
                     'page' => 'admin',
                     'admin' => $admin,
                     'support' => $support,
+                    "totalDeposits" => $totalDeposits,
                     'user' => $user,  
                     'usersCount' => $usersCount                 
                 ];
@@ -64,6 +68,7 @@ class AdminController extends Controller
             
             if (Auth::user()->role === 'admin' || Auth::user()->role === 'support') {
                 $transactions = WalletModel::all();
+                // dd($transactions);
                 $data = [
                     'page' => 'admin-transaction',
                     'transactions' =>  $transactions
@@ -84,16 +89,19 @@ class AdminController extends Controller
 
 
         public function updateTransactionStatus(Request $request){
+            // dd($request->all());
             $transaction = WalletModel::where('id', $request->id)->first();
             if(!$transaction){
                 $message = "Unknown Transaction!";
                 return response()->json(["message" => $message], 400);
             }
+            dd($transaction);
 
             $transaction->status = $request->status;
+            // dd($transaction);
             $transaction->save();
             $message ="Transaction status updated!";
-            return response()->json(["message" => $message], 200);
+            return response()->json(["message" => $message, "transaction" => $transaction], 200);
         }
 
         public function downloadProof(Request $request){
@@ -150,11 +158,25 @@ class AdminController extends Controller
 
 
 
+    public function addCoin(Request $request){
+        try {
+            
+            if(!$request->name || !$request->address){
+                $message = "Complete both fields!";
+                return response()->json(["message" => $message],400);
+            }
+            $coin = new CoinModel();
+            $coin->name = $request->name;
+            $coin->address = $request->address;
+        } catch (Exception $errorMessage) {
+           Log::info($errorMessage->getMessage());
+        }
+    }
 
     public function createUser(Request $request)
     {
         try {
-           
+            // dd($request->all());
             $validator = $this->validator($request->all());
             if ($validator->fails()) {
                 $message = $validator->errors()->all();
@@ -173,13 +195,8 @@ class AdminController extends Controller
             $user->password = Hash::make($request->password);
             $user->uuid = (string) \Str::uuid();
             $user->save();
-
-            if ($user->save()) {
-                return response()->json([
-                    'message' => "Member added!",
-                    'user'  => $user
-                ],200);
-            }
+            $message = "Member added!";
+            return response()->json(["message" => $message, "user" => $user], 200);
 
         } catch (Exception $error) {
             Log::info("Admin\AdminController@createUser error message:" . $error->getMessage());
@@ -194,20 +211,22 @@ class AdminController extends Controller
 
     public function updateUser(Request $request)
     {
-        try {
-
-
-          
-            $user = User::where('id', $request->id)->first();
+        try 
+          {
+            //   dd($request->all());
+            $user = User::where('id', Auth::id())->first();
             if(!$user){
                 return response()->json(['message' => "User not found!"],404); 
             }
+
+            // dd($user);
             $user->name = $request->name ? $request->name : $user->name;
             $user->email = $request->email ? $request->email : $user->email;
             $user->email = $request->mobile ? $request->mobile : $user->mobile;
             $user->role = $request->role ? $request->role : $user->role;
             $user->save();
-            return response()->json(["message" => "Member credentials updated!"], 200);
+            $message = "Member credentials updated!";
+            return response()->json(["message" =>$message, "user" => $user], 200);
            
         } catch (Exception $error) {
             Log::info("Admin\AdminController@updateUser error message:" . $error->getMessage());

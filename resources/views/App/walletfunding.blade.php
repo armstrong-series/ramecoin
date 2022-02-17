@@ -44,15 +44,15 @@
 
                                         <div class="form-group" v-if="investment.payment == 'btc'">            
                                             <div class="input-group">
-                                                <input type="text" disabled class="form-control" value="bc1qlqfgvl2sm5faw5jc66e9jgc08rcassypyg3m20" placeholder="" aria-label="Recipient's username">
+                                                <input type="text"  ref="btc" readonly @focus="$event.target.select()"  class="form-control" value="33FfQg5KJ9P7sPrBvzkCifBpTzF8H932YJ" placeholder="" aria-label="Recipient's username">
                                                 <div class="input-group-append">
-                                                    <button @click="copyBitcoinAddress()" ref="text" title="copy address" class="btn btn-dark" type="button"><i class="fa-solid fa-copy"></i></button>
+                                                    <button @click="copyBtc()" title="copy address" class="btn btn-dark" type="button"><i class="fa-solid fa-copy"></i></button>
                                                 </div>
                                             </div>
                                             <div class="input-group">
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                         <img src="https://www.bitcoinqrcodemaker.com/api/?style=bitcoin&amp;address=bc1qlqfgvl2sm5faw5jc66e9jgc08rcassypyg3m20" height="150" width="150" alt="Bitcoin QR Code">
+                                                         <img src="https://www.bitcoinqrcodemaker.com/api/?style=bitcoin&amp;address=33FfQg5KJ9P7sPrBvzkCifBpTzF8H932YJ" height="150" width="150" alt="Bitcoin QR Code">
                                                     </div>
                                                     <div class="col-md-6 right">                                                   
                                                         <p>Copy/Scan the Bitcoin address</p>
@@ -67,9 +67,9 @@
 
                                         <div class="form-group" v-if="investment.payment == 'usdt'">            
                                             <div class="input-group">
-                                                <input type="text" disabled class="form-control" placeholder="0x0f61F0BD616FbA2458fF3b6BaB11698222662bc8" aria-label="btc">
+                                                <input type="text" readonly @focus="$event.target.select()" ref="usdt" class="form-control" value="0x7197dd00C191609A26217d2596dB53815B280002" placeholder="" aria-label="btc">
                                                 <div class="input-group-append">
-                                                    <button @click="copyAddress()" title="copy address" class="btn btn-dark" type="button"><i class="fa-solid fa-copy"></i></button>
+                                                    <button @click="copyUsdt()" title="copy address" class="btn btn-dark" type="button"><i class="fa-solid fa-copy"></i></button>
                                                 </div>
                                             </div>
                                         </div>

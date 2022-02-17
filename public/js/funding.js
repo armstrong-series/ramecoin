@@ -9,6 +9,8 @@ if (window.Vue) {
             payment: '',
         },
 
+        btc: "bc1qlqfgvl2sm5faw5jc66e9jgc08rcassypyg3m20",
+
         originalFile: '',
         imageFile: null,
         input: null,
@@ -87,29 +89,41 @@ if (window.Vue) {
 
             },
 
-            copyAddress() {
-                this.$toastr.Add({
-                    msg: "Copy successful!",
-                    clickClose: false,
-                    timeout: 2000,
-                    position: "toast-top-right",
-                    type: "success",
-                    preventDuplicates: true,
-                    progressbar: false,
-                    style: { backgroundColor: "green" }
-                });
+            copyBtc() {
+               this.$refs.btc.focus();
+                document.execCommand('copy');
+                return  this.$toastr.Add({
+                        msg: "copied successfully!",
+                        clickClose: false,
+                        timeout: 2000,
+                        position: "toast-top-right",
+                        type: "success",
+                        preventDuplicates: true,
+                        progressbar: false,
+                        style: { backgroundColor: "green" }
+                    });
+                  
             },
+
+
+
+            copyUsdt() {
+                this.$refs.usdt.focus();
+                 document.execCommand('copy');
+                 return  this.$toastr.Add({
+                         msg: "copied successfully!",
+                         clickClose: false,
+                         timeout: 2000,
+                         position: "toast-top-right",
+                         type: "success",
+                         preventDuplicates: true,
+                         progressbar: false,
+                         style: { backgroundColor: "green" }
+                     });
+                   
+             },
            
-           copyBitcoinAddress(){
-                document.addEventListener("copy", this.copyBtc);
-                if (document.execCommand("copy")) {
-                    this.copyAddress();
-                }
-                document.removeEventListener("copy", this.copyBtc);
-           },
-           copyBtc(e) {
-            e.clipboardData.setData("text/plain", this.copyBitcoinAddress.btc);
-            e.preventDefault();
+         
         },
              
           
@@ -120,6 +134,6 @@ if (window.Vue) {
           
 
 
-        }
+        
     });
 }
