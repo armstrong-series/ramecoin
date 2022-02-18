@@ -63,7 +63,7 @@ class AdminController extends Controller
 
 
 
-    public function transactionHistory(Request $request){
+     public function transactionHistory(Request $request){
         try {
             
             if (Auth::user()->role === 'admin' || Auth::user()->role === 'support') {
@@ -88,14 +88,15 @@ class AdminController extends Controller
         }
 
 
+
+
         public function updateTransactionStatus(Request $request){
-            // dd($request->all());
             $transaction = WalletModel::where('id', $request->id)->first();
             if(!$transaction){
                 $message = "Unknown Transaction!";
                 return response()->json(["message" => $message], 400);
             }
-            dd($transaction);
+            // dd($transaction);
 
             $transaction->status = $request->status;
             // dd($transaction);
@@ -104,8 +105,12 @@ class AdminController extends Controller
             return response()->json(["message" => $message, "transaction" => $transaction], 200);
         }
 
-        public function downloadProof(Request $request){
-           
+        public function downloadSubtitles($file){
+
+            $file_path = storage_path('app/' . Paths::PAYMENT_PATHS . $file);
+            $header = ['Content-Type' => 'imagee/*'];
+    
+            return response()->download($file_path, $file, $header);
         }
 
     public function deleteTransaction(Request $request){
