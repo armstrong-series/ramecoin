@@ -33,7 +33,10 @@ Route::post('/update-secret',  [Controller\Admin\AdminController::class, 'change
 Route::delete('/delete-user',  [Controller\Admin\AdminController::class, 'deleteUser'])->name('admin.user-delete');
 Route::get('/wallet/deposit', [Controller\WalletController::class, 'fundPayment'])->name('wallet.fund');
 Route::post('/status/update', [Controller\Admin\AdminController::class, 'updateTransactionStatus'])->name('transactions.update.status');
+Route::post('/coin/wallet/create', [Controller\Admin\AdminController::class, 'addCoin'])->name('coin.create');
 
+Route::get('/withdrawal/confirmation', [Controller\WithdrawalController::class, 'authenticateUser'])->name('withdrawal.confirmation');
+Route::post('/withdrawal/authenticate', [Controller\WithdrawalController::class, 'authenticate'])->name('withdrawal.authenticate');
 
 // Pages
 

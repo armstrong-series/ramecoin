@@ -68,7 +68,7 @@ class AdminController extends Controller
             
             if (Auth::user()->role === 'admin' || Auth::user()->role === 'support') {
                 $transactions = WalletModel::all();
-                // dd($transactions);
+                
                 $data = [
                     'page' => 'admin-transaction',
                     'transactions' =>  $transactions
@@ -91,12 +91,16 @@ class AdminController extends Controller
 
 
         public function updateTransactionStatus(Request $request){
-            $transaction = WalletModel::where('id', $request->id)->first();
+
+            // dd($request->all());
+            $transaction = WalletModel::where('id', Auth::id)->first();
+            // $transaction = WalletModel::where('id', Auth::id)->first();
+
             if(!$transaction){
                 $message = "Unknown Transaction!";
-                return response()->json(["message" => $message], 400);
+                return response()->json(["message" => $message], 404);
             }
-            // dd($transaction);
+         
 
             $transaction->status = $request->status;
             // dd($transaction);
@@ -173,6 +177,9 @@ class AdminController extends Controller
             $coin = new CoinModel();
             $coin->name = $request->name;
             $coin->address = $request->address;
+            $coin->save();
+            $message = "Request completed";
+            return response()->json(["message" => $message], 200);
         } catch (Exception $errorMessage) {
            Log::info($errorMessage->getMessage());
         }
@@ -219,7 +226,7 @@ class AdminController extends Controller
         try 
           {
             //   dd($request->all());
-            $user = User::where('id', Auth::id())->first();
+            $user = User::where('id', $request->id)->first();
             if(!$user){
                 return response()->json(['message' => "User not found!"],404); 
             }

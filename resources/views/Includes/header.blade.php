@@ -17,7 +17,7 @@
                 </button>
 
                 <ul class="top-navbar-area navbar-nav navbar-nav-right">
-                    <li class="nav-item dropdown dropdown-animate">
+                    <!-- <li class="nav-item dropdown dropdown-animate">
                         <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
                             data-toggle="dropdown">
                             <i class="fa fa-bell-o"></i>
@@ -82,11 +82,12 @@
                             </a>
 
                         </div>
-                    </li>
+                    </li> -->
 
                     <li class="nav-item nav-profile dropdown dropdown-animate">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <img src="{{ asset('template/img/member-img/contact-2.jpg') }}" alt="profile" />
+                            <img src="{{ asset('ramecoin.jpeg') }}" alt="profile" />
+                            <!-- <img src="{{ asset('template/img/member-img/contact-2.jpg') }}" alt="profile" /> -->
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown profile-top"
                             aria-labelledby="profileDropdown">

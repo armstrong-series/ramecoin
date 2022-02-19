@@ -85,7 +85,7 @@
             
         </li>
         <li class="nav-item">
-            <a class="nav-link"  href="#" aria-expanded="false"
+            <a class="nav-link"  href="{{ route('withdrawal.confirmation') }}" aria-expanded="false"
                 aria-controls="email">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -115,7 +115,7 @@
             </a>   
            @endif 
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -147,7 +147,7 @@
                     <li class="nav-item"><a class="nav-link" href="#">My Investment</a></li>   
                 </ul>
             </div>
-        </li>
+        </li> -->
    
     </ul>
 </nav>

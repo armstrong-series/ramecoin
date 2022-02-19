@@ -15,17 +15,17 @@
                     <div class="card-body text-center">
                         <h6 class="font-20 mb-1">{{ Auth::user()->name }}</h6>
                         <p class="font-13 text-dark">{{ Auth::user()->role }}</p>
-                        <p class="description px-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime mollitia.</p>
+                        <!-- <p class="description px-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime mollitia.</p>
                         <div class="hire">
                             <button class="btn btn-danger btn-sm mr-2 mb-2">Hire me</button>
                             <button class="btn btn-success btn-sm mb-2">Follow me</button>
-                        </div>
+                        </div> -->
                        
                     </div>
                 </div>
                 <!-- ./profile -->
 
-                <div class="card address mb-30">
+                <!-- <div class="card address mb-30">
                     <div class="card-body">
                         <h4 class="font-16 mb-15">Contact :</h4>
                         <div class="mt-0 d-flex align-items-center">
@@ -41,7 +41,7 @@
                             <h6 class="font-14 mb-0">Van Barneveldlaan 98, Netherlands</h6>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- ./address -->
             </div>
 
@@ -60,7 +60,7 @@
                                                 <span class="profile-cat">Full Name</span>
                                             </div>
                                             <div class="col-xl-7 col-sm-9">
-                                                <span class="profile-info">Jhon Alin Deo</span>
+                                                <span class="profile-info">{{ Auth::user()->name }}</span>
                                             </div>
                                         </div>
                                         <div class="row profile-row">
@@ -68,10 +68,10 @@
                                                 <span class="profile-cat">Email</span>
                                             </div>
                                             <div class="col-xl-7 col-sm-9">
-                                                <span class="profile-info">example@example.com</span>
+                                                <span class="profile-info">{{ Auth::user()->email }}</span>
                                             </div>
                                         </div>
-                                        <div class="row profile-row">
+                                        <!-- <div class="row profile-row">
                                             <div class="col-xs-5 col-sm-3">
                                                 <span class="profile-cat">Country</span>
                                             </div>
@@ -111,7 +111,7 @@
                                             <div class="col-xl-7 col-sm-9">
                                                 <span class="profile-info">Male</span>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                     </div>
                                 </div>

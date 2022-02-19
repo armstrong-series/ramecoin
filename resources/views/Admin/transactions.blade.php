@@ -71,7 +71,7 @@
                                                                 <div class="dropdown-menu">
                                                                     <a class="dropdown-item" data-toggle="modal" @click="checkStatus(index)" data-animation="bounce" data-target="#changeStatus" href="#">Change Status</a>
                                                                     <div class="dropdown-divider"></div>
-                                                                    <a class="dropdown-item" href="#">Delete</a>
+                                                                    <!-- <a class="dropdown-item" href="#">Delete</a> -->
                                                                 </div>
                                                             </td>
                                                             
@@ -84,9 +84,8 @@
                                     </div>
                                 </div>
 
-
-                                <!-- Transaction Status Modal -->
-                                <div class="modal fade" id="changeStatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                     <!-- Transaction Status Modal -->
+                                   <div class="modal fade" id="changeStatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         @csrf
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content p-3">
@@ -119,6 +118,7 @@
                                         </div>
                                     </div>
                                  <!-- Modal -->
+                               
                                     
                                 <div class="tab-pane" id="withdrawals">
                                     <div class="row">
@@ -163,7 +163,7 @@
         </div>
 
         <textarea name="" id="getTransactions" style="display:none;" cols="30" rows="10">{{ json_encode($transactions) }}</textarea>
-        <textarea name="" id="statusUpdate" style="display:none;" cols="30" rows="10">{{ route('transactions.update.status') }}</textarea>
+        <textarea name="" id="status" style="display:none;" cols="30" rows="10">{{ route('transactions.update.status') }}</textarea>
         
     </div>
 @endsection
