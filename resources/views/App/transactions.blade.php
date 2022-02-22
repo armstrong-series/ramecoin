@@ -59,6 +59,9 @@
                                                                 <div v-if="transaction.status ==='success'">
                                                                      <div class="badge badge-success">@{{ transaction.status }}</div>
                                                                 </div>
+                                                                <div v-if="transaction.status ==='failed'">
+                                                                     <div class="badge badge-danger">@{{ transaction.status }}</div>
+                                                                </div>
 
                                                             </td>
                                                             <td>@{{ transaction.created_date }}</td>

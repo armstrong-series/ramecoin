@@ -1,17 +1,23 @@
 @extends('Layout.master')
 @section('title')
 <title>Ramecoin |Admin</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css"
+     integrity="sha512-6/gTF62BJ06BajySRzTm7i8N2ZZ6StspU9uVWDdoBiuuNu5rs1a8VwiJ7skCz2BcvhpipLKfFerXkuzs+npeKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 @endsection
 
 @section('content')
         <!-- Page Content -->
-    <div class="container-fluid" id="transactions">
+    <div class="container-fluid" id="dashboard">
         <!-- Widgets Data -->
-
-        <div class="row">
+        <div class="text-right p-3">
+            <button  v-cloak v-if="wallet" type="button" class="btn-outline-secondary btn-sm p-2" data-toggle="modal" data-target="#addWallet">Add Wallet &nbsp;&nbsp;<i class="fa-solid fa-coin-vertical"></i></button>
+            <button v-cloak v-if="!wallet" type="button" class="btn-outline-secondary btn-sm p-2" data-toggle="modal" data-target="#addWallet">Edit Wallet</button>
+   
+        </div>
+           <div class="row">
             <div class="col-12 box-margin">
-                <button v-if="wallet" type="button" class="btn-primary btn-sm p-2" data-toggle="modal" data-target="#addWallet">Add Wallet &nbsp;&nbsp;<i class="fa-solid fa-coin-vertical"></i></button>
-                <button v-if="!wallet" type="button" class="btn-primary btn-sm p-2" data-toggle="modal" data-target="#addWallet">Edit Wallet</button>
+
                 <div class="card">
                     <div class="card-body">
                        <h5 class="">Welcome {{ $user->name }} !</h5>
@@ -29,7 +35,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content p-3">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Update your Wallet</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Add Wallet Address</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -48,6 +54,9 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button"  @click="addCoin()" class="btn btn-primary">Proceed</button>
+                        <div v-if="isLoading" class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -101,7 +110,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-sm-6 col-xl-3 mb-30">
                 <div class="card widget-slider-area p-20">
                     <div class="widget-slides owl-carousel">
@@ -116,7 +124,8 @@
                 </div>
             </div>
 
-            <textarea name="" id="addCoin" style="display:none;" cols="30" rows="10">{{ route('coin.create') }}</textarea>
+            <textarea name="" id="createWallet" style="display:none;" cols="30" rows="10">{{ route('coin.create') }}</textarea>
+
 
         </div>
 
@@ -124,5 +133,7 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/admin-transactions.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/solid.min.js" integrity="sha512-wabaor0DW08KSK5TQlRIyYOpDrAfJxl5J0FRzH0dNNhGJbeUpHaNj7up3Kr2Bwz/abLvVcJvDrJL+RLFcyGIkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="{{ asset('js/admin-dashboard.js') }}"></script>
 @endsection

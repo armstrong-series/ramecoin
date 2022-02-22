@@ -36,7 +36,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="deposit">
                                     <div class="row">
-                                        <div class="col-sm-12">
+                                        <div class="col-md-12">
                                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                                     <thead>
                                                         <tr>
@@ -59,6 +59,9 @@
                                                                 <div v-if="transaction.status ==='success'">
                                                                      <div class="badge badge-success">@{{ transaction.status }}</div>
                                                                 </div>
+                                                                <div v-if="transaction.status ==='failed'">
+                                                                     <div class="badge badge-danger">@{{ transaction.status }}</div>
+                                                                </div>
 
                                                             </td>
                                                             <td>@{{ transaction.created_date }}</td>
@@ -71,7 +74,9 @@
                                                                 <div class="dropdown-menu">
                                                                     <a class="dropdown-item" data-toggle="modal" @click="checkStatus(index)" data-animation="bounce" data-target="#changeStatus" href="#">Change Status</a>
                                                                     <div class="dropdown-divider"></div>
-                                                                    <!-- <a class="dropdown-item" href="#">Delete</a> -->
+                                                                    <a class="dropdown-item" href="#">Download Proof</a>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <a class="dropdown-item" href="#">Increase ROI</a>
                                                                 </div>
                                                             </td>
                                                             

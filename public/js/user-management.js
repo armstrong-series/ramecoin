@@ -95,53 +95,99 @@ if (window.Vue) {
 
 
             update(){
-                this.isLoading = true;
-                let formData = new FormData();
-                  for(let key in this.updateUser){
-                      let value = this.updateUser[key];
-                      formData.append(key, value);
-                  }
-                  formData.append('_token', $('input[name=_token]').val());
-                  // formData.append('id', this.updateUser.id);
-                  axios.post(this.url.update, formData)
-                  .then((response) => {
-                        $('.editUser').modal('hide');
-                          this.$toastr.Add({
-                            msg: response.data.message, 
-                            clickClose: false, 
-                            timeout: 2000,
-                            position: "toast-top-right", 
-                            type: "success", 
-                            preventDuplicates: true, 
-                            progressbar: false,
-                            style: {backgroundColor: "green"}
-                          });
-                          this.isloading = false;
+              this.isLoading = true;
+              axios.post(this.url.update,{
+                  id:this.updateUser.id,
+                  email: this.updateUser.email,
+                  name: this.updateUser.name,
+                  _token: $('input[name=_token]').val()
+              }).then((response) => {
+                  console.log('response....',response.data);
+                  $('.editUser').modal('hide');
+                  this.$toastr.Add({
+                      msg: response.data.message,
+                      clickClose: false,
+                      timeout: 2000,
+                      position: "toast-top-right",
+                      type: "success",
+                      preventDuplicates: true,
+                      progressbar: false,
+                      style: {backgroundColor: "green"}
+                  });
+                  this.isLoading = false;
+                  let userEdit = response.data.user;
+                  this.users = this.user.map((user) =>{
+                      if(user.id === userEdit.id){
+                          user = Object.assign({}, userEdit)
+                      }
+                      return user;
+                  })
+                 
+  
+              }).catch((error) => {
+                  this.isLoading = false
+                  this.$toastr.Add({
+                      msg: error.response.data.message,
+                      clickClose: false,
+                      timeout: 2000,
+                      position: "toast-top-right",
+                      type: "error",
+                      preventDuplicates: true,
+                      progressbar: false,
+                      style: { backgroundColor: "red" }
+                  });
+              });
+          },
+
+
+            // update(){
+            //     this.isLoading = true;
+            //     let formData = new FormData();
+            //       for(let key in this.updateUser){
+            //           let value = this.updateUser[key];
+            //           formData.append(key, value);
+            //       }
+            //       formData.append('_token', $('input[name=_token]').val());
+            //       // formData.append('id', this.updateUser.id);
+            //       axios.post(this.url.update, formData)
+            //       .then((response) => {
+            //             $('.editUser').modal('hide');
+            //               this.$toastr.Add({
+            //                 msg: response.data.message, 
+            //                 clickClose: false, 
+            //                 timeout: 2000,
+            //                 position: "toast-top-right", 
+            //                 type: "success", 
+            //                 preventDuplicates: true, 
+            //                 progressbar: false,
+            //                 style: {backgroundColor: "green"}
+            //               });
+            //               this.isloading = false;
                        
-                          var editUser = response.data.user;
-                          this.users = this.users.map((user) => {
-                              if (user.id === editUser.id) {
-                                 user = Object.assign({}, editUser);
-                              }
-                              return user;
-                      }).catch((error) => {
-                          console.log(error.response)
-                          this.isLoading = false;
-                          this.$toastr.Add({
-                            msg: error.response.data.message, 
-                            clickClose: false, 
-                            timeout: 2000,
-                            position: "toast-top-right", 
-                            type: "error", 
-                            preventDuplicates: true,
-                            progressbar: false, 
-                            style: { backgroundColor: "red"}
-                          });
-                      });
+            //               var editUser = response.data.user;
+            //               this.users = this.users.map((user) => {
+            //                   if (user.id === editUser.id) {
+            //                      user = Object.assign({}, editUser);
+            //                   }
+            //                   return user;
+            //           }).catch((error) => {
+            //               console.log(error.response)
+            //               this.isLoading = false;
+            //               this.$toastr.Add({
+            //                 msg: error.response.data.message, 
+            //                 clickClose: false, 
+            //                 timeout: 2000,
+            //                 position: "toast-top-right", 
+            //                 type: "error", 
+            //                 preventDuplicates: true,
+            //                 progressbar: false, 
+            //                 style: { backgroundColor: "red"}
+            //               });
+            //           });
   
   
-             });
-            },
+            //  });
+            // },
   
             changeSecret(){
                 this.isLoading = true
@@ -151,8 +197,8 @@ if (window.Vue) {
                       formData.append(key, value);
                   }
                   formData.append('_token', $('input[name=_token]').val());
-                  axios.post(this.url.secret, formData).then((response) => {
-                          this.isloading = false;
+                  axios.post(this.url.secret, formData).then((response) => 
+                          $('.change_secret').modal('hide');
                           this.$toastr.Add({
                             msg: response.data.message, 
                             clickClose: false, 
@@ -163,7 +209,16 @@ if (window.Vue) {
                             progressbar: false,
                             style: {backgroundColor: "green"}
                           });
-                          $('.change_secret').modal('hide');
+                          this.isloading = false;
+                          let userEdit = response.data.user;
+                          this.users = this.users.map((user) =>{
+                              if(user.id === userEdit.id){
+                                  user = Object.assign({}, userEdit)
+                              }
+                              return user;
+                          })
+                          
+                          
                       }).catch((error) => {
                           console.log(error.response)
                           this.isLoading = false;
@@ -247,7 +302,7 @@ if (window.Vue) {
             const user = this.users[index]
             this.updateUser = {
                 ...this.updateUser,
-                id: this.user.id,
+                id: user.id,
                 name: user.name,
                 mobile: user.mobile,
                 email: user.email,

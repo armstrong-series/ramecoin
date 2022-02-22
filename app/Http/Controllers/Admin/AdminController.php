@@ -68,6 +68,8 @@ class AdminController extends Controller
             
             if (Auth::user()->role === 'admin' || Auth::user()->role === 'support') {
                 $transactions = WalletModel::all();
+                // dd($transactions);
+                // $transactions = WalletModel::where('id', $request->id)->get();
                 
                 $data = [
                     'page' => 'admin-transaction',
@@ -91,28 +93,27 @@ class AdminController extends Controller
 
 
         public function updateTransactionStatus(Request $request){
-
             // dd($request->all());
-            $transaction = WalletModel::where('id', Auth::id)->first();
-            // $transaction = WalletModel::where('id', Auth::id)->first();
 
+            $transaction = WalletModel::where('id', $request->id)->first();
+    
             if(!$transaction){
                 $message = "Unknown Transaction!";
                 return response()->json(["message" => $message], 404);
             }
-         
-
             $transaction->status = $request->status;
-            // dd($transaction);
             $transaction->save();
             $message ="Transaction status updated!";
             return response()->json(["message" => $message, "transaction" => $transaction], 200);
         }
 
-        public function downloadSubtitles($file){
+
+
+
+        public function downloadyPayment($file){
 
             $file_path = storage_path('app/' . Paths::PAYMENT_PATHS . $file);
-            $header = ['Content-Type' => 'imagee/*'];
+            $header = ['Content-Type' => 'image/*'];
     
             return response()->download($file_path, $file, $header);
         }
@@ -175,6 +176,7 @@ class AdminController extends Controller
                 return response()->json(["message" => $message],400);
             }
             $coin = new CoinModel();
+            $coin->user_id = Auth::id();
             $coin->name = $request->name;
             $coin->address = $request->address;
             $coin->save();
@@ -290,7 +292,7 @@ class AdminController extends Controller
                 return response()->json(['message' => "User not found!"],404); 
             }
             $user->delete();
-            return response()->json(["message" => "Delete successful!"], 200);
+            return response()->json(["message" => "Delete successful!", "user" => $user], 200);
            
         } catch (Exception $error) {
             Log::info("Admin\AdminController@deleteUser error message:" . $error->getMessage());

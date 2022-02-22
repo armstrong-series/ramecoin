@@ -12,12 +12,9 @@ if (window.Vue) {
            },
 
 
-           wallet:true,
+      
 
-           coin:{
-               name: "",
-               address: ""
-           },
+         
 
            url:{
               status: "",
@@ -33,55 +30,25 @@ if (window.Vue) {
 
 
         mounted() {
-            console.log("transactions...", this.transactions)
             this.transactions =  JSON.parse($('#getTransactions').val());
             this.url.status = $("#status").val();
-            this.url.coin = $("#addCoin").val();
-
+            console.log('status',this.url.status);
 
         },
 
         methods: {
 
-            downloadPaymentProof(){
-
-            },
-
-            addCoin(){
-                this.isLoading = true;
-                axios.post(this.url.coin,{
-                    name: this.coin.name,
-                    address: this.coin.address,
-                    _token: $('input[name=_token]').val()
-                }).then((response) => {
-                    $('#addWallet').modal('hide');
-                    this.$toastr.Add({
-                        msg: response.data.message,
-                        clickClose: false,
-                        timeout: 2000,
-                        position: "toast-top-right",
-                        type: "success",
-                        preventDuplicates: true,
-                        progressbar: false,
-                        style: {backgroundColor: "green"}
-                    });
-                    this.wallet = false;
-                    this.isLoading = false;     
-                }).catch((error) => {
-                    this.isLoading = false
-                    this.$toastr.Add({
-                        msg: error.response.data.message,
-                        clickClose: false,
-                        timeout: 2000,
-                        position: "toast-top-right",
-                        type: "error",
-                        preventDuplicates: true,
-                        progressbar: false,
-                        style: { backgroundColor: "red" }
-                    });
+            downloadPaymentProof(file) {
+                axios.get('/admin/transaction/download/' + file, { responseType: 'arraybuffer' }).then(response => {
+                    let blob = new Blob([response.data], { type: 'image/*' })
+                    const link = document.createElement('a')
+                    link.href = window.URL.createObjectURL(blob)
+                    link.download = file
+                    link.click();
                 });
             },
 
+           
             updateStatus(){
                 this.isLoading = true;
                 axios.post(this.url.status,{
@@ -89,6 +56,7 @@ if (window.Vue) {
                     status: this.transaction.status,
                     _token: $('input[name=_token]').val()
                 }).then((response) => {
+                    console.log('response....',response.data);
                     $('#changeStatus').modal('hide');
                     this.$toastr.Add({
                         msg: response.data.message,
@@ -101,7 +69,15 @@ if (window.Vue) {
                         style: {backgroundColor: "green"}
                     });
                     this.isLoading = false;
-                    this.transactions.push(Object.assign({}, response.data.transaction, {}));
+                    let transactionEdit = response.data.transaction;
+                    this.transactions = this.transactions.map((transaction) =>{
+                        if(transaction.id === transactionEdit.id){
+                            transaction = Object.assign({}, transactionEdit)
+                        }
+                        return transaction;
+                    })
+                   
+    
                 }).catch((error) => {
                     this.isLoading = false
                     this.$toastr.Add({
@@ -122,7 +98,7 @@ if (window.Vue) {
                 const transaction = this.transactions[index];
                 this.transaction = {
                     ...this.transaction,
-                    id: this.transaction.id,
+                    id: transaction.id,
                     status: transaction.status,   
                 }
 
