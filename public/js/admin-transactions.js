@@ -48,6 +48,13 @@ if (window.Vue) {
                 });
             },
 
+
+
+
+
+            topInvestment(){
+
+            },
            
             updateStatus(){
                 this.isLoading = true;

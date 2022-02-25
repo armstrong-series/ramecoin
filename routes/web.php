@@ -30,14 +30,14 @@ Route::get('/admin/transactions',  [Controller\Admin\AdminController::class, 'tr
 Route::post('/create-user',  [Controller\Admin\AdminController::class, 'createUser'])->name('admin.user-create');
 Route::post('/update-user',  [Controller\Admin\AdminController::class, 'updateUser'])->name('admin.user-update');
 Route::post('/update-secret',  [Controller\Admin\AdminController::class, 'changeSecret'])->name('admin.user-secret');
-Route::delete('/delete-user',  [Controller\Admin\AdminController::class, 'deleteUser'])->name('admin.user-delete');
+Route::delete('/delete-user',  [Controller\Admin\AdminController::class, 'delete'])->name('admin.user-delete');
 Route::get('/wallet/deposit', [Controller\WalletController::class, 'fundPayment'])->name('wallet.fund');
 Route::post('/status/update', [Controller\Admin\AdminController::class, 'updateTransactionStatus'])->name('transactions.update.status');
-Route::post('admin/wallet/create', [Controller\Admin\AdminController::class, 'addCoin'])->name('coin.create');
-Route::get('/admin/transaction/download/{file}', [Controller\Admin\AdminController::class, 'downloadPayment'])->name('cdownload.payment');
+Route::post('/admin/wallet/create', [Controller\Admin\AdminController::class, 'addCoin'])->name('coin.create');
+Route::get('/admin/transaction/download/{file}', [Controller\Admin\AdminController::class, 'downloadPayment'])->name('download.payment');
 
 Route::get('/withdrawal/confirmation', [Controller\WithdrawalController::class, 'authenticateUser'])->name('withdrawal.confirmation');
-Route::post('/withdrawal/authenticate', [Controller\WithdrawalController::class, 'authenticateWithdrawal'])->name('withdrawal.authenticate');
+Route::post('/withdrawal/authenticate/', [Controller\WithdrawalController::class, 'authenticateWithdrawal'])->name('withdrawal.authenticate');
 
 // Pages
 

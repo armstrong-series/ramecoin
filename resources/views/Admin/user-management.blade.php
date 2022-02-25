@@ -41,7 +41,7 @@
                                             <td v-cloak>@{{ user.mobile }}</td>
                                             
                                             <td>
-                                                <a href="javascript:void(0);" @click="clientChangeDialog(index)" data-toggle="modal" data-animation="bounce" data-target=".editUser" class="mr-2">
+                                                <a href="javascript:void(0);" @click="selectUser(index)" data-toggle="modal" data-animation="bounce" data-target=".editUser" class="mr-2">
                                                     <i class="fa fa-edit text-info font-18"></i>
                                                 </a>
                                                 
@@ -179,7 +179,7 @@
                     
                         <div class="form-group">
                             <label  class="col-md-4">Email</label> 
-                            <input type="email"  v-model="updateUser.email"  class="form-control" id="LeadEmail" required="" placeholder="Enter Email">
+                            <input type="text"  v-model="updateUser.email"  class="form-control" id="LeadEmail" required="" placeholder="Enter Email">
                         </div>
                         <div class="form-group">
                             <label  class="col-md-4">Mobile</label> 
@@ -190,7 +190,7 @@
                         <div class="form-group">
                             <label class="col-md-4">Role Priviledges</label> 
                             <select v-model="updateUser.role" class="custom-select" id="status-select">
-                            @if(Auth::user()->role == "admin")
+                            @if(Auth::user()->role === "admin")
                                 <option value="admin">Admin</option>
                             @endif
                                 <option value="member">Member</option>
@@ -216,7 +216,7 @@
         <textarea name="" id="users" style="display:none;" cols="30" rows="10">{{ json_encode($users) }}</textarea>
         <textarea name="" id="createUser" style="display:none;" cols="30" rows="10">{{ route('admin.user-create') }}</textarea>
         <textarea name="" id="update" style="display:none;" cols="30" rows="10">{{ route('admin.user-update') }}</textarea>
-        <textarea name="" id="deleteUser" style="display:none;" cols="30" rows="10">{{ route('admin.user-delete') }}</textarea>
+        <textarea name="" id="delete_user" style="display:none;" cols="30" rows="10">{{ route('admin.user-delete') }}</textarea>
         <textarea name="" id="#changeSecret" style="display:none;" cols="30" rows="10">{{ route('admin.user-secret') }}</textarea>
     </div>
 @endsection

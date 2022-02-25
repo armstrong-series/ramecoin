@@ -24,15 +24,11 @@ class WithdrawalController extends Controller
 
    
 
-    public function authenticateWithdrawal(Request $request)
-    {
-        
-
-
+    public function authenticateWithdrawal(Request $request){
+    
         try{
-
                 // dd($request->all());
-                if(empty($request->all())){
+                if($request->email == "" || $request->password ==""){
                     $message = "Both fields are required!";
                     return response()->json(["message" => $message], 400);
     
@@ -40,7 +36,9 @@ class WithdrawalController extends Controller
                 $credentials = $request->only('email','password');
                 if (Auth::attempt($credentials)) {
                     $request->session()->regenerate();
-                    return redirect()->route('withdrawal.confirmation');
+                    // dd($credentials);
+                    return redirect()->intended('user.dashboard');
+                    
                     
                 }
         
@@ -51,7 +49,7 @@ class WithdrawalController extends Controller
                 //     'email' => 'The provided credentials do not match our records.',
                 // ]);
         }catch(Exception $error){
-            
+            Log::info($error->getMessage());
         }
        
     }

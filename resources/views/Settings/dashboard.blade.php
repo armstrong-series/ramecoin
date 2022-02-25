@@ -11,16 +11,10 @@
         <div class="row">
             <div class="col-12 col-md-4">
                 <div class="card mb-30">
-                    <img src="{{ asset('template/img/blog-img/4.jpg') }}" class="profile-cover-img" alt="thumb">
+                    <img src="{{ asset('ramecoin.jpeg') }}" class="profile-cover-img" alt="thumb">
                     <div class="card-body text-center">
                         <h6 class="font-20 mb-1">{{ Auth::user()->name }}</h6>
-                        <p class="font-13 text-dark">{{ Auth::user()->role }}</p>
-                        <!-- <p class="description px-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime mollitia.</p>
-                        <div class="hire">
-                            <button class="btn btn-danger btn-sm mr-2 mb-2">Hire me</button>
-                            <button class="btn btn-success btn-sm mb-2">Follow me</button>
-                        </div> -->
-                       
+                        <p class="font-13 text-dark">{{ Auth::user()->role }}</p>  
                     </div>
                 </div>
                 <!-- ./profile -->

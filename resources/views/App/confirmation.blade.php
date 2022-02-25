@@ -50,7 +50,7 @@
                     <div class="middle-box">
                         <div class="card">
                             <div class="card-body p-4">
-
+                              @csrf
                                 <!-- Logo -->
                                 <h4 class="mb-30 text-center">Verify your Account</h4>
                                 <div>

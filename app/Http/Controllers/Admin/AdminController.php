@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Models\WalletModel;
+use App\Helpers\Paths;
 use FFI\Exception;
 use Validator;
 use Illuminate\Support\Facades\Hash;
@@ -110,7 +111,7 @@ class AdminController extends Controller
 
 
 
-        public function downloadyPayment($file){
+        public function downloadPayment($file){
 
             $file_path = storage_path('app/' . Paths::PAYMENT_PATHS . $file);
             $header = ['Content-Type' => 'image/*'];
@@ -227,16 +228,14 @@ class AdminController extends Controller
     {
         try 
           {
-            //   dd($request->all());
+            // dd($request->all());
             $user = User::where('id', $request->id)->first();
             if(!$user){
                 return response()->json(['message' => "User not found!"],404); 
             }
-
-            // dd($user);
             $user->name = $request->name ? $request->name : $user->name;
+            $user->mobile = $request->mobile ? $request->mobile : $user->mobile;
             $user->email = $request->email ? $request->email : $user->email;
-            $user->email = $request->mobile ? $request->mobile : $user->mobile;
             $user->role = $request->role ? $request->role : $user->role;
             $user->save();
             $message = "Member credentials updated!";
@@ -285,14 +284,18 @@ class AdminController extends Controller
     }
 
 
-    public function deleteUser(Request $request){
+    public function delete(Request $request){
         try {
+            
             $user = User::where('id', $request->id)->first();
+            // dd($user);
             if(!$user){
-                return response()->json(['message' => "User not found!"],404); 
+                $message = "User not found";
+                return response()->json(['message' =>  $message],404); 
             }
             $user->delete();
-            return response()->json(["message" => "Delete successful!", "user" => $user], 200);
+            $message = "Delete successful!";
+            return response()->json(["message" => $message, "user" => $user], 200);
            
         } catch (Exception $error) {
             Log::info("Admin\AdminController@deleteUser error message:" . $error->getMessage());
