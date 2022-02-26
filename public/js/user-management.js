@@ -46,6 +46,16 @@ if (window.Vue) {
           this.url.delete = $("#delete_user").val();
           this.url.secret = $("#changeSecret").val();
 
+
+
+
+          $(document).ready(function () {
+            $(document).on("click", ".delete-user", function(){
+                let userIndex = $(this).data('id');
+                this.deleteUser(userIndex);
+            });
+        });
+
         },
 
         methods: {

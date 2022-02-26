@@ -26,7 +26,7 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody style="max-height:100px; overflow-scroll;">
                                         <tr v-cloak v-for="(user, index) in users">
                                             <td>
                                               <span class="font-14">@{{ user.name }}</span>
@@ -48,7 +48,7 @@
                                                 <a href="javascript:void(0);" data-toggle="modal" data-animation="bounce" data-target=".change_secret" class="mr-2">
                                                     <i class="fa-solid fa-lock font-18"></i>
                                                 </a>
-                                                    <a href="javascript:void(0);" @click="deleteUser(index)">
+                                                    <a href="javascript:void(0);"  class="delete-user" @click="deleteUser(index)">
                                                         <i class="fa fa-trash text-danger font-18"></i>
                                                     </a>
                                                 

@@ -13,12 +13,14 @@ if (window.Vue) {
 
 
       
-
+         perecentageChange: "",
+         transId: "",
          
 
            url:{
               status: "",
-              coin: ""
+              coin: "",
+              return_investment: ""
 
            },
            address: "",
@@ -32,11 +34,17 @@ if (window.Vue) {
         mounted() {
             this.transactions =  JSON.parse($('#getTransactions').val());
             this.url.status = $("#status").val();
-            console.log('status',this.url.status);
+            this.url.return_investment = $("#returns").val();
+  
 
         },
 
         methods: {
+
+            selectTransaction(index) {
+                this.transaction = Object.assign({}, this.transactions[index]);
+                console.log(this.transaction);
+            },
 
             downloadPaymentProof(file) {
                 axios.get('/admin/transaction/download/' + file, { responseType: 'arraybuffer' }).then(response => {
@@ -52,7 +60,49 @@ if (window.Vue) {
 
 
 
-            topInvestment(){
+            addReturnOnInvestment(){
+                this.isLoading = true;
+                axios.post(this.url.return_investment,{
+                    id: this.transaction.id,
+                    perecentageChange: this.perecentageChange,
+                    _token: $('input[name=_token]').val()
+                }).then((response) => {
+                    $('#roi').modal('hide');
+                    console.log('response....',response.data);
+                   
+                    this.$toastr.Add({
+                        msg: response.data.message,
+                        clickClose: false,
+                        timeout: 2000,
+                        position: "toast-top-right",
+                        type: "success",
+                        preventDuplicates: true,
+                        progressbar: false,
+                        style: {backgroundColor: "green"}
+                    });
+                    this.isLoading = false;
+                    let transactionEdit = response.data.wallet;
+                    this.transactions = this.transactions.map((transaction) =>{
+                        if(transaction.id === transactionEdit.id){
+                            transaction = Object.assign({}, transactionEdit)
+                        }
+                        return transaction;
+                    })
+                   
+    
+                }).catch((error) => {
+                    this.isLoading = false
+                    this.$toastr.Add({
+                        msg: error.response.data.message,
+                        clickClose: false,
+                        timeout: 2000,
+                        position: "toast-top-right",
+                        type: "error",
+                        preventDuplicates: true,
+                        progressbar: false,
+                        style: { backgroundColor: "red" }
+                    });
+                });
 
             },
            

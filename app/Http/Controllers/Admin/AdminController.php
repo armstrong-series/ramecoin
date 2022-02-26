@@ -64,6 +64,36 @@ class AdminController extends Controller
 
 
 
+    public function increaseInvestment(Request $request)
+    {
+        try{
+            // dd($request->all());
+            if(!$request->perecentageChange){
+                $message = "You need a percentage value";
+                return response()->json(["message" => $message], 400);
+            }
+            $wallet = WalletModel::where('id', $request->id)->first();
+            if(!$wallet){
+                $message = "Unknown transaction!";
+                return response()->json(["message" => $message], 404);
+            }
+            $request->perecentageChange = $request->perecentageChange;
+            $percent = 100;
+            $change  = ($request->perecentageChange / 100) * $wallet->amount;
+        
+            $increment = $change + $wallet->amount;
+             $wallet->amount = $increment;
+            $wallet->increment = $request->perecentageChange;
+            $wallet->save();
+            $message = "Investment updated!";
+
+            return response(["message" => $message, "wallet" => $wallet], 200);
+
+        }catch(Exception $errorMessage){
+            Log::info($errorMessage->getMessage());
+        }
+    }
+
      public function transactionHistory(Request $request){
         try {
             
@@ -288,7 +318,7 @@ class AdminController extends Controller
         try {
             
             $user = User::where('id', $request->id)->first();
-            // dd($user);
+            dd($user);
             if(!$user){
                 $message = "User not found";
                 return response()->json(['message' =>  $message],404); 
