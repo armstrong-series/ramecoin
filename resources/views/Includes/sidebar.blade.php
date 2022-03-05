@@ -1,33 +1,22 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
+
+
+    @if(Auth::user()->role === "member")  
         <li class="nav-item  {{ $page == 'dashboard' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('user.dashboard') }}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="feather feather-box link-icon">
-                    <path
-                        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-                    </path>
-                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                </svg>
-                <span class="menu-title">Dashboard</span>
+                <span class="menu-title">Dashboard</span>&nbsp;&nbsp;
+                <i class="fab fa-dashcube"></i>
             </a>
         </li>
+     @endif
 
 
         <li class="nav-item  {{ $page == 'admin' ? 'active' : '' }}">
          @if(Auth::user()->role == "admin" || Auth::user()->role  == "support")
             <a class="nav-link" href="{{ route('admin.dashboard') }}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="feather feather-box link-icon">
-                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-                    </path>
-                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                </svg>
-                <span class="menu-title">Administrator</span>
+                <span class="menu-title">Administrator</span>&nbsp;&nbsp;
+                <i class="fas fa-users-crown"></i>
             </a>
             @endif
         </li>
@@ -38,28 +27,16 @@
 
             <a class="nav-link"  href="{{ route('admin.user-management')}}" 
                 aria-controls="app">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="feather feather-command link-icon">
-                    <path
-                        d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z">
-                    </path>
-                </svg>
-                <span class="menu-title">User Management</span>   
+                <span class="menu-title">User Management</span>&nbsp;&nbsp; 
+                <i class="fas fa-users"></i> 
             </a>      
         </li>
 
         <li class="nav-item {{ $page == 'admin-transaction' ? 'active' : '' }}">
             <a class="nav-link"  href="{{ route('admin.transactions') }}" aria-expanded="false"
                 aria-controls="email">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="feather feather-mail link-icon">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                    </path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-                <span class="menu-title">Manage Transactions</span>
+                <span class="menu-title">Manage Transactions</span>&nbsp;&nbsp; 
+                <i class="fas fa-tasks-alt"></i>
                 
             </a>
         </li>
@@ -72,45 +49,34 @@
         <li class="nav-item">
             <a class="nav-link" class="{{ $page == 'wallet-fund' ? 'active' : '' }}"  href="{{ route('wallet.fund')}}" 
                 aria-controls="app">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="feather feather-command link-icon">
-                    <path
-                        d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z">
-                    </path>
-                </svg>
-                <span class="menu-title">Fund Wallet</span>
-                
+               
+                <span class="menu-title">Fund Wallet</span>&nbsp;&nbsp;
+                <i class="fas fa-wallet"></i>
             </a>
             
         </li>
         <li class="nav-item">
             <a class="nav-link"  href="{{ route('withdrawal.confirmation') }}" aria-expanded="false"
                 aria-controls="email">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="feather feather-mail link-icon">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                    </path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-                <span class="menu-title">Withdraw Funds</span>
+                <span class="menu-title">Withdraw Funds</span>&nbsp;&nbsp;
+                <i class="fas fa-wallet"></i>
                 
             </a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <span class="menu-title">Marketplace</span>&nbsp;&nbsp;
+                <i class="fas fa-store-alt"></i>
+            </a>
+        </li>
         <li class="nav-item {{ $page == 'transactions' ? 'active' : '' }}">
- 
           @if(Auth::user()->role === "member")
             <a class="nav-link"  href="{{ route('user.transactions') }}"
                 aria-controls="elements">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="feather feather-feather link-icon">
-                    <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
-                    <line x1="16" y1="8" x2="2" y2="22"></line>
-                    <line x1="17.5" y1="15" x2="9" y2="15"></line>
-                </svg>
-                <span class="menu-title">Transaction History</span>
+               
+                <span class="menu-title">Transaction History</span>&nbsp;&nbsp;
+                <i class="fas fa-sticky-note"></i>
                 
             </a>   
            @endif 
@@ -154,4 +120,4 @@
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/solid.min.js" integrity="sha512-wabaor0DW08KSK5TQlRIyYOpDrAfJxl5J0FRzH0dNNhGJbeUpHaNj7up3Kr2Bwz/abLvVcJvDrJL+RLFcyGIkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+

@@ -12,54 +12,48 @@
                 <div class="col-12">
                     <div class="card mb-30">
                         <div class="card-body pb-0">
-                            <div class="d-flex justify-content-between align-items-center mb-20">
-                                <h6 class="card-title mb-0">Users</h6>
-                                <button type="button" class="btn btn-primary waves-effect waves-light float-right mb-3" data-toggle="modal" data-animation="bounce" data-target=".addUser">+ Add User</button>
+                            <!-- <div class="row form-group">
+                                <div class="col-md-3 text-right">
+                                    <input style="width:300px;"class="form-control p-2" v-model="filter" type="text" placeholder="Search User">
+                                </div>
+                            </div> -->
+
+                            <div class="text-right p-2">
+                                <input style="width:300px;"class="form-control p-2" v-model="filter" type="text" placeholder="Search User">
                             </div>
-                            <div class="table-responsive order-stats">
-                                <table class="table table-nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Mobile</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody style="max-height:100px; overflow-scroll;">
-                                        <tr v-cloak v-for="(user, index) in users">
-                                            <td>
-                                              <span class="font-14">@{{ user.name }}</span>
-                                                <!-- <img src="{{ asset('template/img/member-img/1.png') }}" class="chat-img" alt="User image"> -->
-                                            </td>
-                                            <td>
-                                                <span  v-cloak class="font-14">@{{ user.email }}</span>
-                                                <p class="mb-0">
-                                                    <!-- <span v-cloak class="font-13">Email varified</span> -->
-                                                </p>
-                                            </td>
-                                            <td v-cloak>@{{ user.mobile }}</td>
-                                            
-                                            <td>
-                                                <a href="javascript:void(0);" @click="selectUser(index)" data-toggle="modal" data-animation="bounce" data-target=".editUser" class="mr-2">
-                                                    <i class="fa fa-edit text-info font-18"></i>
-                                                </a>
-                                                
-                                                <a href="javascript:void(0);" data-toggle="modal" data-animation="bounce" data-target=".change_secret" class="mr-2">
-                                                    <i class="fa-solid fa-lock font-18"></i>
-                                                </a>
-                                                    <a href="javascript:void(0);"  class="delete-user" @click="deleteUser(index)">
-                                                        <i class="fa fa-trash text-danger font-18"></i>
-                                                    </a>
-                                                
-                                                
-                                            </td>
-                                        </tr>
-                                        
-                                    
-                                    </tbody>
-                                </table>
+
+                         <div class="row" v-for="(userData, index) in getUsers">
+                                <!-- Single Card -->
+                            <div class="col-sm-6 col-xl-12">                     
+                                <a class="message-card card px-5 py-3 mb-4" href="#">                        
+                                    <div class="row">
+                                        <div class="col-xl-3 d-flex align-items-center flex-column flex-xl-row text-center ">
+                                            <!-- <div class="people-data h5 mb-0">24 <span>Apr</span></div> -->
+                                            <img class="avatar avatar-md p-1 mx-3 my-2 my-xl-0"
+                                                src="{{ asset('user.png') }}" alt="..."
+                                                style="max-width: 3rem">
+                                            <h6 v-cloak class="mb-0">@{{ userData.name }}</h6>
+                                        </div>
+                                        <div class="col-xl-9 d-flex align-items-center flex-column flex-xl-row text-center text-md-left">
+                                            <div v-cloak class="btn btn-rounded btn-outline-info mr-5" @click="selectUser(index)" data-toggle="modal" data-animation="bounce" data-target=".editUser">@{{ userData.email }}</div>
+                                                <!-- <p v-cloak class="mb-0 mt-3 mt-lg-0">@{{ user.mobile }}</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                                                <div v-cloak class="badge badge-primary">@{{  userData.mobile  }}</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <div @click="deleteUser(index)" class="text-right people-data h5 mb-0"><span class="text-danger"><i class="fal fa-trash-alt text-danger font-16"></i>&nbsp;&nbsp;Delete</span></div>
+
+                                        </div>
+                                        <!-- <div>
+                                            <a href="javascript:void(0);"  class="delete-user mb-0 mt-3 mt-lg-0" @click="deleteUser(index)">
+                                                 <i class="fal fa-trash-alt text-danger font-16"></i>
+                                            </a>
+                                        </div> -->
+                                    </div>
+                                </a>
                             </div>
+                          </div>
+                            <div class="text-right p-2">
+                                <button type="button" class="btn btn-rounded btn-outline-primary waves-effect waves-light float-right mb-3" data-toggle="modal" data-animation="bounce" data-target=".addUser">+ Add User <i class="fas fa-users"></i></button>
+                            </div>
+                           
                         </div>
                     </div>
                 </div>
@@ -162,7 +156,7 @@
         </div>
 
         <div class="modal fade editUser" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-modal="false">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog p-3" role="document">
                 @csrf
                 <div class="modal-content p-3">
                     <div class="modal-header">
@@ -199,7 +193,7 @@
                         </div>
                         
                           <div class="mt-5 text-right">
-                            <button type="button" @click="update()" class="btn btn-sm btn-primary">Save</button> 
+                            <button type="button" @click="update()" class="btn btn-sm btn-primary">Save Changes</button> 
                             <div v-if="isLoading" class="spinner-border text-success" role="status">
                                 <span class="sr-only">Loading...</span>
                             </div>

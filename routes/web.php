@@ -31,6 +31,7 @@ Route::post('/create-user',  [Controller\Admin\AdminController::class, 'createUs
 Route::post('/update-user',  [Controller\Admin\AdminController::class, 'updateUser'])->name('admin.user-update');
 Route::post('/update-secret',  [Controller\Admin\AdminController::class, 'changeSecret'])->name('admin.user-secret');
 Route::delete('/delete-user',  [Controller\Admin\AdminController::class, 'delete'])->name('admin.user-delete');
+Route::delete('/delete/transaction',  [Controller\Admin\AdminController::class, 'deleteTransaction'])->name('admin.delete.transaction');
 Route::get('/wallet/deposit', [Controller\WalletController::class, 'fundPayment'])->name('wallet.fund');
 Route::post('/status/update', [Controller\Admin\AdminController::class, 'updateTransactionStatus'])->name('transactions.update.status');
 Route::post('/admin/wallet/create', [Controller\Admin\AdminController::class, 'addCoin'])->name('coin.create');

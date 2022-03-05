@@ -24,6 +24,8 @@ if (window.Vue) {
             role: "",
           },
 
+          filter: "",
+
 
            url: {
                create: "",
@@ -46,16 +48,17 @@ if (window.Vue) {
           this.url.delete = $("#delete_user").val();
           this.url.secret = $("#changeSecret").val();
 
+        },
 
-
-
-          $(document).ready(function () {
-            $(document).on("click", ".delete-user", function(){
-                let userIndex = $(this).data('id');
-                this.deleteUser(userIndex);
-            });
-        });
-
+        computed: {
+            getUsers() {
+                let result = this.users.filter((user) => {
+                    let status = (user.name.toLowerCase().includes(this.filter.toLowerCase()) ||
+                        user.email.toLowerCase().includes(this.filter.toLowerCase()));
+                        return status
+                });
+                return result;
+            },
         },
 
         methods: {
@@ -157,14 +160,13 @@ if (window.Vue) {
 
         
 
-           selectUser(index) {
+              selectUser(index) {
                  this.updateUser = Object.assign({}, this.users[index]);
-             },
+               },
 
 
-             deleteUser(index) {
+               deleteUser(index) {
                 let user = Object.assign({}, this.users[index]);
-                console.log(user);
                 user._token = $('input[name=_token]').val();
 
                 const customAlert = swal({

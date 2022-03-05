@@ -99,8 +99,6 @@ class AdminController extends Controller
             
             if (Auth::user()->role === 'admin' || Auth::user()->role === 'support') {
                 $transactions = WalletModel::all();
-                // dd($transactions);
-                // $transactions = WalletModel::where('id', $request->id)->get();
                 
                 $data = [
                     'page' => 'admin-transaction',
@@ -152,6 +150,7 @@ class AdminController extends Controller
     public function deleteTransaction(Request $request){
         try {
             $transaction = WalletModel::where('id', $request->id)->first();
+            dd($transaction);
             if(!$transaction){
                 $message = "Unknown Transaction!";
                 return response()->json(["message" => $message], 400);
@@ -316,9 +315,8 @@ class AdminController extends Controller
 
     public function delete(Request $request){
         try {
-            
-            $user = User::where('id', $request->id)->first();
-            dd($user);
+            dd($request->all());
+            $user = User::where('id', $request->id)->first();       
             if(!$user){
                 $message = "User not found";
                 return response()->json(['message' =>  $message],404); 

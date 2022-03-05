@@ -11,22 +11,33 @@
     <div class="container-fluid" id="dashboard">
         <!-- Widgets Data -->
         <div class="text-right p-3">
-            <button  v-cloak v-if="wallet" type="button" class="btn-outline-secondary btn-sm p-2" data-toggle="modal" data-target="#addWallet">Add Wallet &nbsp;&nbsp;<svg style="height:20px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M448 32C465.7 32 480 46.33 480 64C480 81.67 465.7 96 448 96H80C71.16 96 64 103.2 64 112C64 120.8 71.16 128 80 128H448C483.3 128 512 156.7 512 192V416C512 451.3 483.3 480 448 480H64C28.65 480 0 451.3 0 416V96C0 60.65 28.65 32 64 32H448zM416 336C433.7 336 448 321.7 448 304C448 286.3 433.7 272 416 272C398.3 272 384 286.3 384 304C384 321.7 398.3 336 416 336z"/></svg></button>
+            <button  v-cloak v-if="wallet" type="button" class="btn-outline-secondary btn-sm p-2" data-toggle="modal" data-target="#addWallet">Add Wallet &nbsp;&nbsp;<i class="fas fa-wallet"></i></button>
             <button v-cloak v-if="!wallet" type="button" class="btn-outline-secondary btn-sm p-2" data-toggle="modal" data-target="#addWallet">Edit Wallet</button>
    
         </div>
            <div class="row">
-            <div class="col-12 box-margin">
+                <div class="col-12 box-margin">
 
-                <div class="card">
-                    <div class="card-body">
-                       <h5 class="">Welcome {{ $user->name }} !</h5>
-                       <p class="mb-0 text-muted">Ramecoin Investment</p>
+                    <div class="card">
+                        <div class="card-body">
+                           <h5 class="">Welcome {{ $user->name }} !</h5>
+                            <p class="mb-0 text-muted">Ramecoin Investment</p>
+                        </div>
+
+                        <div class="text-center row">
+                             <div class="p-3 col-md-3">
+                                 
+                                <a href="{{ route('user.dashboard') }}" title="Apps" style="width:200px; background:#5C8F9E; color:white;" class="btn btn-rounded btn-md">Dashboard &nbsp;<i class="fas fa-door-open" style="width:70px; height:20px;"></i></a>
+
+                            </div>
+                            <div class="p-3 col-md-3">
+                              <a href="{{ route('auth.logout') }}" title="logout" style="width:200px; background:#8A185D; color:white;" class="btn btn-rounded btn-md">Sign Out &nbsp;<i class="fas fa-sign-out" style="width:70px; height:20px;"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="md-overlay"></div>
-        </div>
+                <div class="md-overlay"></div>
+             </div>
 
 
         <!-- Modal -->
@@ -63,7 +74,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-6 col-xl-3 mb-30">
+            <div class="col-md-4">
                 <div class="card widget-slider-area p-20">
                     <div class="widget-slides owl-carousel">
                         <!-- Single Slider -->
@@ -79,21 +90,9 @@
                 </div>
             </div>
 
-            <div class="col-sm-6 col-xl-3 mb-30">
-                <div class="card widget-slider-area p-20">
-                    <div class="widget-slides owl-carousel">
-                        <!-- Single Slider -->
-                        <div class="widget-slider-content">
-                            <div class="d-flex justify-content-between align-items-center mb-15">
-                            </div>
-                            <h6 class="mb-0">{{ $totalDeposits }}</h6>
-                            <p class="mb-0">Total Deposit</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
 
-            <div class="col-sm-6 col-xl-3 mb-30">
+            <div class="col-md-4">
                 <div class="card widget-slider-area p-20">
                     <div class="widget-slides owl-carousel">
                         <!-- Single Slider -->
@@ -110,7 +109,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-xl-3 mb-30">
+            <div class="col-md-4">
                 <div class="card widget-slider-area p-20">
                     <div class="widget-slides owl-carousel">
                         <!-- Single Slider -->
@@ -126,7 +125,7 @@
 
             <textarea name="" id="createWallet" style="display:none;" cols="30" rows="10">{{ route('coin.create') }}</textarea>
 
-
+        
         </div>
 
     </div>

@@ -20,7 +20,8 @@ if (window.Vue) {
            url:{
               status: "",
               coin: "",
-              return_investment: ""
+              return_investment: "",
+              delete: ""
 
            },
            address: "",
@@ -34,8 +35,16 @@ if (window.Vue) {
         mounted() {
             this.transactions =  JSON.parse($('#getTransactions').val());
             this.url.status = $("#status").val();
+            this.url.delete = $("#delete").val();
             this.url.return_investment = $("#returns").val();
-  
+            let vueInstance = this;
+
+
+            $(document).on("click", ".delete-transaction", function(){
+                let transactionIndex = $(this).data('id');
+                console.log('index..', transactionIndex)
+                vueInstance.deleteTransaction(transactionIndex);
+            });
 
         },
 
@@ -105,6 +114,7 @@ if (window.Vue) {
                 });
 
             },
+
            
             updateStatus(){
                 this.isLoading = true;
@@ -160,6 +170,76 @@ if (window.Vue) {
                 }
 
              },
+
+
+             deleteTransaction(index) {
+				const transaction = Object.assign({}, this.transactions[index]);
+                console.log(transaction)
+				transaction._token = $('input[name=_token]').val()
+				const customAlert = swal({
+					title: 'Warning',
+					text: `Are you sure you want to delete this Transaction? This action cannot be undone.`,
+					icon: 'warning',
+					closeOnClickOutside: false,
+					buttons: {
+						cancel: {
+							text: "cancel",
+							visible: true,
+							className: "",
+							closeModal: true,
+						},
+						confirm: {
+							text: "Confirm",
+							value: 'delete',
+							visible: true,
+							className: "btn-danger",
+						}
+					}
+				});
+
+				customAlert.then(value => {
+					if (value == 'delete') {
+						this.isLoading = true;
+						axios.delete(this.url.delete, { data: transaction })
+							.then(response => {
+								this.isLoading = false;
+								this.transactions.splice(index, 1);
+                                this.$toastr.Add({
+                                    msg: response.data.message, 
+                                    clickClose: false, 
+                                    timeout: 2000,
+                                    position: "toast-top-right", 
+                                    type: "success", 
+                                    preventDuplicates: true, 
+                                    progressbar: false,
+                                    style: {backgroundColor: "green"}
+                                  });
+
+							}).catch(error => {
+								if (error.response) {
+									this.isLoading = false;
+                                    this.$toastr.Add({
+                                        msg: error.response.data.message, 
+                                        clickClose: false, 
+                                        timeout: 2000,
+                                        position: "toast-top-right", 
+                                        type: "error", 
+                                        preventDuplicates: true,
+                                        progressbar: false, 
+                                        style: { backgroundColor: "red"}
+                                      });;
+								} else {
+									this.$notify.error({
+										title: 'Error',
+										message: 'oops! Unable to complete request.'
+									});
+
+								}
+							});
+
+					}
+				});
+			},
 
         }
 

@@ -17,73 +17,6 @@
                 </button>
 
                 <ul class="top-navbar-area navbar-nav navbar-nav-right">
-                    <!-- <li class="nav-item dropdown dropdown-animate">
-                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
-                            data-toggle="dropdown">
-                            <i class="fa fa-bell-o"></i>
-                            <span class="count"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                            aria-labelledby="notificationDropdown">
-                            <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                            <a class="dropdown-item preview-item d-flex align-items-center">
-                                <div class="notification-thumbnail">
-                                    <div class="preview-icon bg-primary">
-                                        <i class="ti-info-alt mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="notification-item-content">
-                                    <h6>Code problem solved.</h6>
-                                    <p class="mb-0">
-                                        Just now
-                                    </p>
-                                </div>
-                            </a>
-
-                            <a class="dropdown-item preview-item d-flex align-items-center">
-                                <div class="notification-thumbnail">
-                                    <div class="preview-icon bg-success">
-                                        <i class="ti-info-alt mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="notification-item-content">
-                                    <h6>New theme update.</h6>
-                                    <p class="mb-0">
-                                        02 days ago
-                                    </p>
-                                </div>
-                            </a>
-
-                            <a class="dropdown-item preview-item d-flex align-items-center">
-                                <div class="notification-thumbnail">
-                                    <div class="preview-icon bg-warning">
-                                        <i class="ti-info-alt mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="notification-item-content">
-                                    <h6>Awsome support.</h6>
-                                    <p class="mb-0">
-                                        02 days ago
-                                    </p>
-                                </div>
-                            </a>
-                            <a class="dropdown-item preview-item d-flex align-items-center">
-                                <div class="notification-thumbnail">
-                                    <div class="preview-icon bg-danger">
-                                        <i class="ti-info-alt mx-0"></i>
-                                    </div>
-                                </div>
-                                <div class="notification-item-content">
-                                    <h6>Text to build on the card title.</h6>
-                                    <p class="mb-0">
-                                        03 days ago
-                                    </p>
-                                </div>
-                            </a>
-
-                        </div>
-                    </li> -->
-
                     <li class="nav-item nav-profile dropdown dropdown-animate">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                             <img src="{{ asset('ramecoin.jpeg') }}" alt="profile" />
@@ -92,21 +25,30 @@
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown profile-top"
                             aria-labelledby="profileDropdown">
           
-                            <a href="{{ route('user.settings.dashboard') }}" class="dropdown-item"><i class="zmdi zmdi-brightness-7 profile-icon"
-                                    aria-hidden="true"></i>
-                                     Profile
+                            <a href="{{ route('user.settings.dashboard') }}" class="dropdown-item">
+                              <svg style="height:15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/></svg>
+                               Profile
+                              
                             </a>
                             <a href="{{ route('wallet.fund')}}" class="dropdown-item">
-                                <i class="fa-solid fa-wallet"></i>
-                                     Deposit
+                              <svg style="height:15px; color:cadetblue;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M448 32C465.7 32 480 46.33 480 64C480 81.67 465.7 96 448 96H80C71.16 96 64 103.2 64 112C64 120.8 71.16 128 80 128H448C483.3 128 512 156.7 512 192V416C512 451.3 483.3 480 448 480H64C28.65 480 0 451.3 0 416V96C0 60.65 28.65 32 64 32H448zM416 336C433.7 336 448 321.7 448 304C448 286.3 433.7 272 416 272C398.3 272 384 286.3 384 304C384 321.7 398.3 336 416 336z"/></svg>
+                                Deposit
                             </a>
 
                             <a href="#" class="dropdown-item">
-                                <i class="zmdi zmdi-brightness-7 profile-icon" aria-hidden="true"></i>
-                                    Withdraw
+                            <svg style="height:15px; color:cadetblue;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M448 32C465.7 32 480 46.33 480 64C480 81.67 465.7 96 448 96H80C71.16 96 64 103.2 64 112C64 120.8 71.16 128 80 128H448C483.3 128 512 156.7 512 192V416C512 451.3 483.3 480 448 480H64C28.65 480 0 451.3 0 416V96C0 60.65 28.65 32 64 32H448zM416 336C433.7 336 448 321.7 448 304C448 286.3 433.7 272 416 272C398.3 272 384 286.3 384 304C384 321.7 398.3 336 416 336z"/></svg>
+                              Withdraw
                             </a>
-                            <a href="{{ route('auth.logout') }}" class="dropdown-item"><i class="ti-unlink profile-icon" aria-hidden="true"></i>
-                            Sign-out</a>
+
+                            <a href="#" class="dropdown-item">
+                             <i class="fas fa-cog"></i>&nbsp;&nbsp; Settings
+                            </a>
+                            @if(Auth::user()->role ==="member")
+                                 <a href="{{ route('auth.logout') }}" class="dropdown-item">
+                                  <i class="fas fa-sign-out"></i>
+                                    Sign-out
+                                 </a>
+                            @endif
                         </div>
                     </li>
                 </ul>
