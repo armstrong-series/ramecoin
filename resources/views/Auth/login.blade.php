@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Required meta tags -->
-
     <title>Ramecoin</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('template/img/core-img/favicon.png') }}">
@@ -43,7 +43,8 @@
                             <div class="card-body p-4">
 
                                 <!-- Logo -->
-                                <h4 class="font-24 mb-30">Login to your Account</h4>
+
+                                <h2 class="font-18  text-muted text-center mb-25">Hello, Welcome back </h3>
 								@include('Includes.messages')
                                 <form method="post" action="{{ route('auth.login.account') }}">
 									@csrf
@@ -61,7 +62,7 @@
                                             <input type="checkbox" name="checkbox-1" id="checkbox-8">
                                             <label for="checkbox-8" class="cr mb-0 font-13">Remember me</label>
                                         </div>
-                                        <span><a class="font-12 text-success" href="#">Forgot your password?</a></span>
+                                        <span><a class="font-12 text-success" href="{{ route('auth.forgot-password') }}">Forgot your password?</a></span>
                                     </div>
 
                                     <div class="form-group mb-0">

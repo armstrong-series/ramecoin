@@ -7,36 +7,31 @@
     <!-- Start Content-->
 
     @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid" id="profile">
         <div class="row">
             <div class="col-12 col-md-4">
                 <div class="card mb-30">
                     <img src="{{ asset('ramecoin.jpeg') }}" class="profile-cover-img" alt="thumb">
                     <div class="card-body text-center">
                         <h6 class="font-20 mb-1">{{ Auth::user()->name }}</h6>
-                        <p class="font-13 text-dark">{{ Auth::user()->role }}</p>  
+                       @if(Auth::user()->role === "member")
+                        <p class="font-13 text-dark">Member</p>  
+                        @endif
+                        @if(Auth::user()->role === "admin")
+                        <p class="font-13 text-dark">Administrator</p>  
+                        @endif
+                        @if(Auth::user()->role === "support")
+                        <p class="font-13 text-dark">Support Staff</p>  
+                        @endif
                     </div>
+                    <div class="px-4 py-2 text-center btn btn-primary m-auto" style="box-shadow: 4px 2px 3px;" @click="uploadImage()">
+                        <span>Upload Profile</span>
+                        <input type="file" @change="selectImage($event)" id="selectImageInput" name="" hidden>
+                    </div>
+                    
                 </div>
                 <!-- ./profile -->
 
-                <!-- <div class="card address mb-30">
-                    <div class="card-body">
-                        <h4 class="font-16 mb-15">Contact :</h4>
-                        <div class="mt-0 d-flex align-items-center">
-                            <i class="fa fa-home pr-2"></i>
-                            <h6 class="font-14 mb-0">example@.com</h6>
-                        </div>
-                        <div class="mt-3 d-flex align-items-center">
-                            <i class="fa fa-phone pr-2"></i>
-                            <h6 class="font-14 mb-0">+91 656 887 245</h6>
-                        </div>
-                        <div class="mt-3 d-flex align-items-center">
-                            <i class="fa fa-map pr-2 align-self-start"></i>
-                            <h6 class="font-14 mb-0">Van Barneveldlaan 98, Netherlands</h6>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- ./address -->
             </div>
 
             <div class="col-12 col-md-8">
@@ -65,47 +60,15 @@
                                                 <span class="profile-info">{{ Auth::user()->email }}</span>
                                             </div>
                                         </div>
-                                        <!-- <div class="row profile-row">
-                                            <div class="col-xs-5 col-sm-3">
-                                                <span class="profile-cat">Country</span>
-                                            </div>
-                                            <div class="col-xl-7 col-sm-9">
-                                                <span class="profile-info">Netherland</span>
-                                            </div>
-                                        </div>
                                         <div class="row profile-row">
                                             <div class="col-xs-5 col-sm-3">
-                                                <span class="profile-cat">Address</span>
+                                                <span class="profile-cat">Mobile</span>
                                             </div>
                                             <div class="col-xl-7 col-sm-9">
-                                                <span class="profile-info">Van Barneveldlaan 98 7031 ZK Wehl</span>
+                                                <span class="profile-info">{{ Auth::user()->mobile }}</span>
                                             </div>
                                         </div>
-
-                                        <div class="row profile-row">
-                                            <div class="col-xs-5 col-sm-3">
-                                                <span class="profile-cat">Contact</span>
-                                            </div>
-                                            <div class="col-xl-7 col-sm-9">
-                                                <span class="profile-info">+88 586 887 245</span>
-                                            </div>
-                                        </div>
-                                        <div class="row profile-row">
-                                            <div class="col-xs-5 col-sm-3">
-                                                <span class="profile-cat">Date Of Birth</span>
-                                            </div>
-                                            <div class="col-xl-7 col-sm-9">
-                                                <span class="profile-info">1995-05-15</span>
-                                            </div>
-                                        </div>
-                                        <div class="row profile-row">
-                                            <div class="col-xs-5 col-sm-3">
-                                                <span class="profile-cat">Gender</span>
-                                            </div>
-                                            <div class="col-xl-7 col-sm-9">
-                                                <span class="profile-info">Male</span>
-                                            </div>
-                                        </div> -->
+                                       
 
                                     </div>
                                 </div>
@@ -214,13 +177,14 @@
                     </div>
                 </div>
             </div>
+            <textarea id="profileImageStore" style="display:none" >{{ route('user.profile.image') }}</textarea>
         </div>
     </div>
     @endsection
 
 
 @section('script')
-   
+   <script src="{{ asset('js/profile.js') }}"></script>
 @endsection
 
 

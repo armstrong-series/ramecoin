@@ -37,14 +37,7 @@ if (window.Vue) {
             this.url.status = $("#status").val();
             this.url.delete = $("#delete").val();
             this.url.return_investment = $("#returns").val();
-            let vueInstance = this;
 
-
-            $(document).on("click", ".delete-transaction", function(){
-                let transactionIndex = $(this).data('id');
-                console.log('index..', transactionIndex)
-                vueInstance.deleteTransaction(transactionIndex);
-            });
 
         },
 
@@ -174,7 +167,6 @@ if (window.Vue) {
 
              deleteTransaction(index) {
 				const transaction = Object.assign({}, this.transactions[index]);
-                console.log(transaction)
 				transaction._token = $('input[name=_token]').val()
 				const customAlert = swal({
 					title: 'Warning',
@@ -200,7 +192,7 @@ if (window.Vue) {
 				customAlert.then(value => {
 					if (value == 'delete') {
 						this.isLoading = true;
-						axios.delete(this.url.delete, { data: transaction })
+						axios.post(this.url.delete, transaction)
 							.then(response => {
 								this.isLoading = false;
 								this.transactions.splice(index, 1);
@@ -227,13 +219,18 @@ if (window.Vue) {
                                         preventDuplicates: true,
                                         progressbar: false, 
                                         style: { backgroundColor: "red"}
-                                      });;
+                                      });
 								} else {
-									this.$notify.error({
-										title: 'Error',
-										message: 'oops! Unable to complete request.'
-									});
-
+                                    this.$toastr.Add({
+                                        msg: "oops! Unable to complete ", 
+                                        clickClose: false, 
+                                        timeout: 2000,
+                                        position: "toast-top-right", 
+                                        type: "error", 
+                                        preventDuplicates: true,
+                                        progressbar: false, 
+                                        style: { backgroundColor: "red"}
+                                      });
 								}
 							});
 

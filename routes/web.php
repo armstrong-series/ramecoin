@@ -22,6 +22,7 @@ Route::get('/account/create', [Controller\Auth\RegisterController::class, 'accou
 Route::post('/create-account', [Controller\Auth\RegisterController::class, 'createUser'])->name('auth.signup');
 Route::get('/reset-password/{token}', [Controller\Auth\ResetPasswordController::class, 'resetPassword'])->name('auth.reset-password');
 Route::post('/reset-password', [Controller\Auth\ResetPasswordController::class,'updatePassword'])->name('auth.update-password');
+Route::post('/recover-password', [Controller\Auth\ForgotPasswordController::class,'recoverPassword'])->name('auth.recover-password');
 
 Route::get('/dashboard',  [Controller\DashboardController::class, 'dashboard'])->withoutMiddleware(['auth'])->name('user.dashboard');
 Route::get('/admin',  [Controller\Admin\AdminController::class, 'users'])->name('admin.dashboard');
@@ -30,8 +31,8 @@ Route::get('/admin/transactions',  [Controller\Admin\AdminController::class, 'tr
 Route::post('/create-user',  [Controller\Admin\AdminController::class, 'createUser'])->name('admin.user-create');
 Route::post('/update-user',  [Controller\Admin\AdminController::class, 'updateUser'])->name('admin.user-update');
 Route::post('/update-secret',  [Controller\Admin\AdminController::class, 'changeSecret'])->name('admin.user-secret');
-Route::delete('/delete-user',  [Controller\Admin\AdminController::class, 'delete'])->name('admin.user-delete');
-Route::delete('/delete/transaction',  [Controller\Admin\AdminController::class, 'deleteTransaction'])->name('admin.delete.transaction');
+Route::post('/delete/user',  [Controller\Admin\AdminController::class, 'deleteUser'])->name('admin.user-delete');
+Route::post('/delete/transaction',  [Controller\Admin\AdminController::class, 'deleteTransaction'])->name('admin.delete.transaction');
 Route::get('/wallet/deposit', [Controller\WalletController::class, 'fundPayment'])->name('wallet.fund');
 Route::post('/status/update', [Controller\Admin\AdminController::class, 'updateTransactionStatus'])->name('transactions.update.status');
 Route::post('/admin/wallet/create', [Controller\Admin\AdminController::class, 'addCoin'])->name('coin.create');
@@ -40,6 +41,7 @@ Route::get('/admin/transaction/download/{file}', [Controller\Admin\AdminControll
 Route::get('/withdrawal/confirmation', [Controller\WithdrawalController::class, 'authenticateUser'])->name('withdrawal.confirmation');
 Route::post('/withdrawal/authenticate/', [Controller\WithdrawalController::class, 'authenticateWithdrawal'])->name('withdrawal.authenticate');
 Route::post('/transaction/returns', [Controller\Admin\AdminController::class, 'increaseInvestment'])->name('investment.returns');
+Route::post('/profile/image', [Controller\Settings\ProfileController::class, 'changeProfileImage'])->name('user.profile.image');
 
 // Pages
 

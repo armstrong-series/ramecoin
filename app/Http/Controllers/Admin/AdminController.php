@@ -64,6 +64,19 @@ class AdminController extends Controller
 
 
 
+    public function getUsers(){
+        try {
+           $users = User::where('id', Auth::id())->get();
+           return response()->json(["users" => $users], 200);
+        } catch(Exception $errorMessage){
+            Log::info($errorMessage->getMessage());
+        }
+    }
+
+
+
+
+
     public function increaseInvestment(Request $request)
     {
         try{
@@ -137,8 +150,6 @@ class AdminController extends Controller
         }
 
 
-
-
         public function downloadPayment($file){
 
             $file_path = storage_path('app/' . Paths::PAYMENT_PATHS . $file);
@@ -150,10 +161,10 @@ class AdminController extends Controller
     public function deleteTransaction(Request $request){
         try {
             $transaction = WalletModel::where('id', $request->id)->first();
-            dd($transaction);
+            // dd($transaction);
             if(!$transaction){
                 $message = "Unknown Transaction!";
-                return response()->json(["message" => $message], 400);
+                return response()->json(["message" => $message], 404);
             }
             $transaction->delete();
             $message = "Transaction Deleted!";
@@ -313,12 +324,12 @@ class AdminController extends Controller
     }
 
 
-    public function delete(Request $request){
+    public function deleteUser(Request $request){
         try {
-            dd($request->all());
-            $user = User::where('id', $request->id)->first();       
+            $user = User::where('id', $request->id)->first(); 
+            dd($user); 
             if(!$user){
-                $message = "User not found";
+                $message = "Unknown User!";
                 return response()->json(['message' =>  $message],404); 
             }
             $user->delete();

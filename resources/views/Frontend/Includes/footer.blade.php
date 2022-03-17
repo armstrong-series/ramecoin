@@ -69,7 +69,7 @@
 
 							<ul class="list-unstyled footer-list mt-4 mb-2">
 								<li class="list-inline-item mx-1"><a href="{{ route('login') }}" class="btn btn-soft-primary">Signin</a></li>
-								<li class="list-inline-item mx-1"><a href="#" class="btn btn-primary">Signup</a></li>
+								<li class="list-inline-item mx-1"><a href="{{ route('auth.register') }}" class="btn btn-primary">Signup</a></li>
 							</ul>
 
 

@@ -1,8 +1,8 @@
 @extends('Layout.master')
 @section('title')
-<title>Ramecoin</title>
+<title>Ramecoin | Usermanagement</title>
 
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"> -->
+
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
         <div class="container-fluid" id="user-management">
             <div class="row">
                 <div class="col-12">
-                    <div class="card mb-30">
+                    <div class="card mb-30" style="max-height:300px; overflow:auto; scrollbar-width:thin;">
                         <div class="card-body pb-0">
                             <!-- <div class="row form-group">
                                 <div class="col-md-3 text-right">
@@ -36,16 +36,10 @@
                                         </div>
                                         <div class="col-xl-9 d-flex align-items-center flex-column flex-xl-row text-center text-md-left">
                                             <div v-cloak class="btn btn-rounded btn-outline-info mr-5" @click="selectUser(index)" data-toggle="modal" data-animation="bounce" data-target=".editUser">@{{ userData.email }}</div>
-                                                <!-- <p v-cloak class="mb-0 mt-3 mt-lg-0">@{{ user.mobile }}</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-                                                <div v-cloak class="badge badge-primary">@{{  userData.mobile  }}</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <div @click="deleteUser(index)" class="text-right people-data h5 mb-0"><span class="text-danger"><i class="fal fa-trash-alt text-danger font-16"></i>&nbsp;&nbsp;Delete</span></div>
-
+                                            <div v-cloak class="badge badge-primary">@{{  userData.mobile  }}</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <div @click="deleteUser(index)" class="text-right people-data h5 mb-0"><span class="text-danger"><i class="fal fa-trash-alt text-danger font-16"></i>&nbsp;&nbsp;Delete</span></div>
                                         </div>
-                                        <!-- <div>
-                                            <a href="javascript:void(0);"  class="delete-user mb-0 mt-3 mt-lg-0" @click="deleteUser(index)">
-                                                 <i class="fal fa-trash-alt text-danger font-16"></i>
-                                            </a>
-                                        </div> -->
+                                       
                                     </div>
                                 </a>
                             </div>
@@ -205,17 +199,21 @@
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
+
+
+
+            <textarea name="" id="users" style="display:none;" cols="30" rows="10">{{ json_encode($users) }}</textarea>
+            <textarea name="" id="createUser" style="display:none;" cols="30" rows="10">{{ route('admin.user-create') }}</textarea>
+            <textarea name="" id="update" style="display:none;" cols="30" rows="10">{{ route('admin.user-update') }}</textarea>
+      
+            <textarea name="" id="#changeSecret" style="display:none;" cols="30" rows="10">{{ route('admin.user-secret') }}</textarea>
+            <textarea name="" id="#deleteUser" style="display:none;" cols="30" rows="10">{{ route('admin.user-delete') }}</textarea>
         </div>
 
-        <textarea name="" id="users" style="display:none;" cols="30" rows="10">{{ json_encode($users) }}</textarea>
-        <textarea name="" id="createUser" style="display:none;" cols="30" rows="10">{{ route('admin.user-create') }}</textarea>
-        <textarea name="" id="update" style="display:none;" cols="30" rows="10">{{ route('admin.user-update') }}</textarea>
-        <textarea name="" id="delete_user" style="display:none;" cols="30" rows="10">{{ route('admin.user-delete') }}</textarea>
-        <textarea name="" id="#changeSecret" style="display:none;" cols="30" rows="10">{{ route('admin.user-secret') }}</textarea>
     </div>
 @endsection
 
 @section('script')
-<!-- <script src="https://unpkg.com/vue-toastr/dist/vue-toastr.umd.min.js"></script> -->
+
     <script src="{{ asset('js/user-management.js') }}"></script>
 @endsection

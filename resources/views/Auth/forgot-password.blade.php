@@ -8,26 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Required meta tags -->
 
-    <title>Renewal</title>
+    <title>Ramecoin</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('template/img/core-img/favicon.png') }}">
 
     <!-- Master Stylesheet CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ asset('template/style.css') }}">
 
 </head>
 
 <body class="login-area">
 
-    <!-- Preloader -->
-    <div id="preloader-area">
-        <div class="lds-ripple">
-            <div></div>
-            <div></div>
-        </div>
-    </div>
-    <!-- Preloader -->
+  
 
     <!-- ======================================
     ******* Page Wrapper Area Start **********
@@ -50,22 +44,19 @@
                             <div class="card-body p-4">
 
                                 <!-- Logo -->
-                                <h4 class="font-24 mb-30">Signup </h4>
+                                <!-- <h4 class="font-24 mb-30">Signup </h4> -->
 
-                                <form action="#">
-                                    
-                                    
+                                @include('Includes.messages')
+                                <form action="{{ route('auth.recover-password')}}" method="POST"> 
+                                    @csrf
                                     <div class="form-group">
-                                        <input class="form-control login" type="email" id="emailaddress" required="" placeholder="Enter your email">
+                                        <input class="form-control login" type="text" id="emailaddress" required="" placeholder="Enter your account email">
                                     </div>
-
-                                  
-
                                     <div class="form-group mb-0">
-                                        <button class="btn btn-primary btn-block" type="button">Proceed</button>
+                                        <button class="btn btn-primary btn-block" type="submit">Reset</button>
                                     </div>
 
-                                    <div class="text-center mt-15"><span class="mr-2 font-12">Remember ?</span><a class="font-12" href="{{ route(login'') }}">Login</a></div>
+                                    <div class="text-center mt-15"><span class="mr-2 font-12">Remember ?</span><a class="font-12" href="{{ route('login') }}">Login</a></div>
 
                                 </form>
 
