@@ -1,8 +1,14 @@
 @extends('Layout.master')
 @section('title')
 <title>Ramecoin | Usermanagement</title>
+@endsection
 
-
+@section('styles')
+<style>
+.scrollbar{
+    scrollbar-width: thin;
+}
+</style>
 @endsection
 
 @section('content')
@@ -10,7 +16,7 @@
         <div class="container-fluid" id="user-management">
             <div class="row">
                 <div class="col-12">
-                    <div class="card mb-30" style="max-height:300px; overflow:auto; scrollbar-width:thin;">
+                    <div class="card mb-30 scrollbar" style="max-height:300px; overflow:auto;">
                         <div class="card-body pb-0">
                             <!-- <div class="row form-group">
                                 <div class="col-md-3 text-right">
@@ -214,6 +220,5 @@
 @endsection
 
 @section('script')
-
     <script src="{{ asset('js/user-management.js') }}"></script>
 @endsection

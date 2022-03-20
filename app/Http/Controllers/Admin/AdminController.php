@@ -64,23 +64,10 @@ class AdminController extends Controller
 
 
 
-    public function getUsers(){
-        try {
-           $users = User::where('id', Auth::id())->get();
-           return response()->json(["users" => $users], 200);
-        } catch(Exception $errorMessage){
-            Log::info($errorMessage->getMessage());
-        }
-    }
-
-
-
-
-
     public function increaseInvestment(Request $request)
     {
         try{
-            // dd($request->all());
+            
             if(!$request->perecentageChange){
                 $message = "You need a percentage value";
                 return response()->json(["message" => $message], 400);
@@ -135,8 +122,7 @@ class AdminController extends Controller
 
 
         public function updateTransactionStatus(Request $request){
-            // dd($request->all());
-
+            
             $transaction = WalletModel::where('id', $request->id)->first();
     
             if(!$transaction){
@@ -241,7 +227,6 @@ class AdminController extends Controller
     
             }
             $user = new User;
-            // $user->id = Auth::id();
             $user->name = $request->name;
             $user->mobile = $request->mobile;
             $user->role = $request->role;

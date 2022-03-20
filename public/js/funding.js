@@ -67,7 +67,7 @@ if (window.Vue) {
                         type: "success",
                         preventDuplicates: true,
                         progressbar: false,
-                        style: { backgroundColor: "green" }  
+                        style: { backgroundColor: "#1BBCE8" }  
                     });
                     this.isLoading = false;
                     window.location = "/transactions";
@@ -100,7 +100,7 @@ if (window.Vue) {
                         type: "success",
                         preventDuplicates: true,
                         progressbar: false,
-                        style: { backgroundColor: "green" }
+                        style: { backgroundColor: "#1BBCE8" }
                     });
                   
             },
@@ -118,7 +118,7 @@ if (window.Vue) {
                          type: "success",
                          preventDuplicates: true,
                          progressbar: false,
-                         style: { backgroundColor: "green" }
+                         style: { backgroundColor: "#1BBCE8" }
                      });
                    
              },

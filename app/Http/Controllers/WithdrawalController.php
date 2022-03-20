@@ -28,18 +28,16 @@ class WithdrawalController extends Controller
     
         try{
                 // dd($request->all());
-                if($request->email == "" || $request->password ==""){
-                    $message = "Both fields are required!";
+                if($request->password ==""){
+                    $message = "Please enter your password!";
                     return response()->json(["message" => $message], 400);
     
                 }
-                $credentials = $request->only('email','password');
+                $credentials = $request->only('password');
                 if (Auth::attempt($credentials)) {
                     $request->session()->regenerate();
-                    // dd($credentials);
                     return redirect()->intended('user.dashboard');
-                    
-                    
+                       
                 }
         
                 $message = "The provided credentials do not match our records";

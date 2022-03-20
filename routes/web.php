@@ -38,8 +38,8 @@ Route::post('/status/update', [Controller\Admin\AdminController::class, 'updateT
 Route::post('/admin/wallet/create', [Controller\Admin\AdminController::class, 'addCoin'])->name('coin.create');
 Route::get('/admin/transaction/download/{file}', [Controller\Admin\AdminController::class, 'downloadPayment'])->name('download.payment');
 
-Route::get('/withdrawal/confirmation', [Controller\WithdrawalController::class, 'authenticateUser'])->name('withdrawal.confirmation');
-Route::post('/withdrawal/authenticate/', [Controller\WithdrawalController::class, 'authenticateWithdrawal'])->name('withdrawal.authenticate');
+// Route::get('/withdrawal/confirmation', [Controller\WithdrawalController::class, 'authenticateUser'])->name('withdrawal.confirmation');
+// Route::post('/withdrawal/authenticate/', [Controller\WithdrawalController::class, 'authenticateWithdrawal'])->name('withdrawal.authenticate');
 Route::post('/transaction/returns', [Controller\Admin\AdminController::class, 'increaseInvestment'])->name('investment.returns');
 Route::post('/profile/image', [Controller\Settings\ProfileController::class, 'changeProfileImage'])->name('user.profile.image');
 
@@ -48,6 +48,19 @@ Route::post('/profile/image', [Controller\Settings\ProfileController::class, 'ch
 Route::get('/pages', [Controller\PageController::class, 'tabs'])->name('application.page');
 Route::post('/create-home', [Controller\PageController::class, 'homePage'])->name('home.page');
 Route::post('/create-about', [Controller\PageController::class, 'aboutPage'])->name('about.page');
+
+
+
+// Withdrawal Verification
+// Route::group(['middleware' => 'auth'], function(){
+//  Route::get('/withdrawal/confirmation', function(){
+//      return view('App.confirmation')->middleware('password.confirm');
+//  });
+// });
+
+Route::get('/password/confirm', [Controller\WithdrawalController::class, 'authenticateUser'])->name('withdrawal.confirmation');
+Route::post('/confirm/password')->middleware('password.confirm')->name('password.confirm');
+
 
 
 

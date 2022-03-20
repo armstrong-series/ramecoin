@@ -27,7 +27,7 @@
                         <div class="text-center row">
                              <div class="p-3 col-md-3">
                                  
-                                <a href="{{ route('user.dashboard') }}" title="Apps" style="width:200px; background:#5C8F9E; color:white;" class="btn btn-rounded btn-md">Dashboard &nbsp;<i class="fas fa-door-open" style="width:70px; height:20px;"></i></a>
+                                <a href="{{ route('user.dashboard') }}" title="Apps" style="width:200px; background:#5C8F9E; color:white;" class="btn btn-rounded btn-md">Application<i class="fas fa-door-open" style="width:70px; height:20px;"></i></a>
 
                             </div>
                             <div class="p-3 col-md-3">

@@ -42,7 +42,6 @@ if (window.Vue) {
 
 
         mounted() {
-            // alert('welcome')
           this.users = JSON.parse($("#users").val());
           this.url.create = $("#createUser").val();
           this.url.update = $("#update").val();
@@ -83,7 +82,7 @@ if (window.Vue) {
                             type: "success", 
                             preventDuplicates: true, 
                             progressbar: false,
-                            style: {backgroundColor: "green"}
+                            style: {backgroundColor: "#1BBCE8"}
                           });
                           this.isloading = false;
                           
@@ -104,7 +103,7 @@ if (window.Vue) {
                             type: "error", 
                             preventDuplicates: true,
                             progressbar: false, 
-                            style: { backgroundColor: "red"}
+                            style: {backgroundColor: "red"}
                           });
                     });
 
@@ -133,7 +132,7 @@ if (window.Vue) {
                       type: "success",
                       preventDuplicates: true,
                       progressbar: false,
-                      style: {backgroundColor: "green"}
+                      style: {backgroundColor: "#1BBCE8"}
                   });
                   this.isLoading = false;
                   let userEdit = response.data.user;
@@ -174,7 +173,7 @@ if (window.Vue) {
 
 				const customAlert = swal({
 					title: 'Warning',
-					text: `Are you sure you want to delete this Transaction? This action cannot be undone.`,
+					text: `This action cannot be undone. Are you sure?`,
 					icon: 'warning',
 					closeOnClickOutside: false,
 					buttons: {
@@ -203,12 +202,12 @@ if (window.Vue) {
                                 this.$toastr.Add({
                                     msg: response.data.message, 
                                     clickClose: false, 
-                                    timeout: 2000,
+                                    timeout: 3000,
                                     position: "toast-top-right", 
                                     type: "success", 
                                     preventDuplicates: true, 
                                     progressbar: false,
-                                    style: {backgroundColor: "green"}
+                                    style: {backgroundColor: "#1BBCE8"}
                                   });
 
 							}).catch(error => {

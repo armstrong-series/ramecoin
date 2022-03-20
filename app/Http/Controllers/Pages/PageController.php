@@ -12,7 +12,7 @@ use App\Models\PageModel;
 use App\Models\PortfolioModel;
 use App\Models\SolutionsModel;
 use App\Models\TeamModel;
-use FFI\Exception;
+use Exception;
 class PageController extends Controller
 {
 

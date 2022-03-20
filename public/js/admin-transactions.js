@@ -70,7 +70,7 @@ if (window.Vue) {
                     _token: $('input[name=_token]').val()
                 }).then((response) => {
                     $('#roi').modal('hide');
-                    console.log('response....',response.data);
+                    // console.log('response....',response.data);
                    
                     this.$toastr.Add({
                         msg: response.data.message,
@@ -80,7 +80,7 @@ if (window.Vue) {
                         type: "success",
                         preventDuplicates: true,
                         progressbar: false,
-                        style: {backgroundColor: "green"}
+                        style: {backgroundColor: "#1BBCE8s"}
                     });
                     this.isLoading = false;
                     let transactionEdit = response.data.wallet;
@@ -116,7 +116,7 @@ if (window.Vue) {
                     status: this.transaction.status,
                     _token: $('input[name=_token]').val()
                 }).then((response) => {
-                    console.log('response....',response.data);
+                    // console.log('response....',response.data);
                     $('#changeStatus').modal('hide');
                     this.$toastr.Add({
                         msg: response.data.message,
@@ -126,7 +126,7 @@ if (window.Vue) {
                         type: "success",
                         preventDuplicates: true,
                         progressbar: false,
-                        style: {backgroundColor: "green"}
+                        style: {backgroundColor: "#1BBCE8"}
                     });
                     this.isLoading = false;
                     let transactionEdit = response.data.transaction;
@@ -204,7 +204,7 @@ if (window.Vue) {
                                     type: "success", 
                                     preventDuplicates: true, 
                                     progressbar: false,
-                                    style: {backgroundColor: "green"}
+                                    style: {backgroundColor: "#1BBCE8"}
                                   });
 
 							}).catch(error => {
@@ -213,7 +213,7 @@ if (window.Vue) {
                                     this.$toastr.Add({
                                         msg: error.response.data.message, 
                                         clickClose: false, 
-                                        timeout: 2000,
+                                        timeout: 3000,
                                         position: "toast-top-right", 
                                         type: "error", 
                                         preventDuplicates: true,

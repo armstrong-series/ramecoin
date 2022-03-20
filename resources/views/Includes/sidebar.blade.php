@@ -12,11 +12,13 @@
      @endif
 
 
+     
+
         <li class="nav-item  {{ $page == 'admin' ? 'active' : '' }}">
          @if(Auth::user()->role == "admin" || Auth::user()->role  == "support")
             <a class="nav-link" href="{{ route('admin.dashboard') }}">
-                <span class="menu-title">Administrator</span>&nbsp;&nbsp;
-                <i class="fas fa-users-crown"></i>
+                <span class="menu-title">Dashboard</span>&nbsp;&nbsp;
+                <i class="fas fa-tachometer"></i>
             </a>
             @endif
         </li>
