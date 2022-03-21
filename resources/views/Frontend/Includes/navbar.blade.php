@@ -40,7 +40,7 @@
                         <li><a href="{{ route('frontend.home') }}" class="sub-menu-item">Home</a></li>
                         <li><a href="{{ route('frontend.about') }}" class="sub-menu-item">About</a></li>
                         <li><a href="#" class="sub-menu-item">Pricing</a></li>
-                        <li><a href="#" class="sub-menu-item">FAQ</a></li>
+                        <li><a href="{{ route('frontend.faq') }}" class="sub-menu-item">FAQ</a></li>
                         <li><a href="#" class="sub-menu-item"> Inquiry</a></li>
 
                     </ul><!--end navigation menu-->

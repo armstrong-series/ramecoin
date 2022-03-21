@@ -8,9 +8,9 @@ use Log, Auth, Exception;
 
 class WithdrawalController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth');
-    }
+    // public function __construct(){
+    //     $this->middleware('auth');
+    // }
 
 
 
@@ -18,6 +18,16 @@ class WithdrawalController extends Controller
     public function authenticateUser(Request $request){
 
         return view('App.confirmation');
+        
+    }
+
+
+    public function withdrawal(){
+
+        $data = [
+            'page' => 'wallet-fund'
+        ];
+        return view('App.withdrawal', $data);
         
     }
 

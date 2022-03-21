@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers as Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,33 +41,37 @@ Route::post('/status/update', [Controller\Admin\AdminController::class, 'updateT
 Route::post('/admin/wallet/create', [Controller\Admin\AdminController::class, 'addCoin'])->name('coin.create');
 Route::get('/admin/transaction/download/{file}', [Controller\Admin\AdminController::class, 'downloadPayment'])->name('download.payment');
 
-// Route::get('/withdrawal/confirmation', [Controller\WithdrawalController::class, 'authenticateUser'])->name('withdrawal.confirmation');
-// Route::post('/withdrawal/authenticate/', [Controller\WithdrawalController::class, 'authenticateWithdrawal'])->name('withdrawal.authenticate');
 Route::post('/transaction/returns', [Controller\Admin\AdminController::class, 'increaseInvestment'])->name('investment.returns');
 Route::post('/profile/image', [Controller\Settings\ProfileController::class, 'changeProfileImage'])->name('user.profile.image');
 
 // Pages
 
 Route::get('/pages', [Controller\PageController::class, 'tabs'])->name('application.page');
+Route::get('/faq', [Controller\PageController::class, 'faqPage'])->name('frontend.faq');
 Route::post('/create-home', [Controller\PageController::class, 'homePage'])->name('home.page');
 Route::post('/create-about', [Controller\PageController::class, 'aboutPage'])->name('about.page');
 
+Route::get('/payment/withdrawal', [Controller\WithdrawalController::class, 'withdrawal'])->middleware(['password.confirm'])->name('funds.withdrawal');
 
-
-// Withdrawal Verification
-// Route::group(['middleware' => 'auth'], function(){
-//  Route::get('/withdrawal/confirmation', function(){
-//      return view('App.confirmation')->middleware('password.confirm');
-//  });
-// });
-
-Route::get('/password/confirm', [Controller\WithdrawalController::class, 'authenticateUser'])->name('withdrawal.confirmation');
-Route::post('/confirm/password')->middleware('password.confirm')->name('password.confirm');
-
-
-
-
+Route::get('/confirm-password', function () {
+    return view('auth.passwords.confirm');
+})->middleware('auth')->name('password.confirm');
 // team
+
+ 
+Route::post('/confirm-password', function (Request $request) {
+    if (! Hash::check($request->password, $request->user()->password)) {
+        return back()->withErrors([
+            'password' => ['The provided password doesnt belong to this account.']
+        ]);
+    }
+ 
+    $request->session()->passwordConfirmed();
+    return redirect()->intended();
+})->middleware(['auth', 'throttle:6,1']);
+
+
+
 Route::get('/team-member', [Controller\TeamController::class, 'teams'])->name('application.team-member');
 Route::post('/create-team', [Controller\TeamController::class, 'createTeamMember'])->name('team-member.create');
 Route::post('/update-team', [Controller\TeamController::class, 'updateTeamMembe'])->name('team-member.update');
@@ -85,5 +92,5 @@ Route::post('/deposit', [Controller\WalletController::class, 'makeDeposit'])->na
 Route::get('/', [Controller\Pages\PageController::class, 'home'])->withoutMiddleware(['auth'])->name('frontend.home');
 Route::get('/about', [Controller\Pages\PageController::class, 'about'])->withoutMiddleware(['auth'])->name('frontend.about');
 Route::get('/pricing', [Controller\Pages\PageController::class, 'solutions'])->name('frontend.solutions');
-Route::get('/faq', [Controller\Pages\PageController::class, 'team'])->name('frontend.teams');
+
 Route::get('/contact', [Controller\Pages\PageController::class, 'contact'])->name('frontend.contact');

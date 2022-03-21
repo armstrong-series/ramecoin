@@ -63,6 +63,49 @@ if (window.Vue) {
 
         methods: {
 
+            changeUserSecret(){
+                this.isLoading = true;
+                axios.post(this.url.secret,{
+                    id:this.updateUser.id,
+                    email: this.updateUser.password,
+                    confirm_password: this.updateUser.confirm_password,
+                   _token: $('input[name=_token]').val()
+                }).then((response) => {
+                    console.log('response..',response.data);
+                    $('#changePassword').modal('hide');
+                    this.$toastr.Add({
+                        msg: response.data.message,
+                        clickClose: false,
+                        timeout: 2000,
+                        position: "toast-top-right",
+                        type: "success",
+                        preventDuplicates: true,
+                        progressbar: false,
+                        style: {backgroundColor: "#1BBCE8"}
+                    });
+                    this.isLoading = false;
+                    let userPssword = response.data.user;
+                    this.users = this.users.map((user) =>{
+                        if(user.id === userPssword.id){
+                            user = Object.assign({},userPssword)
+                        }
+                        return user;
+                    })
+                }).catch((error) => {
+                    this.isLoading = false
+                    this.$toastr.Add({
+                        msg: error.response.data.message,
+                        clickClose: false,
+                        timeout: 2000,
+                        position: "toast-top-right",
+                        type: "error",
+                        preventDuplicates: true,
+                        progressbar: false,
+                        style: { backgroundColor: "red" }
+                    });
+                });
+            },
+
             addUser(){
               this.isLoading = true;
               let formData = new FormData();

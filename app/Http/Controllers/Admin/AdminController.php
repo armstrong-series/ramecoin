@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Models\WalletModel;
 use App\Helpers\Paths;
-use FFI\Exception;
+use Exception;
 use Validator;
 use Illuminate\Support\Facades\Hash;
 
@@ -280,6 +280,12 @@ class AdminController extends Controller
     public function changeSecret(Request $request){
         try {
 
+
+            if(empty($request->all())){
+                $message = "Ensure both fields are complete";
+                return response()->json(['message' => $message], 400);
+            }
+
             $validator = Validator::make($request->all(), [
                 'password' => 'required|between:6,255',
                 'confirm_password' => 'required|same:password',
@@ -297,9 +303,9 @@ class AdminController extends Controller
             }
             $user->password = Hash::make($request->password) ? Hash::make($request->password) : $user->password;
             $user->save();
-            return response()->json(["message" => "Password Updated!"], 200);
+            return response()->json(["message" => "Password Updated!", "user" => $user], 200);
         } catch (Exception $error) {
-            Log::info("Admin\AdminController@hangeSecret error message:" . $error->getMessage());
+            Log::info("Admin\AdminController@changeSecret error message:" . $error->getMessage());
             $response = [
                 'status' =>false,
                 "message" => $error

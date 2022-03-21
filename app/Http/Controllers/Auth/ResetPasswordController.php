@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
-use Log;
-use Session;
-use Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use Exception;
 use Validator;
 
@@ -81,12 +81,12 @@ class ResetPasswordController extends Controller
                 $user->save();
 
                 $message = 'Your password has been reset.';
-                \Session::put('successfulMessage', $message);
+                Session::put('successfulMessage', $message);
 
                 return redirect('/login');
             } else {
                 $message = 'please use the reset link to your mail';
-                \Session::put('errorMessage', $message);
+                Session::put('errorMessage', $message);
                 return redirect()->back();
             }
 
@@ -94,7 +94,7 @@ class ResetPasswordController extends Controller
             Log::info('error message: ' . $error->getMessage());
 
             $message = 'Unable to complete request, please try again';
-            \Session::put('errorMessage', $message);
+            Session::put('errorMessage', $message);
             return redirect('/login');
         }
     }

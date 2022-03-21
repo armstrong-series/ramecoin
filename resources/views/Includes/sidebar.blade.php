@@ -58,7 +58,7 @@
             
         </li>
         <li class="nav-item">
-            <a class="nav-link"  href="{{ route('withdrawal.confirmation') }}" aria-expanded="false"
+            <a class="nav-link"  href="{{ route('funds.withdrawal') }}" aria-expanded="false"
                 aria-controls="email">
                 <span class="menu-title">Withdraw Funds</span>&nbsp;&nbsp;
                 <i class="fas fa-wallet"></i>

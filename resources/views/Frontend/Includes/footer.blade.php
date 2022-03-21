@@ -59,13 +59,13 @@
 						<div class="col-lg-2 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
 							<h5 class="text-light footer-head">Investment</h5>
 							<ul class="list-unstyled footer-list mt-4">
-								<li><a href="index-nft.html" class="text-foot"><i class="uil uil-angle-right-b me-1"></i>Priciing</a></li>
+								<li><a href="{{ route('frontend.faq') }}" class="text-foot"><i class="uil uil-angle-right-b me-1"></i>FAQ</a></li>
 								<li><a href="nft-explore.html" class="text-foot"><i class="uil uil-angle-right-b me-1"></i>Explores</a></li>
 							</ul>
 						</div><!--end col-->
 	
 						<div class="col-lg-4 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0">
-							<h5 class="text-light footer-head">Start trading with Cryptor</h5>
+							<h5 class="text-light footer-head">Invest and Trade with Ramecoin</h5>
 
 							<ul class="list-unstyled footer-list mt-4 mb-2">
 								<li class="list-inline-item mx-1"><a href="{{ route('login') }}" class="btn btn-soft-primary">Signin</a></li>

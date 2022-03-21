@@ -42,7 +42,7 @@
                                         </div>
                                         <div class="col-xl-9 d-flex align-items-center flex-column flex-xl-row text-center text-md-left">
                                             <div v-cloak class="btn btn-rounded btn-outline-info mr-5" @click="selectUser(index)" data-toggle="modal" data-animation="bounce" data-target=".editUser">@{{ userData.email }}</div>
-                                            <div v-cloak class="badge badge-primary">@{{  userData.mobile  }}</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <div v-cloak class="badge badge-primary" @click="selectUser(index)" data-toggle="modal" data-animation="bounce" data-target="#changePassword">@{{  userData.mobile  }}</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <div @click="deleteUser(index)" class="text-right people-data h5 mb-0"><span class="text-danger"><i class="fal fa-trash-alt text-danger font-16"></i>&nbsp;&nbsp;Delete</span></div>
                                         </div>
                                        
@@ -65,7 +65,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title mt-0 font-16" id="myLargeModalLabel">Add New User</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
                     </div>
                     <div class="modal-body">
                         <div>
@@ -123,13 +123,13 @@
             </div><!-- /.modal-dialog -->
         </div>
 
-        <div class="modal fade change_secret" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-modal="false">
-            <div class="modal-dialog modal-md">
+        <div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-modal="false">
+            <div class="modal-dialog modal-md p-3">
                 @crsf
-                <div class="modal-content">
+                <div class="modal-content p-3">
                     <div class="modal-header">
-                        <h5 class="modal-title mt-0 font-16" id="myLargeModalLabel">Add New User</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h5 class="modal-title mt-0 font-16 text-center" id="myLargeModalLabel">Change Password</h5>
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
                     </div>
                     <div class="modal-body">
                         
@@ -143,7 +143,7 @@
                             </div>
 
                           <div class="mt-5 text-right">
-                            <button type="button" @click="changeSecret()" class="btn btn-sm btn-primary">Save</button> 
+                            <button type="button" @click="changeUserSecret()" class="btn btn-sm btn-primary">Save</button> 
                             <div v-if="isLoading" class="spinner-border text-success" role="status">
                                 <span class="sr-only">Loading...</span>
                             </div>
@@ -161,7 +161,7 @@
                 <div class="modal-content p-3">
                     <div class="modal-header">
                         <h5 class="modal-title mt-0 font-16" id="myLargeModalLabel">Edit User</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
                     </div>
                     <div class="modal-body p-2">
                         <div>

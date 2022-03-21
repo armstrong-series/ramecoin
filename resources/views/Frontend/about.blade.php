@@ -1,6 +1,6 @@
 @extends('Frontend.Layout.master')
 @section('title')
-    <title>Renewal |About</title>
+    <title>Ramecoin |About</title>
 @endsection
 
 @section('content')

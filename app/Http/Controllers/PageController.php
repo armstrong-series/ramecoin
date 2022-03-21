@@ -22,6 +22,11 @@ class PageController extends Controller
 
 
 
+
+    public function faqPage(){
+       return view('Frontend.faq');
+    }
+
     public function tabs(Request $request){
         try {
             

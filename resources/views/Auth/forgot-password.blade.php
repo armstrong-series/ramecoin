@@ -53,7 +53,7 @@
                                         <input class="form-control login" type="text" id="emailaddress" required="" placeholder="Enter your account email">
                                     </div>
                                     <div class="form-group mb-0">
-                                        <button class="btn btn-primary btn-block" type="submit">Reset</button>
+                                        <button class="btn btn-primary btn-block" type="submit">Proceed</button>
                                     </div>
 
                                     <div class="text-center mt-15"><span class="mr-2 font-12">Remember ?</span><a class="font-12" href="{{ route('login') }}">Login</a></div>

@@ -13,7 +13,7 @@
                     <div class="card">
                         <div class="card-body">
                         
-                            <h5 class="">Welcome {{ $user->name }} !</h5>
+                            <h5 class="">Welcome, {{ $user->name }} !</h5>
                             
                         <p class="mb-0 text-muted">Ramecoin Investment</p>
                         </div>
