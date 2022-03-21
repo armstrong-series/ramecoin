@@ -87,66 +87,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-6" v-if="!paymentMethod.paypal">
-                                <div class="card">
-                                    <div class="card-body">
-
-                                        <div class="shortcode-html">
-                                           
-                                            <div class="g-brd-around g-brd-gray-light-v4 g-pa-30 g-mb-30">
-
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h5 class="font-15 text-secondary">Your Payment method is Paypal</h5>
-                                                        </div>
-                                                    </div>
-                                                
-                                                <div class="form-group">
-                                                    <label for="lgFormGroupInput2">Enter Amount to Withdraw</label>
-                                                    <div class="">
-                                                        <input type="text" class="form-control rounded-0 form-control-md" id="lgFormGroupInput2" placeholder="Enter Amount">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="">Enter OTP</label>
-                                                    <div class="">
-                                                        <input type="text" class="form-control rounded-0 form-control-md" id="lgFormGroupInput3" placeholder="Enter Code">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    
-                                                    <div class="text-center">
-                                                        <button type="button" class="btn btn-md btn-primary">Confirm</button>
-                                                    </div>
-                                                </div>
-                                                
-                                            </div>
-                                            <!-- End Horizontal (form sizes) -->
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6" v-if="!paymentMethod.paypal">                    
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="shortcode-html">
-                                            <div class="g-brd-around g-brd-gray-light-v4 g-pa-30 g-mb-30">
-                                                <div class="form-group">
-                                                    <div class="text-center">
-                                                         <p v-cloak class="mb-4 text-dark text-center">Generate OTP</p>
-
-                                                        <button type="button" class="btn btn-md btn-primary">Request OTP &nbsp;<i class="fas fa-envelope"></i></button>
-                                                    </div>
-                                                </div>  
-                                            </div>
-                                            
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                            
 
 
 
@@ -192,6 +133,67 @@
                                     </div>
                                 </div>
                             </div> -->
+                        </div>
+                        <div class="row">
+                        <div class="col-md-7" v-if="!paymentMethod.paypal">
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <div class="shortcode-html">
+                                           
+                                            <div class="g-brd-around g-brd-gray-light-v4 g-pa-30 g-mb-30">
+
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <h5 class="font-15 text-secondary">Your Payment method is Paypal</h5>
+                                                        </div>
+                                                    </div>
+                                                
+                                                <div class="form-group">
+                                                    <label for="lgFormGroupInput2">Enter Amount to Withdraw</label>
+                                                    <div class="">
+                                                        <input type="text" class="form-control rounded-0 form-control-md" id="lgFormGroupInput2" placeholder="Enter Amount">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Enter OTP</label>
+                                                    <div class="">
+                                                        <input type="text" class="form-control rounded-0 form-control-md" id="lgFormGroupInput3" placeholder="Enter Code">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    
+                                                    <div class="text-center">
+                                                        <button type="button" class="btn btn-md btn-primary">Confirm</button>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <!-- End Horizontal (form sizes) -->
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5" v-if="!paymentMethod.paypal">                    
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="shortcode-html">
+                                            <div class="g-brd-around g-brd-gray-light-v4 g-pa-30 g-mb-30">
+                                                <div class="form-group">
+                                                    <div class="text-center">
+                                                         <p v-cloak class="mb-4 text-dark text-center">Generate OTP</p>
+                                                          <button type="button" class="btn btn-md btn-primary">Request OTP &nbsp;<i class="fas fa-envelope"></i></button>
+                                                    </div>
+                                                </div>  
+                                            </div>
+                                            
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="row">

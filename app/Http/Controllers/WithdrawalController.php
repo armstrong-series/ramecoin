@@ -8,9 +8,9 @@ use Log, Auth, Exception;
 
 class WithdrawalController extends Controller
 {
-    // public function __construct(){
-    //     $this->middleware('auth');
-    // }
+    public function __construct(){
+        $this->middleware('password.confirm');
+    }
 
 
 
