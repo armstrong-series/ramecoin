@@ -41,7 +41,7 @@
                             </a>
 
                             <a href="{{ route('user.settings.dashboard') }}" class="dropdown-item">
-                             <i class="fas fa-cog"></i>&nbsp;&nbsp; Settings
+                            <i class="fas fa-tools"></i>&nbsp;&nbsp; Settings
                             </a>
                             @if(Auth::user()->role ==="member")
                                  <a href="{{ route('auth.logout') }}" class="dropdown-item">

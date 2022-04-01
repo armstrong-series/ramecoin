@@ -98,11 +98,11 @@
                         <!-- Single Slider -->
                         <div class="widget-slider-content">
                             <div class="d-flex justify-content-between align-items-center mb-15">
-                                <!-- <h6 class="mb-0">Users</h6> -->
-                                <!-- <span class="badge badge-pill badge-primary">79% Done</span> -->
+                
                             </div>
+                            <!-- <h6 class="mb-0"><i class="fa-solid fa-users"></i>&nbsp;&nbsp;Users</h6> -->
                             <h6 class="mb-0">{{ $usersCount }}</h6>
-                            <p class="mb-0">Users</p>
+                            <p class="mb-0"><i class="fa-solid fa-users"></i>&nbsp;&nbsp;Users</p>
                         </div>
 
                      

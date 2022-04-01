@@ -3,8 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Mail\sendUserOtpMail;
+use App\Models\OTPModel;
+use Exception;
+use Illuminate\Support\Facades\Mail;
 
-use Log, Auth, Exception;
+
 
 class WithdrawalController extends Controller
 {
@@ -12,14 +19,6 @@ class WithdrawalController extends Controller
         $this->middleware('password.confirm');
     }
 
-
-
-
-    public function authenticateUser(Request $request){
-
-        return view('App.confirmation');
-        
-    }
 
 
     public function withdrawal(){
@@ -32,34 +31,53 @@ class WithdrawalController extends Controller
     }
 
 
+    public function generateWithdrawalOTP(Request $request){
+        try {
+        
+            $user = Auth::user();
+            // $user = User::where('email', Auth::user()->email)->first();
+            $otp = OTPModel::where('user_id', Auth::id())->first();
+            if($otp){
+                $random = rand(1000,9999);
+                $otp->otp = $random;
+                $otp->expires_at = now()->addMinutes(30);
+                $otp->save(); 
+                Mail::to($user->email)->send(new sendUserOtpMail($user)); 
+                return response()->json(["message" => "OTP generated. Check your mail"], 200);
+            }
+            return true;
+
+        } catch (Exception $error) {
+            Log::info("ErrorMessage". $error->getMessage());
+            return false;
+        }
+    }
+
+
+    public function proceedWithdrawal(Request $request){
+        try {
+            $user = Auth::user();
+            if($request->all()){
+                $message = "All fields are required!";
+                return response()->json(["message" => $message], 400);
+            }
+            if($request->otp != $user->otp){
+                $message =  "Invalid OTP";
+                return response()->json(["message" => $message], 400);
+            }
+
+
+        } catch (Exception $error) {
+            Log::info("ErrorMessage". $error->getMessage());
+            return false;
+        }
+    }
+
+
    
 
-    public function authenticateWithdrawal(Request $request){
-    
-        try{
-                // dd($request->all());
-                if($request->password ==""){
-                    $message = "Please enter your password!";
-                    return response()->json(["message" => $message], 400);
-    
-                }
-                $credentials = $request->only('password');
-                if (Auth::attempt($credentials)) {
-                    $request->session()->regenerate();
-                    return redirect()->intended('user.dashboard');
-                       
-                }
-        
-                $message = "The provided credentials do not match our records";
-                return response()->json(["message" => $message], 401);
-
-                // return back()->withErrors([
-                //     'email' => 'The provided credentials do not match our records.',
-                // ]);
-        }catch(Exception $error){
-            Log::info($error->getMessage());
-        }
+  
        
-    }
+    
 
 }

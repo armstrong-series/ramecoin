@@ -66,7 +66,7 @@
 
                                     <div class="form-group mb-0">
                                         <div  class="text-center">
-                                            <button class="btn btn-primary" type="button"> Confirm</button>
+                                            <button class="btn btn-primary" type="button"> Confirm &nbsp;<i class="fas fa-fingerprint"></i></button>
                                         </div>
                                         <!-- <div v-cloak v-if="isLoading" class="text-center">
                                             <button v-cloak class="btn btn-primary" type="button">

@@ -147,7 +147,6 @@ class AdminController extends Controller
     public function deleteTransaction(Request $request){
         try {
             $transaction = WalletModel::where('id', $request->id)->first();
-            // dd($transaction);
             if(!$transaction){
                 $message = "Unknown Transaction!";
                 return response()->json(["message" => $message], 404);
@@ -217,7 +216,6 @@ class AdminController extends Controller
     public function createUser(Request $request)
     {
         try {
-            // dd($request->all());
             $validator = $this->validator($request->all());
             if ($validator->fails()) {
                 $message = $validator->errors()->all();
@@ -253,7 +251,6 @@ class AdminController extends Controller
     {
         try 
           {
-            // dd($request->all());
             $user = User::where('id', $request->id)->first();
             if(!$user){
                 return response()->json(['message' => "User not found!"],404); 
@@ -288,9 +285,9 @@ class AdminController extends Controller
 
             $validator = Validator::make($request->all(), [
                 'password' => 'required|between:6,255',
-                'confirm_password' => 'required|same:password',
+                'confirm_password' => 'required|same:password',  ]);
 
-            ]);
+          
             if ($validator->fails()) {
                 $message = $validator->errors()->all();
                 foreach ($message as $messages) {
@@ -318,7 +315,7 @@ class AdminController extends Controller
     public function deleteUser(Request $request){
         try {
             $user = User::where('id', $request->id)->first(); 
-            dd($user); 
+            
             if(!$user){
                 $message = "Unknown User!";
                 return response()->json(['message' =>  $message],404); 

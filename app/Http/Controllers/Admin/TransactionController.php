@@ -20,5 +20,29 @@ class TransactionController extends Controller
     }
 
 
+
+
+    public function deleteUser(Request $request){
+        try {
+            $user = User::where('id', $request->id)->first(); 
+            
+            if(!$user){
+                $message = "Unknown User!";
+                return response()->json(['message' =>  $message],404); 
+            }
+            $user->delete();
+            $message = "Delete successful!";
+            return response()->json(["message" => $message, "user" => $user], 200);
+           
+        } catch (Exception $error) {
+            Log::info("Admin\TransactionController@deleteUser error message:" . $error->getMessage());
+            $response = [
+                'status' =>false,
+                "message" => $error
+            ];
+            return $response;
+        }
+    }
+
     
 }

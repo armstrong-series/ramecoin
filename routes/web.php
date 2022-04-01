@@ -34,7 +34,8 @@ Route::get('/admin/transactions',  [Controller\Admin\AdminController::class, 'tr
 Route::post('/create-user',  [Controller\Admin\AdminController::class, 'createUser'])->name('admin.user-create');
 Route::post('/update-user',  [Controller\Admin\AdminController::class, 'updateUser'])->name('admin.user-update');
 Route::post('/update-secret',  [Controller\Admin\AdminController::class, 'changeSecret'])->name('admin.user-secret');
-Route::post('/delete/user',  [Controller\Admin\AdminController::class, 'deleteUser'])->name('admin.user-delete');
+Route::post('/delete/user',  [Controller\Admin\AdminController::class, 'deleteUser'])->name('user.delete');
+
 Route::post('/delete/transaction',  [Controller\Admin\AdminController::class, 'deleteTransaction'])->name('admin.delete.transaction');
 Route::get('/wallet/deposit', [Controller\WalletController::class, 'fundPayment'])->name('wallet.fund');
 Route::post('/status/update', [Controller\Admin\AdminController::class, 'updateTransactionStatus'])->name('transactions.update.status');
@@ -44,10 +45,10 @@ Route::get('/admin/transaction/download/{file}', [Controller\Admin\AdminControll
 Route::post('/transaction/returns', [Controller\Admin\AdminController::class, 'increaseInvestment'])->name('investment.returns');
 Route::post('/profile/image', [Controller\Settings\ProfileController::class, 'changeProfileImage'])->name('user.profile.image');
 
-// Pages
+
 
 Route::get('/pages', [Controller\PageController::class, 'tabs'])->name('application.page');
-Route::get('/faq', [Controller\PageController::class, 'faqPage'])->name('frontend.faq');
+Route::get('/faq', [Controller\PageController::class, 'faqPage'])->withoutMiddleware(['auth'])->name('frontend.faq');
 Route::post('/create-home', [Controller\PageController::class, 'homePage'])->name('home.page');
 Route::post('/create-about', [Controller\PageController::class, 'aboutPage'])->name('about.page');
 
@@ -76,16 +77,16 @@ Route::get('/team-member', [Controller\TeamController::class, 'teams'])->name('a
 Route::post('/create-team', [Controller\TeamController::class, 'createTeamMember'])->name('team-member.create');
 Route::post('/update-team', [Controller\TeamController::class, 'updateTeamMembe'])->name('team-member.update');
 Route::post('/delete-team/{id}', [Controller\TeamController::class, 'deleteMember'])->name('team-member.delete');
-
-Route::get('/reset-password/{token}', [Controller\Auth\ResetPasswordController::class, 'resetPassword'])->name('auth.reset-password');
-Route::post('/reset-password', [Controller\Auth\ResetPasswordController::class,'updatePassword'])->name('auth.update-password');
 Route::get('/buy-plan', [Controller\InvestmentPlanController::class,'plans'])->name('investment.plan');
-
+Route::post('/generate-otp', [Controller\WithdrawalController::class, 'generateWithdrawalOTP'])->name('withdrawal.otp');
 
 // Settings
-Route::get('/settings/profile', [Controller\Settings\SettingsController::class, 'dashboard'])->name('user.settings.dashboard');
+Route::get('/account/settings', [Controller\Settings\SettingsController::class, 'dashboard'])->name('user.settings.dashboard');
+Route::post('/account/update', [Controller\Settings\SettingsController::class, 'updateUserDetails'])->name('user.details.update');
+Route::get('/settings/security', [Controller\Settings\SettingsController::class, 'security'])->name('user.settings.security');
 Route::get('/transactions', [Controller\WalletController::class, 'transactions'])->name('user.transactions');
 Route::post('/deposit', [Controller\WalletController::class, 'makeDeposit'])->name('user.deposit');
+Route::get('/settings/mail', [Controller\MailIntegrationController::class, 'mailSetup'])->name('settings.mail');
 
 
 // pages

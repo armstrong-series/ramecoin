@@ -212,8 +212,9 @@
             <textarea name="" id="createUser" style="display:none;" cols="30" rows="10">{{ route('admin.user-create') }}</textarea>
             <textarea name="" id="update" style="display:none;" cols="30" rows="10">{{ route('admin.user-update') }}</textarea>
       
-            <textarea name="" id="#changeSecret" style="display:none;" cols="30" rows="10">{{ route('admin.user-secret') }}</textarea>
-            <textarea name="" id="#deleteUser" style="display:none;" cols="30" rows="10">{{ route('admin.user-delete') }}</textarea>
+            <textarea name="" id="changeSecret" style="display:none;" cols="30" rows="10">{{ route('admin.user-secret') }}</textarea>
+            <textarea name="" id="userdelete" style="display:none;" cols="30" rows="10">{{ route('user.delete') }}</textarea>
+
         </div>
 
     </div>

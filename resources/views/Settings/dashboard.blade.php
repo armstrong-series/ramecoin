@@ -1,8 +1,8 @@
 
             
- @extends('Layout.master')
+ @extends('Layout.settings-master')
 @section('title')
-<title>Ramecoin | Account Settings</title>
+<title>Ramecoin</title>
 @endsection 
     <!-- Start Content-->
 
@@ -24,10 +24,10 @@
                         <p class="font-13 text-dark">Support Staff</p>  
                         @endif
                     </div>
-                    <div class="px-4 py-2 text-center btn btn-primary m-auto" style="box-shadow: 4px 2px 3px;" @click="uploadImage()">
+                    <!-- <div class="px-4 py-2 text-center btn btn-primary m-auto" style="box-shadow: 4px 2px 3px;" @click="uploadImage()">
                         <span>Upload Profile</span>
                         <input type="file" @change="selectImage($event)" id="selectImageInput" name="" hidden>
-                    </div>
+                    </div> -->
                     
                 </div>
                 <!-- ./profile -->

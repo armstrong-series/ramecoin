@@ -45,7 +45,9 @@ if (window.Vue) {
           this.users = JSON.parse($("#users").val());
           this.url.create = $("#createUser").val();
           this.url.update = $("#update").val();
-          this.url.delete = $("#deleteUser").val();
+          console.log('update..', this.url.update)
+          this.url.delete = $("#userdelete").val();
+          console.log('deleteUer...', this.url.delete)
           this.url.secret = $("#changeSecret").val();
 
         },
@@ -208,15 +210,12 @@ if (window.Vue) {
             },
 
 
-
             deleteUser(index) {
 				const user = Object.assign({}, this.users[index]);
-                console.log('user', user)
 				user._token = $('input[name=_token]').val()
-
 				const customAlert = swal({
 					title: 'Warning',
-					text: `This action cannot be undone. Are you sure?`,
+					text: `Are you sure you want to delete this Transaction? This action cannot be undone.`,
 					icon: 'warning',
 					closeOnClickOutside: false,
 					buttons: {
@@ -245,7 +244,7 @@ if (window.Vue) {
                                 this.$toastr.Add({
                                     msg: response.data.message, 
                                     clickClose: false, 
-                                    timeout: 3000,
+                                    timeout: 2000,
                                     position: "toast-top-right", 
                                     type: "success", 
                                     preventDuplicates: true, 
@@ -259,7 +258,7 @@ if (window.Vue) {
                                     this.$toastr.Add({
                                         msg: error.response.data.message, 
                                         clickClose: false, 
-                                        timeout: 2000,
+                                        timeout: 3000,
                                         position: "toast-top-right", 
                                         type: "error", 
                                         preventDuplicates: true,
@@ -284,6 +283,8 @@ if (window.Vue) {
 				});
 			},
 
+
+          
             
 
             

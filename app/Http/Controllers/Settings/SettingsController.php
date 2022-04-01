@@ -7,11 +7,12 @@ use App\Models\PageModel;
 use App\Models\Settings;
 use App\Helpers\Paths;
 use App\Models\User;
-use FFI\Exception;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 
 class SettingsController extends Controller
 {
@@ -99,6 +100,52 @@ class SettingsController extends Controller
 
         } catch (Exception $error) {
             Log::info('Settings\Settings@updateThumbnail error message: ' . $error->getMessage());
+            $message = 'Sorry, unable to create template. Please try again';
+            return response()->json([
+                'error' => true,
+                "message" => $message,
+            ], 500);
+        }
+    }
+
+
+    public function security(){
+
+        $data = [
+            'page' => 'security'
+        ];
+        return view('Settings.security', $data);
+    }
+
+
+
+    public function updateUserDetails(Request $request){
+        try {
+          
+            $validator = Validator::make($request->password, [
+                'password' => 'between:6,255',
+                'confirm_password' => 'same:password',
+
+            ]);
+            if ($validator->fails()) {
+                $message = $validator->errors()->all();
+                foreach ($message as $messages) {
+                    return response()->json(['message' => $messages], 400);
+                }
+            }
+            $user = User::where('id', $request->id)->first();
+            if(!$user){
+                $message = "Unknown User!";
+                return response()->json(["message" => $message], 404);
+                $user->name = $request->name;
+                $user->mobile = $request->mobile;
+                $user->password = Hash::make($request->password);
+                $user->save();
+                $message = "Details Updated!";
+                return response()->json(["message" => $message, "user" => $user], 200);
+            }
+        } catch (Exception $error) {
+            Log::info('Settings\Settings@updateUserDetails error message: ' . $error->getMessage());
             $message = 'Sorry, unable to create template. Please try again';
             return response()->json([
                 'error' => true,

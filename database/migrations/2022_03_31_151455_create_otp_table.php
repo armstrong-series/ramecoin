@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVerificationPage extends Migration
+class CreateOtpTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateVerificationPage extends Migration
      */
     public function up()
     {
-        Schema::create('verification_page', function (Blueprint $table) {
+        Schema::create('user_otp', function (Blueprint $table) {
             $table->id();
-            $table->bigIncrements('verification_id');
-            $table->unsignedBigInteger('page_id');
-            $table->integer('expires_at');
+            $table->integer('user_id');
+            $table->string('otp')->nullable();
+            $table->timestamp('expires_at');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateVerificationPage extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('verification_page');
+        Schema::dropIfExists('user_otp');
     }
 }

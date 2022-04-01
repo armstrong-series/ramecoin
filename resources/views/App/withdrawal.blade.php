@@ -77,20 +77,13 @@
                                         </div> <!-- / .row -->
 
                                         <div class="form-group p-3 text-center"  v-if="paymentMethod.paypal">
+                                            @csrf
                                            <button @click="switchPayment()" class="btn btn-md btn-primary">Request withdrawal &nbsp;<i class="fas fa-wallet"></i></button>
-
-                                        </div>
-
-
-                                        
+                                           
+                                        </div>       
                                     </div>
                                 </div>
                             </div>
-
-                            
-
-
-
 
                             <!-- <div class="col-6" v-if="!paymentMethod.paystack">
                                 <div class="card">
@@ -141,14 +134,9 @@
 
                                         <div class="shortcode-html">
                                            
-                                            <div class="g-brd-around g-brd-gray-light-v4 g-pa-30 g-mb-30">
-
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h5 class="font-15 text-secondary">Your Payment method is Paypal</h5>
-                                                        </div>
-                                                    </div>
-                                                
+                                            <div class="g-brd-around g-brd-gray-light-v4 g-pa-30 g-mb-30">        
+                                                 <h5 class="font-15 text-secondary">Your Payment method is Paypal</h5>
+                                                       
                                                 <div class="form-group">
                                                     <label for="lgFormGroupInput2">Enter Amount to Withdraw</label>
                                                     <div class="">
@@ -176,15 +164,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-5" v-if="!paymentMethod.paypal">                    
+                            <div class="col-md-5" v-if="!paymentMethod.paypal">
+                                @csrf                  
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="shortcode-html">
                                             <div class="g-brd-around g-brd-gray-light-v4 g-pa-30 g-mb-30">
                                                 <div class="form-group">
                                                     <div class="text-center">
-                                                         <p v-cloak class="mb-4 text-dark text-center">Generate OTP</p>
-                                                          <button type="button" class="btn btn-md btn-primary">Request OTP &nbsp;<i class="fas fa-envelope"></i></button>
+                                                        <p v-cloak class="mb-4 text-dark text-center">Generate OTP</p>
+                                                        <button v-cloak v-if="!isLoading" @click="generateOtp()" type="button" class="btn btn-md btn-primary">Request OTP &nbsp;<i class="fas fa-key-skeleton"></i></button>
+                                                        <button v-cloak v-if="isLoading" type="button" class="btn btn-md btn-primary" disabled>Processing..</button>          
                                                     </div>
                                                 </div>  
                                             </div>
@@ -265,7 +255,7 @@
                         </div>
                     </div>
 
-                    
+                    <textarea name="" style="display:none;" id="generateOtp" cols="30" rows="10">{{ route('withdrawal.otp') }}</textarea>
                 </div>
             </div>
         </div>

@@ -114,13 +114,19 @@
 
                                     <div class="form-group mb-0">
                                         <div  class="text-center">
-                                            <button class="btn btn-primary" type="submit"> Confirm</button>
+                                            <button class="btn btn-primary" type="submit"> Confirm  &nbsp;<i class="fas fa-fingerprint"></i></button>
                                         </div>
                                        
                                     </div>
                                 </form>
 
+                            
+                            </div>
+                        </div>
 
+                        <div class="form-group mb-0">
+                            <div  class="text-center">
+                                <a href="{{ url()->previous() }}"class="btn btn-sm" style="width:200px; color:white; background:grey;"> Back &raquo;&raquo;</a>
                             </div>
                         </div>
 
@@ -135,7 +141,8 @@
 
     </div>
 
- 
+    <script defer src="https://pro.fontawesome.com/releases/v5.10.0/js/all.js" integrity="sha384-G/ZR3ntz68JZrH4pfPJyRbjW+c0+ojii5f+GYiYwldYU69A+Ejat6yIfLSxljXxD" 
+       crossorigin="anonymous"></script>
      <script src="{{ asset('library/axios.min.js') }}"></script>
     <script src="{{ asset('library/vue.js') }}"></script>
     <script src="https://unpkg.com/vue-toastr/dist/vue-toastr.umd.min.js"></script>
@@ -148,7 +155,7 @@
     <script src="{{ asset('js/withdrawal.js') }}"></script>
    
     <script src="{{ asset('template/js/default-assets/active.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/solid.min.js" integrity="sha512-wabaor0DW08KSK5TQlRIyYOpDrAfJxl5J0FRzH0dNNhGJbeUpHaNj7up3Kr2Bwz/abLvVcJvDrJL+RLFcyGIkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
 </body>
 </html>
